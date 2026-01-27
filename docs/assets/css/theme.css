@@ -1,0 +1,853 @@
+/* =========================
+   THEME.CSS — PORTAL ANA (FINAL LIMPO)
+   ========================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+
+:root{
+  --ana-azul-escuro:#003a5d;
+  --ana-azul:#005f8d;
+  --ana-azul-claro:#0077b6;
+
+  --layout-max: 980px;
+  --content-max: 900px;
+
+  --bg:#f7f9fb;
+  --text:#0f172a;
+  --muted:#334155;
+  --muted-2:#475569;
+
+  --radius:18px;
+  --shadow-sm:0 10px 30px rgba(0,0,0,.06);
+  --shadow-lg:0 24px 60px rgba(0,0,0,.20);
+}
+
+/* =========================
+   Base
+   ========================= */
+html, body{
+  height:100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+html{ scroll-behavior:smooth; } /* âncoras com scroll suave */
+
+body{
+  margin:0;
+  font-family:"Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+a{ color:inherit; }
+a:hover{ text-decoration:none; }
+
+/* Remove cabeçalho padrão do RMarkdown (título/autor/data) */
+h1.title, h2.subtitle, p.author, p.date,
+p.author_name, p.author_affiliation,
+div.author, div.date{
+  display:none !important;
+}
+
+/* Container principal (desktop) */
+.main-container{
+  max-width: var(--layout-max) !important;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* =========================
+   TOPNAV (navbar.html)
+   ========================= */
+.topnav{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 16px;
+
+  background: var(--ana-azul-escuro);
+  color: #fff;
+
+  padding: 12px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* Brand */
+.topnav .brand{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+
+  text-decoration:none;
+  color:#fff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  min-width: 260px;
+}
+
+.topnav .brand img{
+  height: 40px;
+  width: auto;
+  display:block;
+}
+
+.topnav .brand span{
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+/* Links (desktop) */
+.topnav .nav-links{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.topnav .nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-weight: 700;
+  font-size: 14px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  opacity: .95;
+  transition: background .15s ease, opacity .15s ease, transform .15s ease;
+}
+
+.topnav .nav-links a:hover{
+  background: rgba(255,255,255,.12);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Toggle */
+.nav-toggle{ display:none; }
+
+.nav-burger{
+  display:none;
+  cursor:pointer;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+.nav-burger span{
+  display:block;
+  width: 26px;
+  height: 3px;
+  margin: 5px 0;
+  background:#fff;
+  border-radius: 3px;
+}
+
+/* =========================
+   Hero com imagem
+   ========================= */
+.hero{
+  position:relative;
+  margin-top:16px;
+  border-radius:22px;
+  overflow:hidden;
+  min-height:480px;
+
+  background-image:
+    linear-gradient(135deg, rgba(0,58,93,.88), rgba(0,95,141,.75)),
+    url("../img/hero.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  max-width: var(--layout-max);
+  margin-left:auto;
+  margin-right:auto;
+
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-content{
+  max-width: var(--content-max);
+  padding: 64px 28px;
+  text-align:center;
+  color:#ffffff;
+}
+
+.hero h1{
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.hero .section-head h2{
+  color: #ffffff;
+}
+
+.hero p{
+  font-size: clamp(16px, 2vw, 21px);
+  line-height: 1.55;
+  margin: 0 auto;
+  max-width: 820px;
+  opacity: 0.95;
+}
+
+.hero .meta{
+  margin-top:22px;
+  font-size:14px;
+  opacity:.85;
+  letter-spacing:.02em;
+}
+
+/* CTA */
+a.cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight: 700;
+  color:#ffffff;
+  background: linear-gradient(135deg, var(--ana-azul), var(--ana-azul-claro));
+  box-shadow: 0 10px 22px rgba(0,95,141,.25);
+}
+a.cta:hover{ filter: brightness(1.03); }
+
+a.cta.cta--ghost{
+  background: transparent !important;
+  color: var(--ana-azul) !important;
+  border: 1px solid rgba(0,95,141,.35);
+  box-shadow: none !important;
+}
+
+/* =========================
+   Seções e painéis
+   ========================= */
+.section{
+  max-width: var(--content-max);
+  margin-left:auto !important;
+  margin-right:auto !important;
+  text-align:center;
+}
+
+.section-head h2{
+  margin: 0 0 6px;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+.section-head h2:empty{
+  display: none;
+}
+.section-head p{
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+/* leitura confortável: título central / texto alinhado à esquerda */
+.section p,
+.panel p{
+  text-align:left;
+}
+
+.section h2,
+.panel h3{
+  text-align:center;
+}
+
+.grid-2{
+  max-width: var(--content-max);
+  margin-left:auto;
+  margin-right:auto;
+
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.panel{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.06);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.panel h3{
+  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.panel p{
+  margin: 0 0 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Painel técnico (texto longo + figura) */
+.panel--wide{
+  max-width: var(--content-max);
+  margin-left:auto;
+  margin-right:auto;
+}
+.panel--wide h3{
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.panel--wide p{
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+/* Charts */
+.chart-block{
+  margin: 24px 0 40px;
+}
+
+.chart-block + .chart-block{
+  margin-top: 48px;
+}
+
+.chart-block .dygraph{
+  margin: 0 auto 12px auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15,23,42,.06);
+  background: #ffffff;
+  padding: 16px;
+}
+
+.chart-block h3{
+  margin: 0 0 10px;
+}
+
+.chart-block .dygraph{
+  width: 100%;
+}
+
+/* Figura dentro do painel */
+.panel-figure{
+  margin: 22px 0 26px;
+  text-align:center;
+}
+.panel-figure img{
+  max-width:100%;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.15);
+}
+.panel-figure figcaption{
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+/* Listas do painel */
+.panel-list{
+  padding-left: 20px;
+  margin: 12px 0 18px;
+}
+.panel-list li{
+  margin-bottom: 10px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-align:left;
+}
+
+/* =========================
+   CTA box (faixa de chamada)
+   ========================= */
+.section--cta .cta-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+
+  background: linear-gradient(135deg, rgba(0,58,93,.10), rgba(0,119,182,.10));
+  border: 1px solid rgba(0,95,141,.18);
+  border-radius: 20px;
+  padding: 22px;
+
+  max-width: var(--content-max);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.section--cta .cta-box h2{
+  margin:0 0 6px;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+}
+
+.section--cta .cta-box p{
+  margin:0;
+  color: var(--muted);
+}
+
+.cta-actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   Leaflet (mapas)
+   ========================= */
+.leaflet-container{
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow-sm);
+  margin: 12px 0 18px;
+  min-height: 520px;
+}
+
+.legend-media,
+.legend-nc{
+  background: rgba(255,255,255,.92) !important;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.14);
+  padding: 8px 10px !important;
+  text-align: left;
+}
+
+.legend-media{
+  margin-top: 46px;
+}
+
+.legend-nc{
+  margin-top: 122px;
+}
+
+.legend-media i,
+.legend-nc i{
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin-right: 6px;
+  opacity: 1;
+}
+
+/* Leaflet dentro do painel */
+.panel .leaflet-container{
+  width: 100% !important;
+  max-width: 100%;
+  margin: 20px auto 24px auto;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.12);
+}
+
+/* =========================
+   Rodapé (refinado)
+   ========================= */
+.footer{
+  margin-top: 64px;
+  background: linear-gradient(135deg, var(--ana-azul-escuro), #002a44);
+  color: #ffffff;
+}
+
+.footer-container{
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: 44px 24px 18px;
+}
+
+.footer-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  margin-bottom: 22px;
+}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  min-width: 320px;
+}
+
+.footer-brand img{
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display:block;
+}
+
+.footer-logo{
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display:block;
+}
+
+.footer-org{
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.footer-gov{
+  margin-top: 2px;
+  font-size: 13px;
+  opacity: .85;
+}
+
+.footer-links{
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-links a{
+  color:#ffffff;
+  text-decoration:none;
+  font-weight: 600;
+  opacity: .9;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.footer-links a:hover{
+  opacity: 1;
+  background: rgba(255,255,255,.10);
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 26px;
+}
+
+.footer-col h4{
+  margin: 0 0 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .9;
+}
+
+.footer-col p{
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: .9;
+}
+
+.footer-col ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-col li{
+  font-size: 14px;
+  line-height: 1.55;
+  opacity: .9;
+  margin-bottom: 8px;
+}
+
+.footer-mail{
+  display:inline-block;
+  color:#ffffff;
+  font-weight: 700;
+  text-decoration:none;
+  border-bottom: 1px dotted rgba(255,255,255,.65);
+  padding-bottom: 1px;
+}
+.footer-mail:hover{
+  border-bottom-style: solid;
+}
+
+.footer-bottom{
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+
+.footer-bottom p{
+  margin: 0;
+  font-size: 12.5px;
+  opacity: .85;
+}
+
+/* =========================
+   Responsivo (consolidado)
+   ========================= */
+
+/* Tablet e abaixo */
+@media (max-width: 900px){
+  .topnav{ padding: 10px 14px; }
+  .nav-burger{ display:block; }
+  .topnav .brand span{ font-size: 14px; }
+
+  .topnav .nav-links{
+    position:absolute;
+    left:0;
+    right:0;
+    top:64px;
+
+    display:none;
+    flex-direction:column;
+    align-items:flex-start;
+
+    width:100%;
+    background: var(--ana-azul-escuro);
+    padding: 10px 14px 14px;
+
+    border-top: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  }
+
+  .topnav .nav-links a{
+    width:100%;
+    padding: 12px 12px;
+  }
+
+  .nav-toggle:checked ~ .nav-links{ display:flex; }
+
+  .section--cta .cta-box{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-grid{ grid-template-columns: 1fr; }
+  .footer-top{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-brand{ min-width: 0; }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .main-container{
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* topnav: largura + tipografia */
+  .topnav{
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .topnav .brand{
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .topnav .brand img{ height: 32px; }
+
+  .topnav .brand span{
+    font-size: 13px;
+    line-height: 1.1;
+    max-width: 220px;
+  }
+
+  .topnav .nav-links{
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  /* hero: full-width */
+  .hero{
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+
+    border-radius: 0;
+    min-height: 300px;
+  }
+
+  .hero-content{ padding: 36px 16px; }
+
+  .hero h1{
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .hero p{ font-size: 15px; }
+  .hero .meta{ font-size: 12px; }
+
+  .leaflet-container{ min-height: 420px; }
+}
+
+/* =========================
+   MOBILE PEQUENO (até 420px)
+   Alvo: 375px
+   ========================= */
+@media (max-width: 420px){
+
+  /* TOPNAV: compacta sem quebrar */
+  .topnav{
+    padding: 8px 10px;
+    gap: 10px;
+  }
+
+  .topnav .brand{
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .topnav .brand img{
+    height: 28px;
+  }
+
+  /* Encorta o texto da marca (vira 2 linhas no máximo) */
+  .topnav .brand span{
+    font-size: 12px;
+    line-height: 1.05;
+    max-width: 200px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;      /* no máximo 2 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* HAMBURGUER menor */
+  .nav-burger{
+    padding: 6px 8px;
+  }
+  .nav-burger span{
+    width: 22px;
+    height: 3px;
+    margin: 4px 0;
+  }
+
+  /* MENU: vira drawer (lateral) para não esmagar conteúdo */
+  .topnav .nav-links{
+    top: 52px;                  /* acompanha a altura menor da topnav */
+    left: auto;
+    right: 0;
+
+    width: min(86vw, 320px);    /* drawer lateral */
+    border-left: 1px solid rgba(255,255,255,.14);
+    border-top: 0;
+    border-bottom-left-radius: 14px;
+
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    padding: 10px 10px 12px;
+  }
+
+  .topnav .nav-links a{
+    padding: 12px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  /* HERO: full-bleed e mais compacto */
+  .hero{
+    margin-top: 10px;
+    border-radius: 0;
+    min-height: 260px;
+  }
+
+  .hero-content{
+    padding: 28px 14px;
+  }
+
+  .hero h1{
+    font-size: 22px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .hero p{
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .hero .meta{
+    font-size: 11px;
+    margin-top: 14px;
+  }
+
+  /* Sections: breathing room */
+  .section,
+  .grid-2,
+  .section--cta .cta-box{
+    max-width: 100%;
+  }
+
+  .panel{
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  /* Leaflet: altura menor no 375 */
+  .leaflet-container{
+    min-height: 360px;
+  }
+}
+
+/* =========================
+   CORREÇÃO DE CORTE LATERAL (GLOBAL)
+   ========================= */
+
+/* 1) box-sizing consistente evita estouro por padding/borda */
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+/* 3) imagens e mídias sempre responsivas */
+img, svg, video, canvas{
+  max-width: 100%;
+  height: auto;
+}
+
+/* 4) iframes/htmlwidgets (Leaflet/plotly etc.) não podem passar de 100% */
+iframe{
+  max-width: 100%;
+}
+
+/* 5) tabelas longas viram scroll horizontal (não cortam o layout) */
+table{
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 6) blocos de código quebram linha (evita “estouro” silencioso) */
+pre, code{
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 7) containers comuns que às vezes causam overflow */
+.section, .panel, .grid-2{
+  width: 100%;
+}
+
+/* 8) Leaflet e htmlwidgets: garante largura 100% */
+.leaflet-container,
+.html-widget,
+.html-widget-static-bound,
+div[id^="htmlwidget-"]{
+  max-width: 100% !important;
+}
+
+/* 9) em mobile, reduz padding interno para não “apertar” */
+@media (max-width: 768px){
+  .panel{
+    padding: 16px;
+  }
+}
+

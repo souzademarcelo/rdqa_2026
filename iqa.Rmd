@@ -1,0 +1,299 @@
+---
+output:
+  html_document:
+    theme: null
+    css: assets/css/theme.css
+    includes:
+      in_header: assets/includes/head.html
+      before_body: assets/includes/navbar.html
+---
+
+```{=html}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Índice de Qualidade da Água (IQA)</h1>
+    <div class="section-head">
+      <h2>Síntese integrada das condições da água para seus principais usos</h2>
+    </div>
+  </div>
+</section>
+
+```
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(leaflet)
+library(leaflet.extras)
+library(mapview)
+library(leafpop)
+library(sf)
+library(lubridate)
+library(tidyr)
+library(dygraphs)
+
+source("scripts/load_preprocessed.R")
+```
+
+
+
+```{=html}
+<section class="section">
+  <div class="panel panel--wide">
+    <p>O Índice de Qualidade da Água (IQA) é um indicador composto por nove parâmetros físicos, químicos e biológicos: temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes termotolerantes, nitrogênio total, fósforo total, sólidos totais e turbidez.** Trata-se de um indicador abrangente, que representa o estado geral da qualidade da água. O mapa interativo apresenta os valores médios do IQA para a série histórica disponível entre 2010 e 2024 nos pontos de monitoramento da qualidade da água.</p>
+
+    <p>O IQA pode ser representado por categorias:</p>
+
+    <ul class="panel-list">
+      <li>Péssima: 0-19o)</li>
+      <li>Ruim: 19-36</li>
+      <li>Razoável: 36-51</li>
+      <li>Boa: 51-79</li>
+      <li>Ótima: 79-100</li>      
+    </ul>
+
+     <h3>Valores médios (mg/L) e Não-Conformidade (NC%) do IQA entre 2010-2024</h3>
+```
+
+```{r mapa_iqa, echo=FALSE, message=FALSE, warning=FALSE}
+old_opts <- options(OutDec = ",", digits = 2)
+on.exit(options(old_opts), add = TRUE)
+
+iqa_filtrado <- grouped_obs_iqa %>%
+  filter(n >= 10)
+
+coords <- sf::st_coordinates(iqa_filtrado)
+iqa_map <- iqa_filtrado %>%
+  mutate(
+    lng = coords[, 1],
+    lat = coords[, 2]
+  ) %>%
+  sf::st_drop_geometry()
+
+bins_iqa <- c(0, 19, 36, 51, 79, 100)
+pal_ave_iqa <- leaflet::colorBin(
+  palette = c("red", "orange", "yellow", "lime green", "light sky blue"),
+  bins = bins_iqa,
+  domain = iqa_map$`Média`,
+  na.color = "#d1d5db"
+)
+
+popup_iqa <- leafpop::popupTable(
+  iqa_map,
+  zcol = c("Código", "n", "De", "Até", "Média"),
+  row.numbers = FALSE,
+  feature.id = FALSE
+)
+
+mapa_final_iqa <- leaflet(iqa_map) %>%
+  leaflet::setView(
+    lng = -51.0,
+    lat = -15,
+    zoom = 4
+  ) %>%
+  # Adicionar Provider Tiles (Mapas Base)
+  leaflet::addProviderTiles(providers$OpenStreetMap, group = "Padrão") %>%
+  leaflet::addProviderTiles(providers$Esri.WorldImagery, group = "Satélite") %>% 
+  leaflet::addCircleMarkers(
+    lng = ~lng,
+    lat = ~lat,
+    radius = 3,
+    stroke = FALSE,
+    fillOpacity = 0.9,
+    color = ~pal_ave_iqa(`Média`),
+    fillColor = ~pal_ave_iqa(`Média`),
+    popup = popup_iqa,
+    group = "Média"
+  ) %>%
+  leaflet::addLegend(
+    position = "topright",
+    pal = pal_ave_iqa,
+    values = iqa_map$`Média`,
+    title = "Média",
+    opacity = 0.9
+  ) %>%
+  # Reconfigurar o Controle de Camadas (adicionando os grupos base)
+  leaflet::addLayersControl(
+    baseGroups = c("Padrão", "Satélite"),
+    overlayGroups = c("Média"),
+    options = layersControlOptions(collapsed = TRUE, position = "topright")
+  ) %>%
+  # Adicionar a funcionalidade de busca (SearchOSM)
+  leaflet.extras::addSearchOSM(
+    options = leaflet.extras::searchOptions(
+      collapsed = TRUE, autoCollapse = TRUE, zoom = 10, position = "topleft",
+      textPlaceholder = "Buscar locais...", textErr = "Local não encontrado",
+      marker = list(icon = NULL, animate = TRUE, circle = list(radius = 10, weight = 3, color = "#c51b7d", stroke = TRUE, fill = FALSE))
+    ) 
+    ) %>%
+
+  leaflet.extras::addResetMapButton()
+
+# 5. Exibir o mapa no RMarkdown (chame o objeto)
+mapa_final_iqa
+```
+
+```{=html}
+    <p>Os gráficos abaixo mostram a evolução dos valores médios de IQA agrupados por pontos nos ambientes rurais/urbanos entre 2010 e 2024 e separados por categorias. Rios e reservatórios localizados em áreas urbanizadas apresentam médias de IQA mais baixo, o que indica o maior comprometimento da qualidade da água nas cidades. A grande maioria das médias se encontram nas categorias razoável e boa.</p>
+```
+
+```{=html}
+    <div class="chart-block">
+      <h3>Distribuição das faixas de IQA ao longo do tempo</h3>
+```
+
+```{r grafico_faixas_iqa, echo=FALSE, message=FALSE, warning=FALSE}
+breaks_iqa <- c(0, 19, 36, 51, 79, 100)
+
+labels_iqa <- c(
+  "Pessima", 
+  "Ruim", 
+  "Razoavel", # A sua regra 'Boa=>50-70'
+  "Boa", # A sua regra 'Boa=>70-90' - **ATENÇÃO:** Mudei para "Ótima" para diferenciar de 50-70
+  "Otima" # A sua regra 'Ótima=>90-100' - **ATENÇÃO:** Mudei para "Excelente" para diferenciar de 70-90
+)
+
+
+tbl_iqa_faixa <- tbl_iqa %>%
+  mutate(
+    classificacao = cut(
+      x = valor,          # Coluna numérica a ser classificada
+      breaks = breaks_iqa, # Vetor de limites
+      labels = labels_iqa, # Vetor de rótulos (categorias)
+      right = TRUE,       # Indica que o intervalo é fechado à direita (ex: (25, 50] )
+      include.lowest = TRUE # Inclui o valor mais baixo (0) no primeiro intervalo
+    )
+  )
+
+iqa_faixa_year <- tbl_iqa_faixa %>%
+  group_by(year(data), classificacao) %>%
+  summarise(
+    contagem = n(),
+    .groups = 'drop' # Remove o agrupamento do resultado final
+  ) %>%
+  rename(
+    faixa_iqa = classificacao
+  )
+
+ano_final_iqa <- max(2024, max(year(tbl_iqa$data), na.rm = TRUE))
+anos_iqa <- seq(
+  min(year(tbl_iqa$data), na.rm = TRUE),
+  ano_final_iqa
+)
+
+iqa_faixa_year <- iqa_faixa_year %>%
+  rename("ano" = "year(data)") %>%
+  tidyr::complete(
+    ano = anos_iqa,
+    faixa_iqa = labels_iqa,
+    fill = list(contagem = 0)
+  )
+# Imprimindo o novo dataframe
+
+ 
+df_faixa_year_iqa <- iqa_faixa_year %>%
+  pivot_wider(
+    names_from = faixa_iqa,   # A coluna 'tipo' definirá os nomes das novas colunas
+    values_from = c(contagem)  # A coluna 'valor' fornecerá os valores para as novas colunas
+  )
+
+contagem_faixa_iqa <- df_faixa_year_iqa %>%
+select(ano, Pessima, Ruim, Razoavel, Boa, Otima)
+
+dygraph(contagem_faixa_iqa) %>%
+  dySeries("Pessima", label = "Péssima", color = "red") %>%
+  dySeries("Ruim", label = "Ruim", color = "darkorange") %>%
+  dySeries("Razoavel", label = "Razoável", color = "gold") %>%
+  dySeries("Boa", label = "Boa", color = "green") %>%
+  dySeries("Otima", label = "Ótima", color = "blue") %>%
+  dyLegend(width = "auto") %>%
+  dyOptions(stackedGraph = FALSE, drawPoints = TRUE, pointSize = 2) %>%
+  dyAxis("x", valueRange = c(min(anos_iqa), max(anos_iqa)))
+
+```
+
+```{=html}
+    </div>
+```
+
+```{=html}
+  </div>
+</section>
+```
+
+```{=html}
+<section class="section section--cta">
+  <div class="cta-box">
+    <div>
+      <h2>Explore os indicadores</h2>
+      <p>Visualize mapas e gráficos interativos por tema.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta" href="iqa.html">Acessar IQA →</a>
+      <a class="cta" href="od.html">Acessar OD →</a>
+      <a class="cta" href="dbo.html">Acessar DBO →</a>
+      <a class="cta" href="fosforo.html">Acessar Fósforo →</a>
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <div>
+          <strong>Agência Nacional de Águas e Saneamento Básico</strong>
+          <div class="footer-gov">Governo Federal – Brasil</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Sobre o portal</h4>
+        <p>
+          Este portal apresenta informações oficiais sobre a qualidade das águas
+          superficiais no Brasil, com base em dados públicos e metodologias
+          padronizadas.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conteúdo</h4>
+        <ul>
+          <li><a href="iqa.html">Índice de Qualidade da Água</a></li>
+          <li><a href="od.html">Oxigênio Dissolvido</a></li>
+          <li><a href="dbo.html">DBO</a></li>
+          <li><a href="fosforo.html">Fósforo Total</a></li>
+          <li><a href="enquadramento.html">Enquadramento</a></li>          
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>
+            <a href="mailto:cqual@ana.gov.br">
+              cqual@ana.gov.br
+            </a>
+          </li>
+          <li>Atendimento institucional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © Agência Nacional de Águas e Saneamento Básico (ANA).
+        Dados públicos para apoio à gestão dos recursos hídricos.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+```

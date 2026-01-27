@@ -1,0 +1,10 @@
+name: "qualidade-agua"
+output_dir: "docs"
+
+output:
+  html_document:
+    theme: null
+    css: assets/css/theme.css
+    includes:
+      in_header: assets/includes/head.html
+      before_body: assets/includes/navbar.html

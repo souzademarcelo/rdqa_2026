@@ -1,0 +1,349 @@
+---
+output:
+  html_document:
+    theme: null
+    css: assets/css/theme.css
+    includes:
+      in_header: assets/includes/head.html
+      before_body: assets/includes/navbar.html
+---
+
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(leaflet)
+library(leaflet.extras)
+library(sf)
+library(lubridate)
+library(tidyr)
+library(dygraphs)
+
+source("scripts/load_preprocessed.R")
+```
+
+
+```{=html}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Oxigênio Dissolvido</h1>
+    <div class="section-head">
+      <h2>Indicador essencial da qualidade da água e da saúde dos ecossistemas aquáticos</h2>
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<section class="section">
+  <div class="panel panel--wide">
+    <p>O Oxigênio Dissolvido na Água (OD) é fundamental para a vida em ecossistemas aquáticos. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. Níveis críticos, especialmente abaixo de 2 mg/L, ameaçam a sobrevivência dos peixes. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
+
+    <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximo de fósforo total para rios (ambientes lóticos) e lagos (lênticos) de acordo com sua Classe de Qualidade:</p>
+
+    <ul class="panel-list">
+      <li>Classe 1: mínimo de 6 mg/L</li>
+      <li>Classe 2: mínimo de 5 mg/L</li>
+      <li>Classe 3: mínimo de 4 mg/L</li>
+      <li>Classe 4: mínimo de 2 mg/L</li>
+    </ul>
+
+    <p>O mapa apresenta a frequência com que o OD está em Não-Conformidade (NC%) com os limites das respectivas classes nos pontos de monitoramento. Desativando a camada NC%, as médias de OD são apresentadas no mapa. Quanto mais reduzido o OD, mais poluído está o trecho do rio ou lago. Por outro lado, quanto maior a NC%, maior é a necessidade de investimentos para alcançar os padrões de qualidades necessários. Para trechos sem enquadramento, o limite mínimo de 5 mg/L foi considerado.</p>
+    <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de OD entre 2010-2024</h3>
+```
+
+```{r mapa_od, echo=FALSE, message=FALSE, warning=FALSE}
+old_opts <- options(OutDec = ",", digits = 2)
+on.exit(options(old_opts), add = TRUE)
+
+od_filtrado <- grouped_obs_od %>%
+  filter(n >= 10)
+
+coords <- sf::st_coordinates(od_filtrado)
+od_map <- od_filtrado %>%
+  mutate(
+    lng = coords[, 1],
+    lat = coords[, 2]
+  ) %>%
+  sf::st_drop_geometry()
+
+bins_media <- c(0, 2, 4, 5, 6, 18)
+bins_nc <- seq(0, 100, 20)
+
+pal_media <- leaflet::colorBin(
+  palette = c('dark magenta', 'red', 'orange', 'yellow', 'lime green', 'light sky blue'),
+  bins = bins_media,
+  domain = od_map$`Média`,
+  na.color = "#d1d5db"
+)
+
+pal_nc <- leaflet::colorBin(
+  palette = c("#fee5d9", "#fcae91", "#fb6a4a", "#de2d26", "#a50f15"),
+  bins = bins_nc,
+  domain = od_map$NC,
+  na.color = "#d1d5db"
+)
+
+popup_media <- leafpop::popupTable(
+  od_map,
+  zcol = c("Código", "n", "De", "Até", "Média"),
+  row.numbers = FALSE,
+  feature.id = FALSE
+)
+
+popup_nc <- leafpop::popupTable(
+  od_map,
+  zcol = c("Código", "n", "De", "Até", "NC", "Classe"),
+  row.numbers = FALSE,
+  feature.id = FALSE
+)
+
+mapa_final_od <- leaflet(od_map) %>%
+  leaflet::setView(
+    lng = -51.0,
+    lat = -15,
+    zoom = 4
+  ) %>%
+  # Adicionar Provider Tiles (Mapas Base)
+  leaflet::addProviderTiles(providers$OpenStreetMap, group = "Padrão") %>%
+  leaflet::addProviderTiles(providers$Esri.WorldImagery, group = "Satélite") %>% 
+  leaflet::addCircleMarkers(
+    lng = ~lng,
+    lat = ~lat,
+    radius = 3,
+    stroke = FALSE,
+    fillOpacity = 0.9,
+    color = ~pal_media(`Média`),
+    fillColor = ~pal_media(`Média`),
+    popup = popup_media,
+    group = "Média (mg/L)"
+  ) %>%
+  leaflet::addCircleMarkers(
+    lng = ~lng,
+    lat = ~lat,
+    radius = 3,
+    stroke = FALSE,
+    fillOpacity = 0.9,
+    color = ~pal_nc(NC),
+    fillColor = ~pal_nc(NC),
+    popup = popup_nc,
+    group = "NC%"
+  ) %>%
+  leaflet::addLegend(
+    position = "topright",
+    pal = pal_media,
+    values = od_map$`Média`,
+    title = "Média (mg/L)",
+    opacity = 0.9,
+    className = "legend-media"
+  ) %>%
+  leaflet::addLegend(
+    position = "topright",
+    pal = pal_nc,
+    values = od_map$NC,
+    title = "NC%",
+    opacity = 0.9,
+    className = "legend-nc"
+  ) %>%
+  # Reconfigurar o Controle de Camadas (adicionando os grupos base)
+  leaflet::addLayersControl(
+    baseGroups = c("Padrão", "Satélite"),
+    overlayGroups = c("Média (mg/L)", "NC%"),
+    options = layersControlOptions(collapsed = TRUE, position = "topright")
+  ) %>%
+  leaflet::hideGroup("NC%") %>%
+  # Adicionar a funcionalidade de busca (SearchOSM)
+  leaflet.extras::addSearchOSM(
+    options = leaflet.extras::searchOptions(
+      collapsed = TRUE, autoCollapse = TRUE, zoom = 10, position = "topleft",
+      textPlaceholder = "Buscar locais...", textErr = "Local não encontrado",
+      marker = list(icon = NULL, animate = TRUE, circle = list(radius = 10, weight = 3, color = "#c51b7d", stroke = TRUE, fill = FALSE))
+    ) 
+    ) %>%
+
+  leaflet.extras::addResetMapButton()
+
+# 5. Exibir o mapa no RMarkdown (chame o objeto)
+mapa_final_od
+```
+
+```{=html}
+    <p>Os gráficos mostram a evolução do OD em corpos hídricos localizados nos ambientes lênticos/lóticos e rurais/urbanos entre 2010 e 2024. A NC% do OD em rios (lótico) apresentou redução nos pontos de monitoramento até o ano de 2023, apesar das oscilações interanuais. Rios e reservatórios localizados em áreas urbanizadas apresentam médias de OD mais baixo, indicando maior comprometimento da qualidade da água nas cidades.</p>
+```
+
+```{=html}
+    <div class="chart-block">
+      <h3>Não-Conformidade (NC%) de OD: ambientes lênticos e lóticos</h3>
+```
+
+```{r grafico_nc_od, echo=FALSE, message=FALSE, warning=FALSE}
+od_desc_regime <- tbl_od %>%
+  filter(regime %in% c("lentico", "lotico")) %>%
+  group_by(ano = year(data), regime) %>%
+  summarise(
+    nao_nulos = sum(!is.na(desc)),
+    NC = sum(desc == 1, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+ano_final_od <- max(2024, max(year(tbl_od$data), na.rm = TRUE))
+anos_od <- seq(
+  min(year(tbl_od$data), na.rm = TRUE),
+  ano_final_od
+)
+
+od_desc_regime <- od_desc_regime %>%
+  tidyr::complete(
+    ano = anos_od,
+    regime = c("lentico", "lotico"),
+    fill = list(nao_nulos = 0, NC = 0)
+  ) %>%
+  mutate(freq_nc = if_else(nao_nulos == 0, NA_real_, (NC / nao_nulos) * 100))
+
+df_regime_year_od <- od_desc_regime %>%
+  pivot_wider(
+    names_from = regime,
+    values_from = freq_nc
+  )
+
+freq_regime_od <- df_regime_year_od %>%
+  select(ano, lentico, lotico)
+
+dygraph(freq_regime_od) %>%
+  dySeries(
+    "lentico",
+    label = "NC(%) lêntico",
+    color = "#003a5d",
+    strokeWidth = 3
+  ) %>%
+  dySeries(
+    "lotico",
+    label = "NC(%) lótico",
+    color = "#38bdf8",
+    strokeWidth = 3
+  ) %>%
+  dyOptions(
+    drawPoints = TRUE,
+    pointSize = 4,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dyAxis("x", valueRange = c(min(anos_od), max(anos_od)))
+```
+
+```{=html}
+    </div>
+    <div class="chart-block">
+      <h3>Médias de fósforo total: meios rural e urbano</h3>
+```
+
+```{r grafico_media_od, echo=FALSE, message=FALSE, warning=FALSE}
+tbl_urbano_od <- tbl_od %>%
+  filter(tipo %in% c("Área urbanizada", "rural"))
+
+grouped_obs_year_od <- tbl_urbano_od %>%
+  group_by(ano = year(data), tipo) %>%
+  summarise(
+    n = n(),
+    Media = mean(valor),
+    .groups = "drop"
+  )
+
+grouped_obs_year_od <- grouped_obs_year_od %>%
+  tidyr::complete(
+    ano = anos_od,
+    tipo = c("Área urbanizada", "rural")
+  )
+
+df_urbano_year_od <- grouped_obs_year_od %>%
+  pivot_wider(
+    names_from = tipo,
+    values_from = Media
+  )
+
+media_urbano_od <- df_urbano_year_od %>%
+  rename(
+    Rural = `rural`,
+    Urbano = `Área urbanizada`
+  ) %>%
+  select(ano, Rural, Urbano)
+
+dygraph(media_urbano_od) %>%
+  dySeries("Rural", label = "Rural", color = "#003a5d") %>%
+  dySeries("Urbano", label = "Urbano", color = "#38bdf8") %>%
+  dyOptions(
+    drawPoints = TRUE,
+    pointSize = 5,
+    strokeWidth = 3,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dyAxis("x", valueRange = c(min(anos_od), max(anos_od)))
+```
+
+```{=html}
+    </div>
+```
+
+```{=html}
+  </div>
+</section>
+```
+
+```{=html}
+<section class="section section--cta">
+  <div class="cta-box">
+    <div>
+      <h2>Explore os indicadores</h2>
+      <p>Visualize mapas e gráficos interativos por tema.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta" href="iqa.html">Acessar IQA →</a>
+      <a class="cta cta--ghost" href="oxigenio.html">Acessar OD →</a>
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/img/ana-logo-2.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <div>
+          <div class="footer-org">Agência Nacional de Águas e Saneamento Básico (ANA)</div>
+          <div class="footer-gov">Governo Federal – Brasil</div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="iqa.html">IQA</a>
+        <a href="oxigenio.html">OD</a>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Sobre o portal</h4>
+        <p>O portal Qualidade da Água no Brasil apresenta dados oficiais de monitoramento da qualidade das águas superficiais, organizados de forma clara, transparente e acessível.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="mailto:cqual@ana.gov.br" class="footer-mail">
+          <p>Coordenação de Qualidade de Água e Enquadramento</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="ano-atual"></span> Agência Nacional de Águas e Saneamento Básico (ANA). Dados públicos para apoio à gestão dos recursos hídricos.</p>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  document.getElementById("ano-atual").textContent = new Date().getFullYear();
+</script>
+```
