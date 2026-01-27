@@ -275,15 +275,6 @@ dygraph(media_urbano_fosfototal) %>%
 ```
 
 ```{=html}
-    </div>
-```
-
-```{=html}
-  </div>
-</section>
-```
-
-```{=html}
 <section class="section section--cta">
   <div class="cta-box">
     <div>
@@ -291,12 +282,16 @@ dygraph(media_urbano_fosfototal) %>%
       <p>Visualize mapas e gráficos interativos por tema.</p>
     </div>
     <div class="cta-actions">
-      <a class="cta" href="iqa.html">Acessar IQA →</a>
-      <a class="cta cta--ghost" href="oxigenio.html">Acessar OD →</a>
+      <a class="cta" href="iqa.html">IQA</a>
+      <a class="cta" href="od.html">OD</a>
+      <a class="cta" href="dbo.html">DBO</a>
+      <a class="cta" href="fosforo.html">Fósforo</a>
     </div>
   </div>
 </section>
 ```
+
+
 
 ```{=html}
 <footer class="footer">
@@ -304,42 +299,57 @@ dygraph(media_urbano_fosfototal) %>%
 
     <div class="footer-top">
       <div class="footer-brand">
-        <img class="footer-logo" src="assets/img/ana-logo-2.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
         <div>
-          <div class="footer-org">Agência Nacional de Águas e Saneamento Básico (ANA)</div>
+          <strong>Agência Nacional de Águas e Saneamento Básico</strong>
           <div class="footer-gov">Governo Federal – Brasil</div>
         </div>
-      </div>
-
-      <div class="footer-links">
-        <a href="index.html">Início</a>
-        <a href="iqa.html">IQA</a>
-        <a href="oxigenio.html">OD</a>
       </div>
     </div>
 
     <div class="footer-grid">
       <div class="footer-col">
         <h4>Sobre o portal</h4>
-        <p>O portal Qualidade da Água no Brasil apresenta dados oficiais de monitoramento da qualidade das águas superficiais, organizados de forma clara, transparente e acessível.</p>
+        <p>
+          Este portal apresenta informações oficiais sobre a qualidade das águas
+          superficiais no Brasil, com base em dados públicos e metodologias
+          padronizadas.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conteúdo</h4>
+        <ul>
+          <li><a href="iqa.html">Índice de Qualidade da Água</a></li>
+          <li><a href="od.html">Oxigênio Dissolvido</a></li>
+          <li><a href="dbo.html">DBO</a></li>
+          <li><a href="fosforo.html">Fósforo Total</a></li>
+          <li><a href="enquadramento.html">Enquadramento</a></li>          
+        </ul>
       </div>
 
       <div class="footer-col">
         <h4>Contato</h4>
-        <a href="mailto:cqual@ana.gov.br" class="footer-mail">
-          <p>Coordenação de Qualidade de Água e Enquadramento</p>
-        </a>
+        <ul>
+          <li>
+            <a href="mailto:cqual@ana.gov.br">
+              cqual@ana.gov.br
+            </a>
+          </li>
+          <li>Atendimento institucional</li>
+        </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>© <span id="ano-atual"></span> Agência Nacional de Águas e Saneamento Básico (ANA). Dados públicos para apoio à gestão dos recursos hídricos.</p>
+      <p>
+        © Agência Nacional de Águas e Saneamento Básico (ANA).
+        Dados públicos para apoio à gestão dos recursos hídricos.
+      </p>
     </div>
 
   </div>
 </footer>
 
-<script>
-  document.getElementById("ano-atual").textContent = new Date().getFullYear();
-</script>
+
 ```
