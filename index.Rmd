@@ -22,20 +22,11 @@ output:
 ```
 
 ```{=html}
-
-<h2></h2>
-  <div class="grid-2">
 <section class="section">
-  <div class="section-head">
+  <div class="panel panel--wide">
     <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados oficiais de qualidade das águas superficiais do país. A plataforma reúne informações produzidas pelas Unidades da Federação, no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
+    
       <p>Nosso compromisso é transformar dados técnicos em informação útil para a sociedade, fortalecendo a transparência, a participação social e a tomada de decisão baseada em evidências.</p>
-  </div>
-
-  <div class="grid-2">
-
-
-
-<div class="panel panel--wide">
 
     <h3>Como a qualidade da água é avaliada</h3>
 
@@ -113,7 +104,26 @@ output:
 
   </div>
 
+```
+
+```{=html}
+<section class="section section--cta">
+  <div class="cta-box">
+    <div>
+      <h2>Explore os indicadores</h2>
+      <p>Visualize mapas e gráficos interativos por tema.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta" href="iqa.html">IQA</a>
+      <a class="cta" href="od.html">OD</a>
+      <a class="cta" href="dbo.html">DBO</a>
+      <a class="cta" href="fosforo.html">Fósforo</a>
+    </div>
+  </div>
+</section>
+```
     
+```{=html}    
 <div class="panel panel--wide">
       <h3>Origem e confiabilidade dos dados</h3>
       
@@ -198,23 +208,6 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
 </section>
 ```
 
-
-```{=html}
-<section class="section section--cta">
-  <div class="cta-box">
-    <div>
-      <h2>Explore os indicadores</h2>
-      <p>Visualize mapas e gráficos interativos por tema.</p>
-    </div>
-    <div class="cta-actions">
-      <a class="cta" href="iqa.html">Acessar IQA →</a>
-      <a class="cta" href="od.html">Acessar OD →</a>
-      <a class="cta" href="dbo.html">Acessar DBO →</a>
-      <a class="cta" href="fosforo.html">Acessar Fósforo →</a>
-    </div>
-  </div>
-</section>
-```
 
 ```{=html}
 <footer class="footer">

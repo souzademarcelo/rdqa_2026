@@ -11,7 +11,7 @@ output:
 ```{=html}
 <section class="hero">
   <div class="hero-content">
-    <h1>Índice de Qualidade da Água (IQA)</h1>
+    <h1>Índice de Qualidade da Água</h1>
     <div class="section-head">
       <h2>Síntese integrada das condições da água para seus principais usos</h2>
     </div>
