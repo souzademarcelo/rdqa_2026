@@ -48,8 +48,7 @@ source("scripts/load_preprocessed.R")
     </ul>
 
     <p>O mapa interativo mostra a frequência de Não-Conformidade (NC%) com as metas dos trechos monitorados. Ao desativar a camada NC% no mapa, são apresentados os valores médios (mg/L) de fósforo total. Para trechos sem enquadramento, valem os limites da Classe 2. Médias elevadas de fósforo podem ser observadas principalmente nas grandes cidades e nos açudes do Nordeste brasileiro.</p>
-
-      <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de fósforo entre 2010-2024</h3>
+    <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de fósforo entre 2010-2024</h3>
 ```
 
 ```{r mapa_fosforo, echo=FALSE, message=FALSE, warning=FALSE}
@@ -168,7 +167,6 @@ mapa_final_fosfototal
 ```
 
 ```{=html}
-
     <p>Os gráficos abaixo mostram a evolução do fósforo total em corpos hídricos agrupados por ambientes lênticos/lóticos e rurais/urbanos entre 2010 e 2024. A Não-Conformidade (NC%) do fósforo nos lagos é mais elevada do que a observada nos rios. Isso se deve aos limites mais restritivos definidos para o ambiente lêntico. As médias de fósforo são maiores nos corpos de água situados nas cidades quando comparadas com o meio rural.</p>
     
 <p>A Não-Conformidade (NC%) do fósforo nos lagos é mais elevada do que a observada nos rios. Isso se deve aos limites mais restritivos definidos para o ambiente lêntico. As médias de fósforo são maiores nos corpos de água situados nas cidades quando comparadas com o meio rural.</p>
@@ -275,6 +273,7 @@ dygraph(media_urbano_fosfototal) %>%
 ```
 
 ```{=html}
+</section>
 <section class="section section--cta">
   <div class="cta-box">
     <div>
@@ -290,8 +289,7 @@ dygraph(media_urbano_fosfototal) %>%
   </div>
 </section>
 ```
-
-
+    
 
 ```{=html}
 <footer class="footer">
@@ -353,3 +351,4 @@ dygraph(media_urbano_fosfototal) %>%
 
 
 ```
+

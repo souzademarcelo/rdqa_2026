@@ -1,0 +1,304 @@
+---
+output:
+  html_document:
+    theme: null
+    css: assets/css/theme.css
+    includes:
+      in_header: assets/includes/head.html
+      before_body: assets/includes/navbar.html
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(sf)
+library(tmap)
+library(leaflet)
+library(leaflet.extras)
+library(dygraphs)
+library(readxl)
+
+source("scripts/load_enquadramento.R")
+```
+
+```{=html}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Enquadramento</h1>
+    <div class="section-head">
+      <h2>Metas de qualidade para rios e lagos conforme usos da água</h2>
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<section class="section">
+  <div class="panel panel--wide">
+    <p>
+O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia, os usuários de água e a sociedade civil definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
+   </p>
+    <p>
+A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a> atua como o órgão coordenador e normatizador estratégico, fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
+   </p>
+    <p>
+Esse instrumento orienta o controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos. <a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a>.
+    </p>
+
+    <h3>Classes de qualidade</h3>
+  <p>
+O enquadramento classifica rios, lagos e reservatórios em classes de qualidade, definindo metas a serem alcançadas ou mantidas conforme os usos preponderantes da água. Essas classes variam de acordo com os usos da água, conforme determina a <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> 
+  </p>
+  
+  <div class="grid-2">
+    <div class="panel eq-card eq-especial">
+      <h3>Classe Especial</h3>
+      <p>
+        Águas com mínima interferência humana, indicadas para <strong>abastecimento humano com desinfecção simples</strong>
+        e para a <strong>preservação integral dos ecossistemas aquáticos</strong>.
+      </p>
+      <p><strong>Nota:</strong> Qualidade natural voltada à proteção total dos ecossistemas.</p>
+    </div>
+
+    <div class="panel eq-card eq-c1">
+      <h3>Classe 1</h3>
+      <p>
+        Águas com baixa poluição, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>,
+        <strong>recreação de contato direto</strong> e <strong>proteção da vida aquática</strong>.
+      </p>
+      <p><strong>Nota:</strong> Água adequada para usos sensíveis, com tratamento simples.</p>
+    </div>
+
+    <div class="panel eq-card eq-c2">
+      <h3>Classe 2</h3>
+      <p>
+        Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,
+        <strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.
+      </p>
+      <p><strong>Nota:</strong> Classe mais comum, atende à maioria dos usos.</p>
+    </div>
+
+    <div class="panel eq-card eq-c3">
+      <h3>Classe 3</h3>
+      <p>
+        Águas com maior presença de poluentes, indicadas para <strong>abastecimento humano após tratamento avançado</strong>,
+        <strong>irrigação de culturas específicas</strong> e alguns <strong>usos industriais</strong>.
+      </p>
+      <p><strong>Nota:</strong> Exige tratamento mais rigoroso para usos mais sensíveis.</p>
+    </div>
+
+    <div class="panel eq-card eq-c4">
+      <h3>Classe 4</h3>
+      <p>
+        Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>,
+        não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
+      </p>
+      <p><strong>Nota:</strong> Uso restrito, sem finalidade de consumo.</p>
+    </div>
+
+    <h3>Como os indicadores definem as classes de qualidade da água</h3>
+  <p>
+  As classes de qualidade da água são definidas a partir de parâmetros que medem suas condições físicas, químicas e biológicas. Esses parâmetros indicam se a água é adequada para determinados usos, como abastecimento, recreação ou proteção da vida aquática. Nas classes mais altas, os limites são mais rigorosos, exigindo água mais limpa e com menor poluição. Nas classes mais baixas, os limites são menos restritivos, permitindo usos mais limitados.
+  </p>
+  
+   <h3>Relação entre parâmetros indicadores e classes de qualidade</h3>
+  
+```
+
+
+| Parâmetro | O que indica | Classes mais exigentes | Classes menos exigentes |
+|---------|-------------|----------------------|------------------------|
+| Oxigênio Dissolvido (OD) | Condições para a vida aquática | Valores mínimos mais altos (Classe Especial e 1) | Valores mínimos menores (Classes 3 e 4) |
+| Demanda Bioquímica de Oxigênio (DBO) | Carga de matéria orgânica | Valores máximos mais baixos | Valores máximos mais elevados |
+| Fósforo Total | Risco de eutrofização | Limites mais restritivos | Limites mais flexíveis |
+| Índice de Qualidade da Água (IQA)* | Síntese da qualidade da água | Valores mais altos indicam melhor qualidade | Valores mais baixos indicam pior qualidade |
+
+\* O IQA não define classes legais, mas é amplamente utilizado como indicador sintético para apoiar a avaliação do enquadramento.
+
+
+```{=html}
+
+    <h3>Evolução do enquadramento no Brasil</h3>
+  <p>
+  O enquadramento é um instrumento que vem sofrendo aperfeiçoamentos visando sua implementação em todo o país. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.
+  </p>
+
+
+    <h3>Implementação e marcos legais do enquadramento</h3>
+
+```
+
+```{r grafico_evol_eca, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+evolucao_eca <- read_excel("evolucao_eca.xlsx")
+evo_eca <- evolucao_eca %>% select(1, 2)
+
+dygraph(evo_eca) %>%
+  dyAxis("y", label = "Normativos", valueRange = c(0, 130)) %>%
+  dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE) %>%
+  dyRangeSelector(height = 5) %>%
+  dyEvent("1977", "Port. nº 13 do Ministério do Interior", labelLoc = "bottom") %>%
+  dyEvent("1986", "Res. Conama nº 20", labelLoc = "bottom") %>%
+  dyEvent("1997", "Lei federal nº 9.433", labelLoc = "bottom") %>%
+  dyEvent("2005", "Res. CONAMA nº 357", labelLoc = "bottom") %>%
+  dyEvent("2008", "Res. CNRH nº 91", labelLoc = "bottom")
+```
+
+
+```{=html}
+  <div class="card">
+    <h3>Marcos legais do enquadramento (resumo)</h3>
+    <ul class="panel-list">
+      <li><strong>Lei nº 9.433/1997</strong> – institui a Política Nacional de Recursos Hídricos e define o <strong>enquadramento</strong> como instrumento para assegurar qualidade compatível com os usos e orientar o controle da poluição.</li>
+      <li><strong>Resolução CONAMA nº 357/2005</strong> – estabelece as <strong>classes de qualidade das águas superficiais</strong>, os usos associados e padrões de referência para avaliação e gestão.</li>
+      <li><strong>Resolução CONAMA nº 396/2008</strong> – complementa o arcabouço normativo ao tratar da <strong>classificação das águas subterrâneas</strong>, promovendo coerência na gestão da qualidade.</li>
+    </ul>
+
+ <h3>Bacias com enquadramento</h3>
+```
+
+
+```{r mapa_enquadramento, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+tmap_mode("view")
+
+mapa_eca_tmap <- 
+  tm_shape(enq_estadual_final, name = "Enquadramento Estadual") + 
+  tm_polygons(
+    fill = "#329671",
+    alpha = 0.5,
+    border.col = "white",
+    lwd = 0.5,
+    popup.vars = c(
+      "UF:" = "uf", 
+      "Conselho RH:" = "conselho_rh", 
+      "Nome:" = "nome", 
+      "Normativo:" = "normativo"
+    ),
+    legend.show = FALSE
+  ) +
+  tm_shape(enq_uniao_final, name = "Enquadramento União") + 
+  tm_polygons(
+    fill = "#27BBF5",
+    alpha = 0.5,
+    border.col = "white",
+    lwd = 0.5,
+    popup.vars = c(
+      "UF:" = "uf", 
+      "Conselho RH:" = "conselho_rh", 
+      "Nome:" = "nome", 
+      "Normativo:" = "normativo"
+    ),
+    legend.show = FALSE
+  ) +
+  tm_layout(frame = FALSE)
+
+mapa_final_eca_tmap <- tmap_leaflet(mapa_eca_tmap) %>%
+  leaflet::setView(lng = -51.0, lat = -15, zoom = 4) %>%
+  leaflet::addProviderTiles(providers$OpenStreetMap, group = "OpenStreetMap (Padrão)") %>%
+  leaflet::addProviderTiles(providers$Esri.WorldImagery, group = "Satélite (Esri)") %>%
+  leaflet::addProviderTiles(providers$CartoDB.Positron, group = "Tema Claro (CartoPositron)") %>%
+  leaflet::addLayersControl(
+    baseGroups = c("OpenStreetMap (Padrão)", "Satélite (Esri)", "Tema Claro (CartoPositron)"),
+    overlayGroups = c("Enquadramento Estadual", "Enquadramento União"),
+    options = layersControlOptions(collapsed = TRUE, position = "topright")
+  ) %>%
+  leaflet::addLegend(
+    position = "bottomright",
+    colors = c("#329671", "#27BBF5"),
+    labels = c("Estado", "União"),
+    title = "Domínio",
+    opacity = 1
+  ) %>%
+  leaflet.extras::addSearchOSM(
+    options = leaflet.extras::searchOptions(
+      collapsed = TRUE,
+      autoCollapse = TRUE,
+      zoom = 10,
+      position = "topleft",
+      textPlaceholder = "Buscar locais...",
+      textErr = "Local não encontrado",
+      marker = list(icon = NULL, animate = TRUE, circle = list(radius = 10, weight = 3, color = "#c51b7d", stroke = TRUE, fill = FALSE))
+    )
+  ) %>%
+  leaflet.extras::addResetMapButton()
+
+mapa_final_eca_tmap
+```
+
+```{=html}
+</section>
+<section class="section section--cta">
+  <div class="cta-box">
+    <div>
+      <h2>Explore os indicadores</h2>
+      <p>Visualize mapas e gráficos interativos por tema.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta" href="iqa.html">IQA</a>
+      <a class="cta" href="od.html">OD</a>
+      <a class="cta" href="dbo.html">DBO</a>
+      <a class="cta" href="fosforo.html">Fósforo</a>
+    </div>
+  </div>
+</section>
+```
+    
+
+```{=html}
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <div>
+          <strong>Agência Nacional de Águas e Saneamento Básico</strong>
+          <div class="footer-gov">Governo Federal – Brasil</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Sobre o portal</h4>
+        <p>
+          Este portal apresenta informações oficiais sobre a qualidade das águas
+          superficiais no Brasil, com base em dados públicos e metodologias
+          padronizadas.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conteúdo</h4>
+        <ul>
+          <li><a href="iqa.html">Índice de Qualidade da Água</a></li>
+          <li><a href="od.html">Oxigênio Dissolvido</a></li>
+          <li><a href="dbo.html">DBO</a></li>
+          <li><a href="fosforo.html">Fósforo Total</a></li>
+          <li><a href="enquadramento.html">Enquadramento</a></li>          
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>
+            <a href="mailto:cqual@ana.gov.br">
+              cqual@ana.gov.br
+            </a>
+          </li>
+          <li>Atendimento institucional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © Agência Nacional de Águas e Saneamento Básico (ANA).
+        Dados públicos para apoio à gestão dos recursos hídricos.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+```

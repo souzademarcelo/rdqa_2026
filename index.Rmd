@@ -27,7 +27,9 @@ output:
     <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados oficiais de qualidade das águas superficiais do país. A plataforma reúne informações produzidas pelas Unidades da Federação, no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
     
       <p>Nosso compromisso é transformar dados técnicos em informação útil para a sociedade, fortalecendo a transparência, a participação social e a tomada de decisão baseada em evidências.</p>
+  </div>
 
+  <div class="panel panel--wide">
     <h3>Como a qualidade da água é avaliada</h3>
 
     <p>
@@ -106,28 +108,14 @@ output:
 
 ```
 
-```{=html}
-<section class="section section--cta">
-  <div class="cta-box">
-    <div>
-      <h2>Explore os indicadores</h2>
-      <p>Visualize mapas e gráficos interativos por tema.</p>
-    </div>
-    <div class="cta-actions">
-      <a class="cta" href="iqa.html">IQA</a>
-      <a class="cta" href="od.html">OD</a>
-      <a class="cta" href="dbo.html">DBO</a>
-      <a class="cta" href="fosforo.html">Fósforo</a>
-    </div>
-  </div>
-</section>
-```
-    
 ```{=html}    
 <div class="panel panel--wide">
       <h3>Origem e confiabilidade dos dados</h3>
       
       <p>Todos os dados apresentados neste portal são provenientes da Rede Nacional de Monitoramento da Qualidade da Água (RNQA), formada por estações de monitoramento operadas por órgãos estaduais e distritais de recursos hídricos e meio ambiente. As informações seguem metodologias padronizadas e critérios técnicos nacionais, promovidos pela ANA, o que garante a comparabilidade dos dados em escala nacional. Este portal atua exclusivamente como uma plataforma de organização, visualização e divulgação, não alterando nem reinterpretando tecnicamente os dados originais.</p>
+     
+     <h3>Monitoramento nas unidades da federação</h3> 
+      
 ```
 
 
@@ -208,6 +196,24 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
 </section>
 ```
 
+
+```{=html}
+<section class="section section--cta">
+  <div class="cta-box">
+    <div>
+      <h2>Explore os indicadores</h2>
+      <p>Visualize mapas e gráficos interativos por tema.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta" href="iqa.html">IQA</a>
+      <a class="cta" href="od.html">OD</a>
+      <a class="cta" href="dbo.html">DBO</a>
+      <a class="cta" href="fosforo.html">Fósforo</a>
+    </div>
+  </div>
+</section>
+```
+    
 
 ```{=html}
 <footer class="footer">

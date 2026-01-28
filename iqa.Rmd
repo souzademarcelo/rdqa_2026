@@ -220,6 +220,7 @@ dygraph(contagem_faixa_iqa) %>%
 </section>
 ```
 
+
 ```{=html}
 <section class="section section--cta">
   <div class="cta-box">
@@ -228,14 +229,15 @@ dygraph(contagem_faixa_iqa) %>%
       <p>Visualize mapas e gráficos interativos por tema.</p>
     </div>
     <div class="cta-actions">
-      <a class="cta" href="iqa.html">Acessar IQA →</a>
-      <a class="cta" href="od.html">Acessar OD →</a>
-      <a class="cta" href="dbo.html">Acessar DBO →</a>
-      <a class="cta" href="fosforo.html">Acessar Fósforo →</a>
+      <a class="cta" href="iqa.html">IQA</a>
+      <a class="cta" href="od.html">OD</a>
+      <a class="cta" href="dbo.html">DBO</a>
+      <a class="cta" href="fosforo.html">Fósforo</a>
     </div>
   </div>
 </section>
 ```
+    
 
 ```{=html}
 <footer class="footer">

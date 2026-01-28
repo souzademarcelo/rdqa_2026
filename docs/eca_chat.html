@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>eca_chat.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="assets/css/theme.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+<nav class="topnav">
+  <a class="brand" href="index.html">
+    <img src="assets/img/ana-logo.png" alt="ANA">
+    <span>Agência Nacional de Águas e Saneamento Básico</span>
+  </a>
+
+  <input id="nav-toggle" type="checkbox" class="nav-toggle">
+  <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </label>
+
+  <div class="nav-links">
+    <a href="index.html">Início</a>
+    <a href="iqa.html">IQA</a>
+    <a href="od.html">OD</a>
+    <a href="dbo.html">DBO</a>
+    <a href="fosforo.html">Fósforo</a>
+    <a href="enquadramento.html">Enquadramento</a>
+  </div>
+</nav>
+
+
+
+
+
+<style>
+  /* ===== Enquadramento – Cards institucionais ===== */
+  .eq-wrap{ max-width: 1100px; margin: 0 auto; }
+  .eq-intro{ background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:16px; padding:18px 18px; box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+  .eq-intro h3{ margin:0 0 6px 0; font-size: 20px; }
+  .eq-intro p{ margin:0; line-height:1.55; color:#1f2a37; }
+
+  .eq-grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 12px; margin-top: 14px; }
+  .eq-card{
+    grid-column: span 12;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.08);
+    border-radius: 16px;
+    padding: 14px 14px 12px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 900px){
+    .eq-card{ grid-column: span 6; }
+  }
+
+  .eq-top{ display:flex; align-items:center; justify-content:space-between; gap: 10px; }
+  .eq-title{ display:flex; align-items:center; gap: 10px; }
+  .eq-chip{
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(0,0,0,.03);
+    white-space: nowrap;
+  }
+  .eq-h4{ margin: 0; font-size: 16px; }
+  .eq-p{ margin: 8px 0 0 0; color:#1f2a37; line-height: 1.55; }
+
+  .eq-tip{
+    margin-top: 10px;
+    font-size: 12px;
+    color:#4b5563;
+    border-top: 1px dashed rgba(0,0,0,.12);
+    padding-top: 10px;
+  }
+
+  /* Faixa lateral de cor por classe (discreta) */
+  .eq-card::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width: 8px;
+    background: #0b2d4a;
+    opacity: .9;
+  }
+  .eq-especial::before{ background:#1D4ED8; } /* azul */
+  .eq-c1::before{       background:#22C55E; } /* verde */
+  .eq-c2::before{       background:#F59E0B; } /* amarelo/âmbar */
+  .eq-c3::before{       background:#F97316; } /* laranja */
+  .eq-c4::before{       background:#EF4444; } /* vermelho */
+
+  /* Bloco legal */
+  .eq-legal{
+    margin-top: 14px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.08);
+    border-radius: 16px;
+    padding: 16px 18px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  }
+  .eq-legal h3{ margin:0 0 10px 0; font-size: 18px; }
+  .eq-legal ul{ margin:0; padding-left: 18px; color:#1f2a37; }
+  .eq-legal li{ margin: 8px 0; line-height:1.5; }
+  .eq-mini{
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: rgba(11,45,74,.04);
+    color:#0b2d4a;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+</style>
+
+<div class="eq-wrap">
+
+  <!-- Introdução institucional -->
+  <div class="eq-intro">
+    <h3>Enquadramento dos corpos de água em classes de qualidade</h3>
+    <p>
+      O enquadramento classifica rios, lagos e reservatórios em <strong>classes de qualidade</strong>, definindo
+      <strong>metas a serem alcançadas ou mantidas</strong> conforme os <strong>usos preponderantes</strong> da água.
+      Esse instrumento orienta o controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos.
+    </p>
+  </div>
+
+  <!-- Cards das classes -->
+  <div class="eq-grid">
+
+    <div class="eq-card eq-especial">
+      <div class="eq-top">
+        <div class="eq-title">
+          <h4 class="eq-h4">Classe Especial</h4>
+          <span class="eq-chip" title="Tooltip: Qualidade natural, voltada à proteção total dos ecossistemas.">Tooltip</span>
+        </div>
+        <span class="eq-chip">Altíssima qualidade</span>
+      </div>
+      <p class="eq-p">
+        Águas com mínima interferência humana, indicadas para <strong>abastecimento humano com desinfecção simples</strong>
+        e para a <strong>preservação integral dos ecossistemas aquáticos</strong>.
+      </p>
+      <div class="eq-tip"><strong>Tooltip:</strong> Qualidade natural da água, voltada à proteção total dos ecossistemas.</div>
+    </div>
+
+    <div class="eq-card eq-c1">
+      <div class="eq-top">
+        <div class="eq-title">
+          <h4 class="eq-h4">Classe 1</h4>
+          <span class="eq-chip" title="Tooltip: Água adequada para usos sensíveis, com tratamento simples.">Tooltip</span>
+        </div>
+        <span class="eq-chip">Boa qualidade</span>
+      </div>
+      <p class="eq-p">
+        Águas com baixa poluição, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>,
+        <strong>recreação de contato direto</strong> e <strong>proteção da vida aquática</strong>.
+      </p>
+      <div class="eq-tip"><strong>Tooltip:</strong> Água adequada para usos sensíveis, com tratamento simples.</div>
+    </div>
+
+    <div class="eq-card eq-c2">
+      <div class="eq-top">
+        <div class="eq-title">
+          <h4 class="eq-h4">Classe 2</h4>
+          <span class="eq-chip" title="Tooltip: Classe mais comum, atende à maioria dos usos.">Tooltip</span>
+        </div>
+        <span class="eq-chip">Intermediária</span>
+      </div>
+      <p class="eq-p">
+        Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,
+        <strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.
+      </p>
+      <div class="eq-tip"><strong>Tooltip:</strong> Classe mais comum, atende à maioria dos usos.</div>
+    </div>
+
+    <div class="eq-card eq-c3">
+      <div class="eq-top">
+        <div class="eq-title">
+          <h4 class="eq-h4">Classe 3</h4>
+          <span class="eq-chip" title="Tooltip: Exige tratamento mais rigoroso para usos mais sensíveis.">Tooltip</span>
+        </div>
+        <span class="eq-chip">Uso mais restrito</span>
+      </div>
+      <p class="eq-p">
+        Águas com maior presença de poluentes, indicadas para <strong>abastecimento humano após tratamento avançado</strong>,
+        <strong>irrigação de culturas específicas</strong> e alguns <strong>usos industriais</strong>.
+      </p>
+      <div class="eq-tip"><strong>Tooltip:</strong> Exige tratamento mais rigoroso para usos mais sensíveis.</div>
+    </div>
+
+    <div class="eq-card eq-c4">
+      <div class="eq-top">
+        <div class="eq-title">
+          <h4 class="eq-h4">Classe 4</h4>
+          <span class="eq-chip" title="Tooltip: Uso restrito, sem finalidade de consumo.">Tooltip</span>
+        </div>
+        <span class="eq-chip">Baixa qualidade</span>
+      </div>
+      <p class="eq-p">
+        Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>,
+        não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
+      </p>
+      <div class="eq-tip"><strong>Tooltip:</strong> Uso restrito, sem finalidade de consumo.</div>
+    </div>
+
+  </div>
+
+  <!-- Síntese curta (para card/hero) -->
+  <div class="eq-mini">
+    <strong>Resumo (curto):</strong> O enquadramento define metas de qualidade para rios e lagos conforme os usos preponderantes,
+    orientando ações de gestão, controle da poluição e proteção dos ecossistemas.
+  </div>
+
+  <!-- Marcos legais -->
+  <div class="eq-legal">
+    <h3>Marcos legais do enquadramento (resumo)</h3>
+    <ul>
+      <li><strong>Lei nº 9.433/1997</strong> – institui a Política Nacional de Recursos Hídricos e define o <strong>enquadramento</strong> como instrumento para assegurar qualidade compatível com os usos e orientar o controle da poluição.</li>
+      <li><strong>Resolução CONAMA nº 357/2005</strong> – estabelece as <strong>classes de qualidade das águas superficiais</strong>, os usos associados e padrões de referência para avaliação e gestão.</li>
+      <li><strong>Resolução CONAMA nº 396/2008</strong> – complementa o arcabouço normativo ao tratar da <strong>classificação das águas subterrâneas</strong>, promovendo coerência na gestão da qualidade.</li>
+    </ul>
+  </div>
+
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

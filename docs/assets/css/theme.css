@@ -373,15 +373,35 @@ a.cta.cta--ghost{
   text-align:left;
 }
 
+/* Enquadramento cards */
+.eq-card{
+  position: relative;
+  padding-left: 28px;
+}
+.eq-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width: 8px;
+  border-radius: 8px 0 0 8px;
+  background: var(--ana-azul-escuro);
+}
+.eq-especial::before{ background:#1D4ED8; }
+.eq-c1::before{ background:#22C55E; }
+.eq-c2::before{ background:#F59E0B; }
+.eq-c3::before{ background:#F97316; }
+.eq-c4::before{ background:#EF4444; }
+
 /* =========================
    CTA box (faixa de chamada)
    ========================= */
 .section--cta{
   width: 100%;
-  background: linear-gradient(135deg, rgba(28,55,130,.06), rgba(0,147,221,.08));
-  border-top: 1px solid rgba(28,55,130,.10);
-  border-bottom: 1px solid rgba(28,55,130,.10);
-  padding: 22px 0;
+  background: transparent;
+  border: 0;
+  padding: 18px 0 0;
 }
 
 .section--cta .cta-box{
@@ -515,6 +535,15 @@ a.cta.cta--ghost{
   color: #ffffff;
   width: 100vw;
   margin-left: calc(50% - 50vw);
+}
+
+.footer a,
+.footer a:visited{
+  color:#ffffff;
+}
+
+.footer a:hover{
+  opacity: .95;
 }
 
 .footer-container{
