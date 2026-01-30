@@ -34,6 +34,10 @@ source("scripts/load_enquadramento.R")
 ```{=html}
 <section class="section">
   <div class="panel panel--wide">
+  
+
+    <h3>Enquadramento e planejamento</h3>  
+
     <p>
 O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia, os usuários de água e a sociedade civil definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
    </p>
@@ -44,64 +48,95 @@ A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Á
 Esse instrumento orienta o controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos. <a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a>.
     </p>
 
-    <h3>Classes de qualidade</h3>
+  <h3>Classes de qualidade</h3>
   <p>
 O enquadramento classifica rios, lagos e reservatórios em classes de qualidade, definindo metas a serem alcançadas ou mantidas conforme os usos preponderantes da água. Essas classes variam de acordo com os usos da água, conforme determina a <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> 
   </p>
   
   <div class="grid-2">
-    <div class="panel eq-card eq-especial">
-      <h3>Classe Especial</h3>
-      <p>
+  
+    <div class="eq-card eq-especial">
+    <div class="eq-card__header">
+      <img class="eq-icon" src="assets/img/cl-esp.png" alt="Ícone da Classe Especial">
+      <h3 class="eq-title">Classe Especial</h3>
+ 
+    </div>
+
+    <p class="eq-text">     
+
         Águas com mínima interferência humana, indicadas para <strong>abastecimento humano com desinfecção simples</strong>
         e para a <strong>preservação integral dos ecossistemas aquáticos</strong>.
-      </p>
-      <p><strong>Nota:</strong> Qualidade natural voltada à proteção total dos ecossistemas.</p>
+    </p>
+  </div>
+  
+  
+  
+    <div class="eq-card eq-c1">
+    <div class="eq-card__header">
+      <img class="eq-icon" src="assets/img/cl-1.png" alt="Ícone da Classe 1">
+      <h3 class="eq-title">Classe 1</h3>
+
     </div>
 
-    <div class="panel eq-card eq-c1">
-      <h3>Classe 1</h3>
-      <p>
-        Águas com baixa poluição, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>,
+    <p class="eq-text">
+       Águas com baixa poluição, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>,
         <strong>recreação de contato direto</strong> e <strong>proteção da vida aquática</strong>.
-      </p>
-      <p><strong>Nota:</strong> Água adequada para usos sensíveis, com tratamento simples.</p>
+    </p>
+  </div>
+
+
+  
+    <div class="eq-card eq-c2">
+    <div class="eq-card__header">
+      <img class="eq-icon" src="assets/img/cl-2.png" alt="Ícone da Classe 2">
+      <h3 class="eq-title">Classe 2</h3>
+
     </div>
 
-    <div class="panel eq-card eq-c2">
-      <h3>Classe 2</h3>
-      <p>
-        Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,
-        <strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.
-      </p>
-      <p><strong>Nota:</strong> Classe mais comum, atende à maioria dos usos.</p>
+    <p class="eq-text">
+Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,<strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.</strong> Classe mais comum, atende à maioria dos usos.
+    </p>
+  </div>
+
+
+
+    <div class="eq-card eq-c3">
+    <div class="eq-card__header">
+      <img class="eq-icon" src="assets/img/cl-3.png" alt="Ícone da Classe 3">
+      <h3 class="eq-title">Classe 3</h3>
+
     </div>
 
-    <div class="panel eq-card eq-c3">
-      <h3>Classe 3</h3>
-      <p>
-        Águas com maior presença de poluentes, indicadas para <strong>abastecimento humano após tratamento avançado</strong>,
-        <strong>irrigação de culturas específicas</strong> e alguns <strong>usos industriais</strong>.
-      </p>
-      <p><strong>Nota:</strong> Exige tratamento mais rigoroso para usos mais sensíveis.</p>
+    <p class="eq-text">
+ Águas com maior presença de poluentes, indicadas para <strong>abastecimento humano após tratamento avançado</strong>,
+        <strong>irrigação de culturas específicas</strong> e alguns <strong>usos industriais</strong>. Exige tratamento mais rigoroso para usos mais sensíveis.
+    </p>
+  </div>
+
+
+
+    <div class="eq-card eq-c4">
+    <div class="eq-card__header">
+      <img class="eq-icon" src="assets/img/cl-4.png" alt="Ícone da Classe 4">
+      <h3 class="eq-title">Classe 4</h3>
+
     </div>
 
-    <div class="panel eq-card eq-c4">
-      <h3>Classe 4</h3>
-      <p>
-        Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>,
-        não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
-      </p>
-      <p><strong>Nota:</strong> Uso restrito, sem finalidade de consumo.</p>
+    <p class="eq-text">
+Classe com a pior qualidade. Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>, <strong> não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
+    </p>
     </div>
 
-    <h3>Como os indicadores definem as classes de qualidade da água</h3>
+  </div>
+
+  <h3>Como os indicadores definem as classes de qualidade da água</h3>
   <p>
   As classes de qualidade da água são definidas a partir de parâmetros que medem suas condições físicas, químicas e biológicas. Esses parâmetros indicam se a água é adequada para determinados usos, como abastecimento, recreação ou proteção da vida aquática. Nas classes mais altas, os limites são mais rigorosos, exigindo água mais limpa e com menor poluição. Nas classes mais baixas, os limites são menos restritivos, permitindo usos mais limitados.
   </p>
   
    <h3>Relação entre parâmetros indicadores e classes de qualidade</h3>
   
+  <p>Melhorar esta tabela incluindo os ícones ou substituir por cards</p>
 ```
 
 

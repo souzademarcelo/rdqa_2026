@@ -36,6 +36,9 @@ source("scripts/load_preprocessed.R")
 ```{=html}
 <section class="section">
   <div class="panel panel--wide">
+  
+    <h3>Indicador da eutrofização</h3>  
+
     <p>O fósforo na água é um nutriente que promove o crescimento da flora aquática. O crescimento excessivo de algas e plantas, principalmente em ambientes lênticos, como os lagos, caracterizam o processo de eutrofização das águas. A eutrofização está associada à degradação da qualidade da água e pode afetar diversos usos da água, como a navegação e a produção de energia hidrelétrica.</p>
 
     <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximo de fósforo total para rios (ambientes lóticos) e lagos (lênticos) de acordo com sua Classe de Qualidade:</p>

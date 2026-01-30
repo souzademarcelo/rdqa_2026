@@ -8,18 +8,6 @@ output:
       before_body: assets/includes/navbar.html
 ---
 
-```{=html}
-<section class="hero">
-  <div class="hero-content">
-    <h1>Índice de Qualidade da Água</h1>
-    <div class="section-head">
-      <h2>Síntese integrada das condições da água para seus principais usos</h2>
-    </div>
-  </div>
-</section>
-
-```
-
 ```{r setup, include=FALSE}
 library(dplyr)
 library(leaflet)
@@ -34,11 +22,25 @@ library(dygraphs)
 source("scripts/load_preprocessed.R")
 ```
 
+```{=html}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Índice de Qualidade da Água</h1>
+    <div class="section-head">
+      <h2>Síntese integrada das condições da água para seus principais usos</h2>
+    </div>
+  </div>
+</section>
 
+```
 
 ```{=html}
 <section class="section">
   <div class="panel panel--wide">
+  
+
+    <h3>Indicador intuitivo</h3>  
+
     <p>O Índice de Qualidade da Água (IQA) é um indicador composto por nove parâmetros físicos, químicos e biológicos: temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes termotolerantes, nitrogênio total, fósforo total, sólidos totais e turbidez.** Trata-se de um indicador abrangente, que representa o estado geral da qualidade da água. O mapa interativo apresenta os valores médios do IQA para a série histórica disponível entre 2010 e 2024 nos pontos de monitoramento da qualidade da água.</p>
 
     <p>O IQA pode ser representado por categorias:</p>
@@ -209,15 +211,6 @@ dygraph(contagem_faixa_iqa) %>%
   dyOptions(stackedGraph = FALSE, drawPoints = TRUE, pointSize = 2) %>%
   dyAxis("x", valueRange = c(min(anos_iqa), max(anos_iqa)))
 
-```
-
-```{=html}
-    </div>
-```
-
-```{=html}
-  </div>
-</section>
 ```
 
 

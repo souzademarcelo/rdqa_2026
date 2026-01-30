@@ -21,7 +21,6 @@ library(dygraphs)
 source("scripts/load_preprocessed.R")
 ```
 
-
 ```{=html}
 <section class="hero">
   <div class="hero-content">
@@ -36,6 +35,9 @@ source("scripts/load_preprocessed.R")
 ```{=html}
 <section class="section">
   <div class="panel panel--wide">
+
+    <h3>Indicador da vida aquática</h3>  
+
     <p>O Oxigênio Dissolvido na Água (OD) é fundamental para a vida em ecossistemas aquáticos. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. Níveis críticos, especialmente abaixo de 2 mg/L, ameaçam a sobrevivência dos peixes. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
 
     <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximo de fósforo total para rios (ambientes lóticos) e lagos (lênticos) de acordo com sua Classe de Qualidade:</p>
@@ -279,16 +281,6 @@ dygraph(media_urbano_od) %>%
 ```
 
 ```{=html}
-    </div>
-```
-
-```{=html}
-  </div>
-</section>
-```
-
-
-```{=html}
 <section class="section section--cta">
   <div class="cta-box">
     <div>
@@ -304,7 +296,6 @@ dygraph(media_urbano_od) %>%
   </div>
 </section>
 ```
-    
 
 ```{=html}
 <footer class="footer">

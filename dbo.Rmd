@@ -21,8 +21,6 @@ library(dygraphs)
 source("scripts/load_preprocessed.R")
 ```
 
-
-
 ```{=html}
 <section class="hero">
   <div class="hero-content">
@@ -37,8 +35,13 @@ source("scripts/load_preprocessed.R")
 
 ```{=html}
 <section class="section">
+
+
   <div class="panel panel--wide">
-    <p>A Demanda Bioquímica de Oxigênio (DBO) indica a quantidade de oxigênio consumida nos processos biológicos de degradação da matéria orgânica no meio aquático. A DBO de uma amostra de água é geralmente medida em laboratório, por meio de um bioensaio realizado em condições controladas. A DBO é um bom indicador da poluição da água por cargas orgânicas, como os esgotos domésticos.</p>
+
+   <h3>Indicador da poluição orgânica</h3>
+   
+   <p>A Demanda Bioquímica de Oxigênio (DBO) indica a quantidade de oxigênio consumida nos processos biológicos de degradação da matéria orgânica no meio aquático. A DBO de uma amostra de água é geralmente medida em laboratório, por meio de um bioensaio realizado em condições controladas. A DBO é um bom indicador da poluição da água por cargas orgânicas, como os esgotos domésticos.</p>
 
     <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximo de DBO para rios e lagos para as classes de qualidade:</p>
 
@@ -50,6 +53,7 @@ source("scripts/load_preprocessed.R")
     </ul>
 
     <p>O mapa interativo mostra a frequência de Não-Conformidade (NC%) com as metas dos trechos monitorados. Ao desativar a camada NC% no mapa, são apresentados os valores médios (mg/L) de fósforo total. Para trechos sem enquadramento, valem os limites da Classe 2. Médias elevadas de fósforo podem ser observadas principalmente nas grandes cidades e nos açudes do Nordeste brasileiro. Valores médios de DBO mais altos indicam pior qualidade da água. Quanto maior a NC%, maior a necessidade de ações e investimentos para alcançar os padrões de qualidade necessários. Para trechos não enquadrados, o limite da Classe 2 é usado como referência.</p>
+    
     <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de DBO entre 2010-2024</h3>
 ```
 
@@ -270,16 +274,6 @@ dygraph(media_urbano_dbo) %>%
   ) %>%
   dyAxis("x", valueRange = c(min(anos_dbo), max(anos_dbo)))
 ```
-
-```{=html}
-    </div>
-```
-
-```{=html}
-  </div>
-</section>
-```
-
 
 ```{=html}
 <section class="section section--cta">

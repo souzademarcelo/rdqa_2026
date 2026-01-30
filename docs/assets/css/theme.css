@@ -158,14 +158,9 @@ div.author, div.date{
   margin-top:0;
   border-radius:0;
   overflow:hidden;
-  min-height:520px;
+  min-height:420px;
 
-  background-image:
-    linear-gradient(135deg, rgba(28,55,130,.90), rgba(0,147,221,.70)),
-    url("../img/hero.jpg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background: url("../img/hero_agua_2560x800_overlay.jpg") center / cover no-repeat;
 
   display:flex;
   align-items:center;
@@ -376,16 +371,30 @@ a.cta.cta--ghost{
 /* Enquadramento cards */
 .eq-card{
   position: relative;
-  padding-left: 28px;
+  padding-left: 98px;
 }
+
+/* Header: ícone + título */
+.eq-card__header{
+  display: flex;
+  align-items: left;
+  gap: 14px;
+  margin-bottom: 2px;
+}
+
+.eq-card__header{
+  margin-bottom: -14px;
+  text-align: left;
+}
+
 .eq-card::before{
   content:"";
   position:absolute;
   left:0;
-  top:0;
-  bottom:0;
-  width: 8px;
-  border-radius: 8px 0 0 8px;
+  top:18px;
+  bottom:18px;
+  width: 6px;
+  border-radius: 6px;
   background: var(--ana-azul-escuro);
 }
 .eq-especial::before{ background:#1D4ED8; }
@@ -393,6 +402,70 @@ a.cta.cta--ghost{
 .eq-c2::before{ background:#F59E0B; }
 .eq-c3::before{ background:#F97316; }
 .eq-c4::before{ background:#EF4444; }
+.eq-od::before{ background:#0093DD; }
+.eq-dbo::before{ background:#1C3782; }
+.eq-fosforo::before{ background:#22C55E; }
+.eq-iqa::before{ background:#F59E0B; }
+.eq-od::before{ background: #0B6FAE; }
+.eq-dbo::before{ background: #1F8A70; }
+.eq-pt::before{ background: #8A5A00; }
+.eq-iqa::before{ background: #6B4EFF; }
+
+.eq-card .eq-icon{
+  position: absolute;
+  left: 13px;     /* entre a barra e o texto */
+  top: 16px;
+  bottom: 16px;
+
+  width: 77px;
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* Ícone consistente (não “estoura” layout)
+.eq-icon{
+  width: 48px;
+  height: 72px;
+  flex: 0 0 48px;
+  object-fit: contain;
+} */
+
+/* .eq-icon{
+  position: absolute;
+  left: 18px;             
+  top: 16px;
+  bottom: 16px;
+
+  width: 42px;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+
+  object-fit: contain;
+} 
+
+/* Tipografia */
+.eq-title{
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #0A2540;
+}
+
+.eq-text{
+  margin: 0;
+  color: #3B4A5A;
+  line-height: 1.45;
+  max-width: 75ch; /* melhora leitura */
+}
+
+/* Hover sutil */
+.eq-card:hover{
+  border-color: rgba(12, 74, 110, .20);
+  box-shadow: 0 14px 34px rgba(0,0,0,.08);
+}
 
 /* =========================
    CTA box (faixa de chamada)
@@ -774,6 +847,8 @@ a.cta.cta--ghost{
 
     border-radius: 0;
     min-height: 300px;
+    background-image: url("../img/hero_agua_2560x800_overlay.jpg");
+
   }
 
   .hero-content{ padding: 36px 16px; }
@@ -861,6 +936,7 @@ a.cta.cta--ghost{
     margin-top: 10px;
     border-radius: 0;
     min-height: 260px;
+    background-image: url("../img/hero_agua_2560x800_overlay.jpg");
   }
 
   .hero-content{
