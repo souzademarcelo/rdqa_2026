@@ -40,7 +40,7 @@ source("scripts/load_preprocessed.R")
 
     <p>O Oxigênio Dissolvido na Água (OD) é fundamental para a vida em ecossistemas aquáticos. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. Níveis críticos, especialmente abaixo de 2 mg/L, ameaçam a sobrevivência dos peixes. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
 
-    <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximo de fósforo total para rios (ambientes lóticos) e lagos (lênticos) de acordo com sua Classe de Qualidade:</p>
+    <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximos de OD para rios (ambientes lóticos) e lagos (lênticos), de acordo com sua Classe de Qualidade:</p>
 
     <ul class="panel-list">
       <li>Classe 1: mínimo de 6 mg/L</li>
@@ -49,7 +49,11 @@ source("scripts/load_preprocessed.R")
       <li>Classe 4: mínimo de 2 mg/L</li>
     </ul>
 
-    <p>O mapa apresenta a frequência com que o OD está em Não-Conformidade (NC%) com os limites das respectivas classes nos pontos de monitoramento. Desativando a camada NC%, as médias de OD são apresentadas no mapa. Quanto mais reduzido o OD, mais poluído está o trecho do rio ou lago. Por outro lado, quanto maior a NC%, maior é a necessidade de investimentos para alcançar os padrões de qualidades necessários. Para trechos sem enquadramento, o limite mínimo de 5 mg/L foi considerado.</p>
+    <p>O mapa apresenta o valores médios de OD (mg/L). Para visualizar a frequência com que o OD está em Não-Conformidade (NC%) com os limites das respectivas classes nos pontos de monitoramento, <strong> ative a camada NC(%) no mapa</strong>.</p>
+    <p>Valores médios de OD mais reduzidos geralmente indicam que o trecho monitorado está mais poluído*. Por outro lado, quanto maior a NC%, maior é a necessidade de investimentos para alcançar os padrões de qualidades necessários. Para trechos sem enquadramento, o limite mínimo de 5 mg/L (classe 2) foi considerado.</p>
+
+<p class="footnote">*O OD pode ser naturalmente reduzido em ambientes inundados, como no Pantanal, onde há vegetação submersa em decomposição.</p>
+
     <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de OD entre 2010-2024</h3>
 ```
 
@@ -169,7 +173,58 @@ mapa_final_od
 ```
 
 ```{=html}
-    <p>Os gráficos mostram a evolução do OD em corpos hídricos localizados nos ambientes lênticos/lóticos e rurais/urbanos entre 2010 e 2024. A NC% do OD em rios (lótico) apresentou redução nos pontos de monitoramento até o ano de 2023, apesar das oscilações interanuais. Rios e reservatórios localizados em áreas urbanizadas apresentam médias de OD mais baixo, indicando maior comprometimento da qualidade da água nas cidades.</p>
+    <p>Os gráficos mostram a evolução do OD em corpos hídricos localizados nos ambientes rurais/urbano e lênticos(lagos)/lóticos(rios) entre 2010 e 2024.</p>
+    <p>Lagos e rios localizados em áreas urbanizadas apresentam médias de OD mais baixo, indicando maior comprometimento da qualidade da água nas cidades. A NC% do OD em rios (lótico) apresentou redução nos pontos de monitoramento até o ano de 2023, apesar das oscilações interanuais. </p>
+```
+
+
+```{=html}
+    </div>
+    <div class="chart-block">
+      <h3>Médias de fósforo total: meios rural e urbano</h3>
+```
+
+```{r grafico_media_od, echo=FALSE, message=FALSE, warning=FALSE}
+tbl_urbano_od <- tbl_od %>%
+  filter(tipo %in% c("Área urbanizada", "rural"))
+
+grouped_obs_year_od <- tbl_urbano_od %>%
+  group_by(ano = year(data), tipo) %>%
+  summarise(
+    n = n(),
+    Media = mean(valor),
+    .groups = "drop"
+  )
+
+grouped_obs_year_od <- grouped_obs_year_od %>%
+  tidyr::complete(
+    ano = anos_od,
+    tipo = c("Área urbanizada", "rural")
+  )
+
+df_urbano_year_od <- grouped_obs_year_od %>%
+  pivot_wider(
+    names_from = tipo,
+    values_from = Media
+  )
+
+media_urbano_od <- df_urbano_year_od %>%
+  rename(
+    Rural = `rural`,
+    Urbano = `Área urbanizada`
+  ) %>%
+  select(ano, Rural, Urbano)
+
+dygraph(media_urbano_od) %>%
+  dySeries("Rural", label = "Rural", color = "#003a5d") %>%
+  dySeries("Urbano", label = "Urbano", color = "#38bdf8") %>%
+  dyOptions(
+    drawPoints = TRUE,
+    pointSize = 5,
+    strokeWidth = 3,
+    connectSeparatedPoints = TRUE
+  ) %>%
+  dyAxis("x", valueRange = c(min(anos_od), max(anos_od)))
 ```
 
 ```{=html}
@@ -226,55 +281,6 @@ dygraph(freq_regime_od) %>%
   dyOptions(
     drawPoints = TRUE,
     pointSize = 4,
-    connectSeparatedPoints = TRUE
-  ) %>%
-  dyAxis("x", valueRange = c(min(anos_od), max(anos_od)))
-```
-
-```{=html}
-    </div>
-    <div class="chart-block">
-      <h3>Médias de fósforo total: meios rural e urbano</h3>
-```
-
-```{r grafico_media_od, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_urbano_od <- tbl_od %>%
-  filter(tipo %in% c("Área urbanizada", "rural"))
-
-grouped_obs_year_od <- tbl_urbano_od %>%
-  group_by(ano = year(data), tipo) %>%
-  summarise(
-    n = n(),
-    Media = mean(valor),
-    .groups = "drop"
-  )
-
-grouped_obs_year_od <- grouped_obs_year_od %>%
-  tidyr::complete(
-    ano = anos_od,
-    tipo = c("Área urbanizada", "rural")
-  )
-
-df_urbano_year_od <- grouped_obs_year_od %>%
-  pivot_wider(
-    names_from = tipo,
-    values_from = Media
-  )
-
-media_urbano_od <- df_urbano_year_od %>%
-  rename(
-    Rural = `rural`,
-    Urbano = `Área urbanizada`
-  ) %>%
-  select(ano, Rural, Urbano)
-
-dygraph(media_urbano_od) %>%
-  dySeries("Rural", label = "Rural", color = "#003a5d") %>%
-  dySeries("Urbano", label = "Urbano", color = "#38bdf8") %>%
-  dyOptions(
-    drawPoints = TRUE,
-    pointSize = 5,
-    strokeWidth = 3,
     connectSeparatedPoints = TRUE
   ) %>%
   dyAxis("x", valueRange = c(min(anos_od), max(anos_od)))

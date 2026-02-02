@@ -47,10 +47,12 @@ source("scripts/load_preprocessed.R")
       <li>Classe 1: máximo de 0,02 mg/L (lêntico) e 0,1 mg/L (lótico)</li>
       <li>Classe 2: máximo de 0,03 mg/L (lêntico) e 0,1 mg/L (lótico)</li>
       <li>Classe 3: máximo de 0,05 mg/L (lêntico) e 0,15 mg/L (lótico)</li>
-      <li>Classe 4: máximo de 0,15 mg/L (lêntico) e 0,15 mg/L (lótico)</li>
     </ul>
+    
+    <p class="footnote">*Não existe limite para a classe 4 para este parâmetro.</p>
 
-    <p>O mapa interativo mostra a frequência de Não-Conformidade (NC%) com as metas dos trechos monitorados. Ao desativar a camada NC% no mapa, são apresentados os valores médios (mg/L) de fósforo total. Para trechos sem enquadramento, valem os limites da Classe 2. Médias elevadas de fósforo podem ser observadas principalmente nas grandes cidades e nos açudes do Nordeste brasileiro.</p>
+    <p>O mapa interativo mostra a frequência de Não-Conformidade (NC%) com as metas dos trechos monitorados. <strong>Ative a camada NC% no mapa e desative os valores médios (mg/L) para alternar entre as informações</strong>. Para trechos sem enquadramento, valem os limites da Classe 2. Médias elevadas de fósforo podem ser observadas principalmente nas grandes cidades e nos açudes do Nordeste brasileiro.</p>
+
     <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de fósforo entre 2010-2024</h3>
 ```
 
@@ -170,10 +172,63 @@ mapa_final_fosfototal
 ```
 
 ```{=html}
-    <p>Os gráficos abaixo mostram a evolução do fósforo total em corpos hídricos agrupados por ambientes lênticos/lóticos e rurais/urbanos entre 2010 e 2024. A Não-Conformidade (NC%) do fósforo nos lagos é mais elevada do que a observada nos rios. Isso se deve aos limites mais restritivos definidos para o ambiente lêntico. As médias de fósforo são maiores nos corpos de água situados nas cidades quando comparadas com o meio rural.</p>
+    <p>Os gráficos mostram a evolução do fósforo em corpos hídricos localizados nos ambientes rurais/urbano e lênticos(lagos)/lóticos(rios) entre 2010 e 2024.</p>
+    
+    <p>A Não-Conformidade (NC%) do fósforo nos lagos é mais elevada do que a observada nos rios. Isso se deve aos limites mais restritivos definidos para o ambiente lêntico. As médias de fósforo são maiores nos corpos de água situados nas cidades quando comparadas com o meio rural.</p>
     
 <p>A Não-Conformidade (NC%) do fósforo nos lagos é mais elevada do que a observada nos rios. Isso se deve aos limites mais restritivos definidos para o ambiente lêntico. As médias de fósforo são maiores nos corpos de água situados nas cidades quando comparadas com o meio rural.</p>
 ```
+
+
+```{=html}
+    </div>
+    <div class="chart-block">
+      <h3>Médias de fósforo total: meios rural e urbano</h3>
+```
+
+```{r grafico_media_fosforo, echo=FALSE, message=FALSE, warning=FALSE}
+tbl_urbano_fosfototal <- tbl_fosfototal %>%
+  filter(tipo %in% c("Área urbanizada", "rural"))
+
+grouped_obs_year_fosfototal <- tbl_urbano_fosfototal %>%
+  group_by(ano = year(data), tipo) %>%
+  summarise(
+    n = n(),
+    Media = mean(valor),
+    .groups = "drop"
+  )
+
+grouped_obs_year_fosfototal <- grouped_obs_year_fosfototal %>%
+  tidyr::complete(
+    ano = anos_fosforo,
+    tipo = c("Área urbanizada", "rural")
+  )
+
+df_urbano_year_fosfototal <- grouped_obs_year_fosfototal %>%
+  pivot_wider(
+    names_from = tipo,
+    values_from = Media
+  )
+
+media_urbano_fosfototal <- df_urbano_year_fosfototal %>%
+  rename(
+    Rural = `rural`,
+    Urbano = `Área urbanizada`
+  ) %>%
+  select(ano, Rural, Urbano)
+
+dygraph(media_urbano_fosfototal) %>%
+  dySeries("Rural", label = "Rural", color = "#003a5d") %>%
+  dySeries("Urbano", label = "Urbano", color = "#38bdf8") %>%
+  dyOptions(
+    drawPoints = TRUE,
+    pointSize = 5,
+    strokeWidth = 3,
+    connectSeparatedPoints = TRUE) %>% 
+  dyAxis("x", valueRange = c(min(anos_fosforo), max(anos_fosforo)))
+
+```
+
 
 ```{=html}
     <div class="chart-block">
@@ -222,55 +277,6 @@ dygraph(freq_regime_fosfototal) %>%
     strokeWidth = 3,
     connectSeparatedPoints = TRUE
   ) %>%
-  dyAxis("x", valueRange = c(min(anos_fosforo), max(anos_fosforo)))
-
-```
-
-```{=html}
-    </div>
-    <div class="chart-block">
-      <h3>Médias de fósforo total: meios rural e urbano</h3>
-```
-
-```{r grafico_media_fosforo, echo=FALSE, message=FALSE, warning=FALSE}
-tbl_urbano_fosfototal <- tbl_fosfototal %>%
-  filter(tipo %in% c("Área urbanizada", "rural"))
-
-grouped_obs_year_fosfototal <- tbl_urbano_fosfototal %>%
-  group_by(ano = year(data), tipo) %>%
-  summarise(
-    n = n(),
-    Media = mean(valor),
-    .groups = "drop"
-  )
-
-grouped_obs_year_fosfototal <- grouped_obs_year_fosfototal %>%
-  tidyr::complete(
-    ano = anos_fosforo,
-    tipo = c("Área urbanizada", "rural")
-  )
-
-df_urbano_year_fosfototal <- grouped_obs_year_fosfototal %>%
-  pivot_wider(
-    names_from = tipo,
-    values_from = Media
-  )
-
-media_urbano_fosfototal <- df_urbano_year_fosfototal %>%
-  rename(
-    Rural = `rural`,
-    Urbano = `Área urbanizada`
-  ) %>%
-  select(ano, Rural, Urbano)
-
-dygraph(media_urbano_fosfototal) %>%
-  dySeries("Rural", label = "Rural", color = "#003a5d") %>%
-  dySeries("Urbano", label = "Urbano", color = "#38bdf8") %>%
-  dyOptions(
-    drawPoints = TRUE,
-    pointSize = 5,
-    strokeWidth = 3,
-    connectSeparatedPoints = TRUE) %>% 
   dyAxis("x", valueRange = c(min(anos_fosforo), max(anos_fosforo)))
 
 ```

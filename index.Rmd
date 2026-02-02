@@ -120,14 +120,14 @@ output:
     <ul class="panel-list">
       <li>Avaliar tendências de melhoria ou degradação da qualidade da água;</li>
       <li>Apoiar ações de gestão, fiscalização e saneamento;</li>
-      <li>Avaliar efeitos das políticas públicas, como o enquadramento dos corpos hídricos;</li>
+      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">enquadramento dos corpos hídricos</a>;</li>
       <li>Informar a sociedade sobre a situação dos recursos hídricos.</li>
     </ul>
 
     <figure class="panel-figure">
       <img src="assets/img/fluxo_info.png" alt="Informações de qualidade da água para apoiar a gestão dos recursos hídricos.">
       <figcaption>
-        Fluxo de coleta, análise e transformação de dados em informação sobre a qualidade da água.
+        Informações de qualidade da água para apoiar a gestão dos recursos hídricos.
       </figcaption>
     </figure>
 

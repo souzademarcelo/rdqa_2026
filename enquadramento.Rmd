@@ -42,15 +42,14 @@ source("scripts/load_enquadramento.R")
 O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia, os usuários de água e a sociedade civil definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
    </p>
     <p>
-A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a> atua como o órgão coordenador e normatizador estratégico, fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
+A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a> e os órgãos gestores de recursos hídricos das Unidades da Federação atuam coordenando e fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
    </p>
     <p>
-Esse instrumento orienta o controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos. <a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a>.
+Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos</strong>. <strong><a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a></strong>.
     </p>
 
   <h3>Classes de qualidade</h3>
-  <p>
-O enquadramento classifica rios, lagos e reservatórios em classes de qualidade, definindo metas a serem alcançadas ou mantidas conforme os usos preponderantes da água. Essas classes variam de acordo com os usos da água, conforme determina a <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> 
+  <p><strong>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> classifica rios, lagos e reservatórios em classes de qualidade</strong>, definindo metas a serem alcançadas ou mantidas conforme os usos preponderantes da água. Essas classes variam de acordo com os usos da água.
   </p>
   
   <div class="grid-2">
@@ -65,7 +64,7 @@ O enquadramento classifica rios, lagos e reservatórios em classes de qualidade,
     <p class="eq-text">     
 
         Águas com mínima interferência humana, indicadas para <strong>abastecimento humano com desinfecção simples</strong>
-        e para a <strong>preservação integral dos ecossistemas aquáticos</strong>.
+        e para a <strong>preservação integral dos ecossistemas aquáticos</strong>. Classe mandatória em Unidades de Conservação de Proteção Integral.
     </p>
   </div>
   
@@ -79,8 +78,7 @@ O enquadramento classifica rios, lagos e reservatórios em classes de qualidade,
     </div>
 
     <p class="eq-text">
-       Águas com baixa poluição, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>,
-        <strong>recreação de contato direto</strong> e <strong>proteção da vida aquática</strong>.
+       Águas com pouco poluídas, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>, <strong>irrigação de hortaliças que são consumidas cruas e proteção da vida aquática.</strong>.Classe mandatória em Terras Indígenas.
     </p>
   </div>
 
@@ -94,7 +92,7 @@ O enquadramento classifica rios, lagos e reservatórios em classes de qualidade,
     </div>
 
     <p class="eq-text">
-Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,<strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.</strong> Classe mais comum, atende à maioria dos usos.
+Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,<strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.</strong> Classe adotada quando não há enquadramento estabelecido, conforme artigo 42 da Resolução CONAMA nº 357/2005.
     </p>
   </div>
 
@@ -123,16 +121,15 @@ O enquadramento classifica rios, lagos e reservatórios em classes de qualidade,
     </div>
 
     <p class="eq-text">
-Classe com a pior qualidade. Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>, <strong> não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
+Classe com a pior qualidade. Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>, não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
     </p>
     </div>
 
   </div>
 
-  <h3>Como os indicadores definem as classes de qualidade da água</h3>
-  <p>
-  As classes de qualidade da água são definidas a partir de parâmetros que medem suas condições físicas, químicas e biológicas. Esses parâmetros indicam se a água é adequada para determinados usos, como abastecimento, recreação ou proteção da vida aquática. Nas classes mais altas, os limites são mais rigorosos, exigindo água mais limpa e com menor poluição. Nas classes mais baixas, os limites são menos restritivos, permitindo usos mais limitados.
-  </p>
+  <h3>Classes de qualidade da água e seus indicadore</h3>
+  
+    <p>As <strong>classes de qualidade da água</strong> definem os <strong>níveis de condição ambiental</strong> que um corpo d’água deve apresentar para atender a determinados <strong>usos preponderantes</strong>, considerando sempre o uso mais restritivo a ser protegido, como o abastecimento humano ou a preservação da vida aquática. Cada classe estabelece <strong>padrões e limites</strong> para os <strong>indicadores de qualidade da água</strong> — físicos, químicos e biológicos — que expressam, de forma mensurável, se a água está compatível com esses usos. Dessa forma, os indicadores funcionam como a <strong>base técnica de verificação</strong> do enquadramento, permitindo avaliar, monitorar e orientar ações de gestão para manter ou melhorar a qualidade da água conforme os objetivos definidos.</p>
   
    <h3>Relação entre parâmetros indicadores e classes de qualidade</h3>
   
@@ -158,8 +155,13 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
   </p>
 
 
-    <h3>Implementação e marcos legais do enquadramento</h3>
+    
 
+```
+
+```{=html}
+    <div class="chart-block">
+      <h3>Implementação e marcos legais do enquadramento</h3>
 ```
 
 ```{r grafico_evol_eca, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
@@ -167,9 +169,9 @@ evolucao_eca <- read_excel("evolucao_eca.xlsx")
 evo_eca <- evolucao_eca %>% select(1, 2)
 
 dygraph(evo_eca) %>%
-  dyAxis("y", label = "Normativos", valueRange = c(0, 130)) %>%
+  dyAxis("y", label = "Número de normativos aprovados", valueRange = c(0, 130)) %>%
   dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE) %>%
-  dyRangeSelector(height = 5) %>%
+#  dyRangeSelector(height = 5) %>%
   dyEvent("1977", "Port. nº 13 do Ministério do Interior", labelLoc = "bottom") %>%
   dyEvent("1986", "Res. Conama nº 20", labelLoc = "bottom") %>%
   dyEvent("1997", "Lei federal nº 9.433", labelLoc = "bottom") %>%
@@ -177,15 +179,34 @@ dygraph(evo_eca) %>%
   dyEvent("2008", "Res. CNRH nº 91", labelLoc = "bottom")
 ```
 
+```{=html}
+    </div>
+      
+```
 
 ```{=html}
-  <div class="card">
-    <h3>Marcos legais do enquadramento (resumo)</h3>
+
+<div class="grid-2">
+  <div class="eq-card">
+  
     <ul class="panel-list">
-      <li><strong>Lei nº 9.433/1997</strong> – institui a Política Nacional de Recursos Hídricos e define o <strong>enquadramento</strong> como instrumento para assegurar qualidade compatível com os usos e orientar o controle da poluição.</li>
-      <li><strong>Resolução CONAMA nº 357/2005</strong> – estabelece as <strong>classes de qualidade das águas superficiais</strong>, os usos associados e padrões de referência para avaliação e gestão.</li>
-      <li><strong>Resolução CONAMA nº 396/2008</strong> – complementa o arcabouço normativo ao tratar da <strong>classificação das águas subterrâneas</strong>, promovendo coerência na gestão da qualidade.</li>
-    </ul>
+    
+      <li><a href="https://bvsms.saude.gov.br/bvs/saudelegis/cnnpa/1977/res0013_15_07_1977.html"><strong>Portaria nº 13 do Ministério do Interior/1977</strong></a> – instituiu a primeira classificação oficial das águas interiores no Brasil, definindo classes de qualidade vinculadas aos usos da água, <strong>sendo o marco inicial para o enquadramento e o controle da poluição hídrica no país</strong>.</li>   
+    
+      <li><a href="https://www.ibama.gov.br/sophia/cnia/legislacao/MMA/RE0020-180686.PDF" target="_blank"><strong>Resolução CONAMA nº 20/1986</strong></a> – estabelece a classificação das águas superficiais no Brasil e define padrões de qualidade conforme os usos previstos, <strong>servindo de base normativa para o controle da poluição e o enquadramento dos corpos d’água</strong>.</li>
+    
+      <li><a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">
+      <strong>Lei nº 9.433/1997</strong></a> – institui a Política Nacional de Recursos Hídricos e define o <strong>enquadramento</strong> como instrumento para assegurar qualidade compatível com os usos e orientar o controle da poluição.</li>
+      
+      <li><a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank"><strong>Resolução CONAMA nº 357/2005</strong></a> – estabelece as <strong>classes de qualidade das águas superficiais</strong>, os usos associados e padrões de referência para avaliação e gestão.</li>
+
+      <li><a href="https://conama.mma.gov.br/?option=com_sisconama&task=arquivo.download&id=545" target="_blank"><strong>Resolução CONAMA nº 396/2008</strong></a> – complementa o arcabouço normativo ao tratar da <strong>classificação das águas subterrâneas</strong>, promovendo coerência na gestão da qualidade.</li>
+
+      <li><a href="https://www.ceivap.org.br/ligislacao/Resolucoes-CNRH/Resolucao-CNRH%2091.pdf"><strong>Resolução CNRH nº 91/2008</strong></a> – estabelece <strong>procedimentos gerais para o enquadramento</strong> de corpos de água superficiais e subterrâneos no Brasil.</li>
+      </ul>
+  </div>
+ </div>
+
 
  <h3>Bacias com enquadramento</h3>
 ```
@@ -240,7 +261,8 @@ mapa_final_eca_tmap <- tmap_leaflet(mapa_eca_tmap) %>%
     colors = c("#329671", "#27BBF5"),
     labels = c("Estado", "União"),
     title = "Domínio",
-    opacity = 1
+    opacity = 1,
+    className = "legend-media"
   ) %>%
   leaflet.extras::addSearchOSM(
     options = leaflet.extras::searchOptions(

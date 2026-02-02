@@ -1,0 +1,50 @@
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M dbo.Rmd
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M enquadramento.Rmd
+ M fosforo.Rmd
+ M index.Rmd
+ M iqa.Rmd
+ M od.Rmd
+?? carregar_github.R
+?? push_log.txt
+
+$ git add -A
+
+
+$ git commit -m "atualização 02 fev 2026"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'marcelosouza@DESKTOP-A9DKDEP.(none)')
+
+$ git push --force origin main
+Everything up-to-date
