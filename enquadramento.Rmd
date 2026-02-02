@@ -127,13 +127,12 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
 
   </div>
 
-  <h3>Classes de qualidade da água e seus indicadore</h3>
+  <h3>Classes de qualidade da água e seus indicadores</h3>
   
     <p>As <strong>classes de qualidade da água</strong> definem os <strong>níveis de condição ambiental</strong> que um corpo d’água deve apresentar para atender a determinados <strong>usos preponderantes</strong>, considerando sempre o uso mais restritivo a ser protegido, como o abastecimento humano ou a preservação da vida aquática. Cada classe estabelece <strong>padrões e limites</strong> para os <strong>indicadores de qualidade da água</strong> — físicos, químicos e biológicos — que expressam, de forma mensurável, se a água está compatível com esses usos. Dessa forma, os indicadores funcionam como a <strong>base técnica de verificação</strong> do enquadramento, permitindo avaliar, monitorar e orientar ações de gestão para manter ou melhorar a qualidade da água conforme os objetivos definidos.</p>
   
    <h3>Relação entre parâmetros indicadores e classes de qualidade</h3>
   
-  <p>Melhorar esta tabela incluindo os ícones ou substituir por cards</p>
 ```
 
 

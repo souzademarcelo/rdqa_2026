@@ -265,6 +265,13 @@ a.cta.cta--ghost{
   text-align:center;
 }
 
+.footnote{
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted-2);
+  margin-top: 8px;
+}
+
 .grid-2{
   max-width: var(--content-max);
   margin-left:auto;

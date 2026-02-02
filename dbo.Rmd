@@ -41,7 +41,7 @@ source("scripts/load_preprocessed.R")
 
    <h3>Indicador da poluição orgânica</h3>
    
-   <p>A Demanda Bioquímica de Oxigênio (DBO) indica a quantidade de oxigênio consumida nos processos biológicos de degradação da matéria orgânica no meio aquático. A DBO de uma amostra de água é geralmente medida em laboratório, por meio de um bioensaio realizado em condições controladas. A DBO é um bom indicador da poluição da água por cargas orgânicas, como os esgotos domésticos.</p>
+   <p><strong>A Demanda Bioquímica de Oxigênio (DBO)</strong> indica a quantidade de oxigênio consumida nos processos biológicos de degradação da <strong>matéria orgânica</strong> no meio aquático. A DBO de uma amostra de água é geralmente medida em laboratório, por meio de um bioensaio realizado em condições controladas. A DBO é um bom indicador da poluição da água por cargas orgânicas, como os esgotos domésticos.</p>
 
     <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximo de DBO para rios e lagos para as classes de qualidade:</p>
 
@@ -198,6 +198,12 @@ grouped_obs_year_dbo <- tbl_urbano_dbo %>%
     .groups = "drop"
   )
 
+ano_final_dbo <- max(2024, max(year(tbl_dbo$data), na.rm = TRUE))
+anos_dbo <- seq(
+  min(year(tbl_dbo$data), na.rm = TRUE),
+  ano_final_dbo
+)
+
 grouped_obs_year_dbo <- grouped_obs_year_dbo %>%
   tidyr::complete(
     ano = anos_dbo,
@@ -245,11 +251,6 @@ dbo_desc_regime <- tbl_dbo %>%
     .groups = "drop"
   )
 
-ano_final_dbo <- max(2024, max(year(tbl_dbo$data), na.rm = TRUE))
-anos_dbo <- seq(
-  min(year(tbl_dbo$data), na.rm = TRUE),
-  ano_final_dbo
-)
 
 dbo_desc_regime <- dbo_desc_regime %>%
   tidyr::complete(

@@ -38,7 +38,7 @@ source("scripts/load_preprocessed.R")
 
     <h3>Indicador da vida aquática</h3>  
 
-    <p>O Oxigênio Dissolvido na Água (OD) é fundamental para a vida em ecossistemas aquáticos. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. Níveis críticos, especialmente abaixo de 2 mg/L, ameaçam a sobrevivência dos peixes. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
+    <p>O <strong>Oxigênio Dissolvido na Água (OD)</strong> é fundamental para a <strong>vida em ecossistemas aquático</strong>. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. Níveis críticos, especialmente abaixo de 2 mg/L, ameaçam a sobrevivência dos peixes. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
 
     <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximos de OD para rios (ambientes lóticos) e lagos (lênticos), de acordo com sua Classe de Qualidade:</p>
 
@@ -196,6 +196,11 @@ grouped_obs_year_od <- tbl_urbano_od %>%
     .groups = "drop"
   )
 
+ano_final_od <- max(2024, max(year(tbl_od$data), na.rm = TRUE))
+anos_od <- seq(
+  min(year(tbl_od$data), na.rm = TRUE),
+  ano_final_od
+)
 grouped_obs_year_od <- grouped_obs_year_od %>%
   tidyr::complete(
     ano = anos_od,
@@ -242,11 +247,7 @@ od_desc_regime <- tbl_od %>%
     .groups = "drop"
   )
 
-ano_final_od <- max(2024, max(year(tbl_od$data), na.rm = TRUE))
-anos_od <- seq(
-  min(year(tbl_od$data), na.rm = TRUE),
-  ano_final_od
-)
+
 
 od_desc_regime <- od_desc_regime %>%
   tidyr::complete(

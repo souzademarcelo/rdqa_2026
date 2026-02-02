@@ -41,7 +41,7 @@ source("scripts/load_preprocessed.R")
 
     <h3>Avaliação integrada da qualidade da água</h3>  
 
-    <p>O Índice de Qualidade da Água (IQA) é um indicador composto por nove parâmetros físicos, químicos e biológicos: temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes termotolerantes, nitrogênio total, fósforo total, sólidos totais e turbidez. Trata-se de um indicador abrangente, que representa o estado geral da qualidade da água. O mapa interativo apresenta os valores médios do IQA para a série histórica disponível entre 2010 e 2024 nos pontos de monitoramento da qualidade da água.</p>
+    <p><strong>O Índice de Qualidade da Água (IQA)</strong> é um indicador composto por nove parâmetros físicos, químicos e biológicos: <strong>temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes, nitrogênio total, fósforo total, sólidos totais e turbidez</strong>. Trata-se de um indicador abrangente, que representa o estado geral da qualidade da água. O mapa interativo apresenta os valores médios do IQA para a série histórica disponível entre 2010 e 2024 nos pontos de monitoramento da qualidade da água.</p>
 
     <p>O IQA pode ser representado por categorias:</p>
 
