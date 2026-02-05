@@ -110,3 +110,12 @@ $ git status --porcelain
  M push_log.txt
 
 $ git add -A
+
+
+$ git commit -m "atualização 02 fev 2026"
+[main 52b570e] atualização 02 fev 2026
+ 9 files changed, 104 insertions(+), 32 deletions(-)
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   8caf134..52b570e  main -> main

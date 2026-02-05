@@ -130,36 +130,167 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
   <h3>Classes de qualidade da água e seus indicadores</h3>
   
     <p>As <strong>classes de qualidade da água</strong> definem os <strong>níveis de condição ambiental</strong> que um corpo d’água deve apresentar para atender a determinados <strong>usos preponderantes</strong>, considerando sempre o uso mais restritivo a ser protegido, como o abastecimento humano ou a preservação da vida aquática. Cada classe estabelece <strong>padrões e limites</strong> para os <strong>indicadores de qualidade da água</strong> — físicos, químicos e biológicos — que expressam, de forma mensurável, se a água está compatível com esses usos. Dessa forma, os indicadores funcionam como a <strong>base técnica de verificação</strong> do enquadramento, permitindo avaliar, monitorar e orientar ações de gestão para manter ou melhorar a qualidade da água conforme os objetivos definidos.</p>
-  
-   <h3>Relação entre parâmetros indicadores e classes de qualidade</h3>
-  
+
+
+<section class="section">
+  <div class="panel panel--wide">
+
+    <h3>Enquadramento e indicadores de qualidade da água</h3>
+    <h4>Como cada indicador se relaciona com as classes de enquadramento e o que ele significa para a gestão da qualidade da água.</h4>
+
+    <div class="qa-grid qa-grid--4">
+
+      <!-- OD -->
+      <article class="qa-card qa-card--od">
+        <header class="qa-card__head">
+          <div class="qa-card__title">
+           
+            <h4>Oxigênio Dissolvido (OD)</h4>
+
+          </div>
+        </header>
+
+        <div class="qa-card__body">
+          <div class="qa-row">
+            <div class="qa-label">O que mede</div>
+            <div class="qa-text">Disponibilidade de oxigênio na água, essencial para a vida aquática e o equilíbrio ecológico.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Relação com o enquadramento</div>
+            <div class="qa-text">Avaliado por <strong>limites mínimos</strong> por classe. A <strong>NC%</strong> expressa a frequência em que o OD ficou <strong>abaixo</strong> do padrão da classe.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Significado para a gestão</div>
+            <ul class="qa-bullets">
+              <li>Indica <strong>saúde do ecossistema</strong> e risco de hipóxia/anóxia.</li>
+              <li>Sinaliza impacto de <strong>carga orgânica</strong> e deficiência de saneamento.</li>
+              <li>Prioriza trechos com risco de <strong>mortandade de peixes</strong> e restrição de usos.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- DBO -->
+      <article class="qa-card qa-card--dbo">
+        <header class="qa-card__head">
+          <div class="qa-card__title">
+         
+            <h4>Demanda Bioquímica de Oxigênio (DBO)</h4>
+
+          </div>
+        </header>
+
+        <div class="qa-card__body">
+          <div class="qa-row">
+            <div class="qa-label">O que mede</div>
+            <div class="qa-text">Carga de matéria orgânica biodegradável e potencial de consumo de oxigênio por decomposição.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Relação com o enquadramento</div>
+            <div class="qa-text">Avaliada por <strong>limites máximos</strong> por classe. A <strong>NC%</strong> indica a frequência em que a DBO ficou <strong>acima</strong> do padrão da classe.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Significado para a gestão</div>
+            <ul class="qa-bullets">
+              <li>Indicador direto de <strong>esgotos domésticos</strong> e efluentes orgânicos.</li>
+              <li>Antecipador de queda de OD em períodos de <strong>baixa vazão</strong>.</li>
+              <li>Orienta investimentos em <strong>coleta e tratamento de esgotos</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fósforo -->
+      <article class="qa-card qa-card--p">
+        <header class="qa-card__head">
+          <div class="qa-card__title">
+
+            <h4>Fósforo Total</h4>
+
+          </div>
+        </header>
+
+        <div class="qa-card__body">
+          <div class="qa-row">
+            <div class="qa-label">O que mede</div>
+            <div class="qa-text">Enriquecimento por nutrientes; associado a <strong>eutrofização</strong> e florações de algas/cianobactérias.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Relação com o enquadramento</div>
+            <div class="qa-text">Avaliado por <strong>limites máximos</strong> por classe (com variações por tipo de ambiente). A <strong>NC%</strong> indica a frequência acima do padrão.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Significado para a gestão</div>
+            <ul class="qa-bullets">
+              <li>Crítico em <strong>reservatórios/açudes</strong> (lênticos), onde o acúmulo é maior.</li>
+              <li>Relaciona-se a esgoto, uso do solo e <strong>poluição difusa</strong>.</li>
+              <li>Base para gestão de <strong>risco de eutrofização</strong> e abastecimento.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- IQA -->
+      <article class="qa-card qa-card--iqa">
+        <header class="qa-card__head">
+          <div class="qa-card__title">
+
+            <h4>Índice de Qualidade da Água (IQA)</h4>
+ 
+          </div>
+        </header>
+
+        <div class="qa-card__body">
+          <div class="qa-row">
+            <div class="qa-label">O que mede</div>
+            <div class="qa-text">Síntese de múltiplos parâmetros para comunicar a condição geral da qualidade da água.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Relação com o enquadramento</div>
+            <div class="qa-text">Não é o padrão legal do enquadramento, mas <strong>apoia</strong> o diagnóstico, comparação espacial/temporal e priorização por trecho/bacia.</div>
+          </div>
+
+          <div class="qa-row">
+            <div class="qa-label">Significado para a gestão</div>
+            <ul class="qa-bullets">
+              <li>Facilita <strong>comunicação</strong> e transparência pública.</li>
+              <li>Evidencia áreas críticas (classes <strong>Regular/Ruim/Péssima</strong>).</li>
+              <li>Apoia <strong>priorização</strong> e acompanhamento de programas.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+
+
+  </div>
+</section>
+
+
 ```
-
-
-| Parâmetro | O que indica | Classes mais exigentes | Classes menos exigentes |
-|---------|-------------|----------------------|------------------------|
-| Oxigênio Dissolvido (OD) | Condições para a vida aquática | Valores mínimos mais altos (Classe Especial e 1) | Valores mínimos menores (Classes 3 e 4) |
-| Demanda Bioquímica de Oxigênio (DBO) | Carga de matéria orgânica | Valores máximos mais baixos | Valores máximos mais elevados |
-| Fósforo Total | Risco de eutrofização | Limites mais restritivos | Limites mais flexíveis |
-| Índice de Qualidade da Água (IQA)* | Síntese da qualidade da água | Valores mais altos indicam melhor qualidade | Valores mais baixos indicam pior qualidade |
-
-\* O IQA não define classes legais, mas é amplamente utilizado como indicador sintético para apoiar a avaliação do enquadramento.
-
 
 ```{=html}
 
+  <div class="chart-block">
     <h3>Evolução do enquadramento no Brasil</h3>
   <p>
-  O enquadramento é um instrumento que vem sofrendo aperfeiçoamentos visando sua implementação em todo o país. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.
+  O enquadramento é um instrumento que tem discutido e evoluído com aperfeiçoamentos visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.
+  
   </p>
-
-
-    
 
 ```
 
 ```{=html}
-    <div class="chart-block">
+
       <h3>Implementação e marcos legais do enquadramento</h3>
 ```
 
@@ -181,9 +312,6 @@ dygraph(evo_eca) %>%
 ```{=html}
     </div>
       
-```
-
-```{=html}
 
 <div class="grid-2">
   <div class="eq-card">
@@ -206,7 +334,11 @@ dygraph(evo_eca) %>%
   </div>
  </div>
 
-
+    <div class="chart-block">
+    
+    
+ <strong>O mapa abaixo mostra as bacias estaduais e federais que já possuem algum normativo de enquadramento de enquadramento</strong>:    
+    
  <h3>Bacias com enquadramento</h3>
 ```
 
@@ -280,6 +412,9 @@ mapa_final_eca_tmap
 ```
 
 ```{=html}
+
+    </div>
+
 </section>
 <section class="section section--cta">
   <div class="cta-box">

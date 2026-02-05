@@ -321,7 +321,51 @@ a.cta.cta--ghost{
   margin-bottom: 14px;
 }
 
-/* Charts */
+/* =========================
+   Box interpretativo (reutilizável)
+   ========================= */
+.panel--interpretative{
+  position: relative;
+  padding: 18px 20px;
+}
+
+.panel--interpretative h4{
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.panel--interpretative p{
+  margin: 0 0 10px;
+  line-height: 1.55;
+}
+
+.panel--interpretative p:last-child{
+  margin-bottom: 0;
+}
+
+/* Barra lateral suave (institucional) */
+.panel--interpretative::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 6px;
+  border-radius: 6px;
+  background: rgba(0, 88, 153, .35); /* ajuste se tiver variável ANA */
+}
+
+/* (Opcional) leve fundo diferenciado */
+.panel--interpretative{
+  background: rgba(0, 88, 153, .04);
+}
+
+/* =========================
+   Charts 
+   ========================= */
+
 .chart-block{
   margin: 28px 0 44px;
 }
@@ -869,6 +913,133 @@ a.cta.cta--ghost{
 
   .leaflet-container{ min-height: 420px; }
 }
+
+/* =========================
+   Quadro resumo – Cards (Enquadramento x Indicadores)
+   ========================= */
+
+.qa-grid{
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.qa-grid--4{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px){
+  .qa-grid--4{ grid-template-columns: 1fr; }
+}
+
+.qa-card{
+  position: relative;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  overflow: hidden;
+}
+
+.qa-card__head{
+  padding: 14px 16px 10px;
+  background: linear-gradient(180deg, rgba(0,88,153,.08), rgba(0,88,153,0));
+  text-align: center;
+  
+}
+
+.qa-card__title h4{
+  margin: 6px 0 2px;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: left;
+}
+
+.qa-sub{
+  margin: 0;
+  font-size: 13px;
+  opacity: .75;
+}
+
+.qa-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  background: rgba(0,88,153,.10);
+  color: #0b3d66;
+  border: 1px solid rgba(0,88,153,.18);
+}
+
+.qa-card__body{
+  padding: 12px 16px 16px;
+  text-align: left;
+}
+
+.qa-row{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px dashed rgba(0,0,0,.10);
+}
+
+.qa-row:first-child{
+  border-top: none;
+  padding-top: 0;
+}
+
+@media (max-width: 520px){
+  .qa-row{ grid-template-columns: 1fr; }
+}
+
+.qa-label{
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  opacity: .70;
+}
+
+.qa-text{
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.qa-bullets{
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.qa-bullets li{ margin: 4px 0; }
+
+/* Barra lateral colorida por indicador */
+.qa-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:12px;
+  bottom:12px;
+  width: 6px;
+  border-radius: 999px;
+  background: rgba(0,88,153,.35);
+}
+
+/* Cores por indicador (ajuste livre) */
+.qa-card--od::before{  background: rgba(0, 153, 204, .60); }
+.qa-card--dbo::before{ background: rgba(255, 140, 0, .65); }
+.qa-card--p::before{   background: rgba(140, 70, 190, .65); }
+.qa-card--iqa::before{ background: rgba(0, 160, 90, .65); }
+
+/* Texto "muted" se ainda não existir */
+.muted{ opacity:.75; }
+
 
 /* =========================
    MOBILE PEQUENO (até 420px)

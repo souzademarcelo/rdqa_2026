@@ -53,8 +53,11 @@ source("scripts/load_preprocessed.R")
 
 <p class="footnote">*Não existe limite para a classe 4 para este parâmetro.</p>
 
-    <p>O mapa interativo mostra a frequência de Não-Conformidade (NC%) com as metas dos trechos monitorados. <strong>Ative e desative as camadas no mapapara visualizar estas informações</strong>. Para trechos sem enquadramento, valem os limites da Classe 2.</p>
-    <p>Valores médios de DBO mais altos indicam pior qualidade da água. Quanto maior a NC%, maior a necessidade de ações e investimentos para alcançar os padrões de qualidade necessários. Para trechos não enquadrados, o limite da Classe 2 é usado como referência.</p>
+    <p>O mapa apresenta a <strong>média das medições de DBO (mg/L) entre 2010 e 2024</strong>. A <strong>Não-Conformidade (NC%)*</strong> revela <strong>com que frequência</strong> estas medições não atendem aos padrões de qualidade da sua classe no mesmo período. Para trechos sem enquadramento, o limite máximo de 5 mg/L da classe 2 foi considerado.</p>
+    
+    <p class="footnote"><strong>*Ative a camada no mapa para visualizar a NC%</strong>.</p>
+    
+    <div class="chart-block">
     
     <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de DBO entre 2010-2024</h3>
 ```
@@ -156,13 +159,13 @@ mapa_final_dbo <- leaflet(dbo_map) %>%
   leaflet::addLayersControl(
     baseGroups = c("Padrão", "Satélite"),
     overlayGroups = c("Média (mg/L)", "NC%"),
-    options = layersControlOptions(collapsed = TRUE, position = "topright")
+    options = layersControlOptions(collapsed = FALSE, position = "topright")
   ) %>%
   leaflet::hideGroup("NC%") %>%
   # Adicionar a funcionalidade de busca (SearchOSM)
   leaflet.extras::addSearchOSM(
     options = leaflet.extras::searchOptions(
-      collapsed = TRUE, autoCollapse = TRUE, zoom = 10, position = "topleft",
+      collapsed = FALSE, autoCollapse = TRUE, zoom = 10, position = "topleft",
       textPlaceholder = "Buscar locais...", textErr = "Local não encontrado",
       marker = list(icon = NULL, animate = TRUE, circle = list(radius = 10, weight = 3, color = "#c51b7d", stroke = TRUE, fill = FALSE))
     ) 
@@ -175,13 +178,11 @@ mapa_final_dbo
 ```
 
 ```{=html}
+
+    </div>
+
     <p>Os gráficos mostram a evolução da DBO em corpos hídricos localizados nos ambientes rurais/urbano e lênticos(lagos)/lóticos(rios) entre 2010 e 2024.</p>
     
-    <p>Lagos e rios de água situados nas áreas urbanizadas apresentam médias de DBO mais altas em relação ao ambiente rural, o que aponta para a necessidade de expansão do tratamento dos efluentes produzidos nas cidades.A NC% da DBO nos lagos aumentou ao longo do período. Apesar de uma aparente redução da DBO.</p> 
-```
-
-```{=html}
-    </div>
     <div class="chart-block">
       <h3>Médias de DBO: meios rural e urbano</h3>
 ```
@@ -237,6 +238,7 @@ dygraph(media_urbano_dbo) %>%
 
 
 ```{=html}
+  </div>
     <div class="chart-block">
       <h3>Não-Conformidade (NC%) de DBO: ambientes lênticos e lóticos</h3>
 ```
@@ -270,8 +272,8 @@ freq_regime_dbo <- df_regime_year_dbo %>%
   select(ano, lentico, lotico)
 
 dygraph(freq_regime_dbo) %>%
-  dySeries("lentico", label = "NC(%) lêntico", color = "#003a5d") %>%
-  dySeries("lotico", label = "NC(%) lótico", color = "#38bdf8") %>%
+  dySeries("lentico", label = "NC(%) lêntico", color = "#a50f15") %>%
+  dySeries("lotico", label = "NC(%) lótico", color = "#faae91") %>%
   dyOptions(
     drawPoints = TRUE,
     pointSize = 5,
@@ -279,9 +281,38 @@ dygraph(freq_regime_dbo) %>%
     connectSeparatedPoints = TRUE
   ) %>%
   dyAxis("x", valueRange = c(min(anos_dbo), max(anos_dbo)))
+
 ```
 
 ```{=html}
+
+    </div>
+  
+<div class="panel panel--wide panel--interpretative">
+
+  <h3>O que dizem os resultados – Demanda Bioquímica de Oxigênio (DBO)</h3>
+
+  <p>Os resultados indicam que a <strong>DBO</strong> é um indicador-chave da presença de <strong>matéria orgânica biodegradável</strong> nos corpos de água, refletindo principalmente a influência de <strong>esgotos domésticos</strong>, efluentes orgânicos industriais e aportes difusos associados à ocupação urbana e atividades agrícolas. Em geral, valores mais elevados de DBO indicam maior consumo de oxigênio pelos microrganismos e, portanto, maior pressão sobre o equilíbrio ecológico, especialmente quando combinado a baixos níveis de oxigenação.</p>
+
+  <p>Os mapas evidenciam que trechos com <strong>DBO mais baixa e NC% reduzida</strong> predominam em grandes rios e em áreas menos urbanizadas, onde a maior vazão e a dinâmica hidráulica favorecem a <strong>diluição</strong> e a <strong>autodepuração</strong>. Nesses contextos, a qualidade tende a ser mais estável e mais compatível com o enquadramento.</p>
+
+  <p>Por outro lado, a combinação de <strong>DBO média moderada</strong> com <strong>NC% elevada</strong> é recorrente em <strong>regiões metropolitanas</strong> e bacias intensamente utilizadas, indicando que a média anual pode não revelar picos de cargas orgânicas nos cursos de água. Esse padrão é típico de sistemas que operam próximos ao limite de suporte, com resposta sensível à variação de vazão e à eficiência do saneamento.</p>
+
+  <p>Trechos com <strong>DBO elevada e NC% alta</strong> caracterizam corpos de água sob forte impacto, com maior recorrência em <strong>pequenos rios urbanos</strong> e em áreas densamente ocupadas. Nesses casos, a menor capacidade de diluição torna os efeitos das cargas orgânicas mais intensos, resultando em maior risco de restrição de usos e comprometimento da vida aquática.</p>
+
+  <p>A evolução temporal da DBO entre <strong>2010 e 2024</strong> sugere sensibilidade às condições hidrológicas. Em períodos de <strong>estiagem e vazões reduzidas</strong>, a capacidade de diluição diminui e a DBO tende a se tornar mais crítica, elevando a frequência de não conformidade, sobretudo em áreas urbanizadas. Em fases de recuperação hidrológica, pode haver melhora conjuntural, mas a persistência de não conformidades evidencia que a pressão orgânica de base permanece elevada onde há deficiência estrutural de saneamento.</p>
+
+  <p>Em termos regionais, os resultados são coerentes com o padrão nacional de saneamento: as condições mais críticas de DBO tendem a se concentrar onde há <strong>maiores déficits de coleta e tratamento de esgotos</strong> e maior densidade populacional, reforçando o papel do saneamento como principal determinante da carga orgânica lançada nos corpos de água. Assim, a melhoria sustentável da DBO depende fundamentalmente de <strong>ações estruturais</strong> (expansão e eficiência do tratamento, controle de ligações irregulares e gestão de cargas), além de medidas de controle difuso em áreas urbanas.</p>
+
+    <p class="footnote">No Estado de São Paulo, a CETESB passou a executar, a partir de <strong>2020</strong>, o monitoramento de <strong>Carbono Orgânico Total (COT)</strong> em <strong>substituição</strong> à variável <strong>DBO</strong> em sua rede de qualidade das águas interiores. A adoção do COT está associada, entre outros fatores, à maior rapidez e robustez analítica do ensaio e à possibilidade de ampliar a consistência e a comparabilidade dos resultados para a avaliação da matéria orgânica. É importante observar que a DBO representa prioritariamente a fração <strong>biodegradável</strong> da matéria orgânica, enquanto o COT quantifica o <strong>carbono orgânico total</strong>, razão pela qual a interpretação entre séries históricas deve considerar a mudança metodológica e as relações entre os parâmetros.</p>
+
+
+</div>
+
+
+  </div>
+</section>
+
 <section class="section section--cta">
   <div class="cta-box">
     <div>
@@ -297,7 +328,7 @@ dygraph(freq_regime_dbo) %>%
   </div>
 </section>
 ```
-    
+   
 
 ```{=html}
 <footer class="footer">

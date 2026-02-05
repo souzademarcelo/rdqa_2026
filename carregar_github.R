@@ -1,3 +1,5 @@
+rmarkdown::render_site()
+
 # --- sobrescrever GitHub com o conteúdo local (com validações) ---
 repo_dir       <- "C:/pgquali/site-qualidade-agua-final"
 remote_name    <- "origin"

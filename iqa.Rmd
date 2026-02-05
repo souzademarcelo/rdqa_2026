@@ -39,21 +39,28 @@ source("scripts/load_preprocessed.R")
   <div class="panel panel--wide">
   
 
-    <h3>Avaliação integrada da qualidade da água</h3>  
+    <h3>Indicador-síntese da qualidade da água</h3>  
 
-    <p><strong>O Índice de Qualidade da Água (IQA)</strong> é um indicador composto por nove parâmetros físicos, químicos e biológicos: <strong>temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes, nitrogênio total, fósforo total, sólidos totais e turbidez</strong>. Trata-se de um indicador abrangente, que representa o estado geral da qualidade da água. O mapa interativo apresenta os valores médios do IQA para a série histórica disponível entre 2010 e 2024 nos pontos de monitoramento da qualidade da água.</p>
+    <p><strong>O Índice de Qualidade da Água (IQA)</strong> é um indicador composto por nove parâmetros físicos, químicos e biológicos: <strong>temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes, nitrogênio total, fósforo total, sólidos totais e turbidez</strong>. 
+    <p>O IQA foi desenvolvido no final da década de 1970</strong>, com o objetivo de sintetizar múltiplos parâmetros físicos, químicos e biológicos em um único indicador de fácil comunicação. Essa característica torna o IQA particularmente útil para avaliações comparativas e comunicação com a sociedade, mas também implica que o índice reflete, de forma integrada, os efeitos combinados de diferentes pressões sobre os corpos de água.</p>
 
     <p>O IQA pode ser representado por categorias:</p>
 
     <ul class="panel-list">
-      <li>Péssima: 0-19o)</li>
-      <li>Ruim: 19-36</li>
-      <li>Regular: 36-51</li>
-      <li>Boa: 51-79</li>
-      <li>Ótima: 79-100</li>      
+      <li><strong>Péssima: 0-19</li></strong>
+      <li><strong>Ruim: 19-36</li></strong>
+      <li><strong>Regular: 36-51</li></strong>
+      <li><strong>Boa: 51-79</li></strong>
+      <li><strong>Ótima: 79-100</li></strong>      
     </ul>
+    
+<p>O mapa interativo apresenta os <strong>valores médios do IQA entre 2010 e 2024</strong> nos pontos de monitoramento da qualidade da água</p>.   
 
-     <h3>Valores médios do IQA entre 2010-2024</h3>
+    <h3>Valores médios do IQA entre 2010-2024</h3>
+
+    <div class="chart-block">
+
+
 ```
 
 ```{r mapa_iqa, echo=FALSE, message=FALSE, warning=FALSE}
@@ -72,11 +79,21 @@ iqa_map <- iqa_filtrado %>%
   sf::st_drop_geometry()
 
 bins_iqa <- c(0, 19, 36, 51, 79, 100)
+
 pal_ave_iqa <- leaflet::colorBin(
   palette = c("red", "orange", "yellow", "lime green", "light sky blue"),
   bins = bins_iqa,
   domain = iqa_map$`Média`,
-  na.color = "#d1d5db"
+  na.color = "#d1d5db",
+  right = TRUE
+)
+
+legend_labels <- c(
+  "Péssima: 0–19",
+  "Ruim: 19–36",
+  "Regular: 36–51",
+  "Boa: 51–79",
+  "Ótima: 79–100"
 )
 
 popup_iqa <- leafpop::popupTable(
@@ -106,18 +123,19 @@ mapa_final_iqa <- leaflet(iqa_map) %>%
     popup = popup_iqa,
     group = "Média"
   ) %>%
-  leaflet::addLegend(
+    leaflet::addLegend(
     position = "topright",
-    pal = pal_ave_iqa,
-    values = iqa_map$`Média`,
-    title = "Média",
+    colors = pal_ave_iqa(bins_iqa[-length(bins_iqa)] + 0.0001),
+    labels = legend_labels,
     opacity = 0.9,
+    title = "Média",
     className = "legend-media"
   ) %>%
   # Reconfigurar o Controle de Camadas (adicionando os grupos base)
   leaflet::addLayersControl(
     baseGroups = c("Padrão", "Satélite"),
     overlayGroups = c("Média"),
+
     options = layersControlOptions(collapsed = TRUE, position = "topright")
   ) %>%
   # Adicionar a funcionalidade de busca (SearchOSM)
@@ -136,12 +154,14 @@ mapa_final_iqa
 ```
 
 ```{=html}
-    <p>Os gráficos abaixo mostram a evolução dos valores médios de IQA agrupados por pontos nos ambientes rurais/urbanos entre 2010 e 2024 e separados por categorias. Rios e reservatórios localizados em áreas urbanizadas apresentam médias de IQA mais baixo, o que indica o maior comprometimento da qualidade da água nas cidades. A maioria das médias se encontra nas categorias razoável e boa.</p>
-```
 
-```{=html}
+
+    </div>
+
+    <p>O gráfico abaixo apresenta a <strong>quantidade de pontos de monitoramento distribuídos pelas categorias do IQA com  base em seus valores médios anuais entre 2010 e 2024</strong>. 
+
     <div class="chart-block">
-      <h3>Distribuição das faixas de IQA ao longo do tempo</h3>
+      <h3>Contagem de pontos nas faixas de IQA entre 2010-2024</h3>
 ```
 
 ```{r grafico_faixas_iqa, echo=FALSE, message=FALSE, warning=FALSE}
@@ -208,7 +228,7 @@ dygraph(contagem_faixa_iqa) %>%
   dySeries("Regular", label = "Regular", color = "gold") %>%
   dySeries("Boa", label = "Boa", color = "green") %>%
   dySeries("Otima", label = "Ótima", color = "blue") %>%
-  dyLegend(width = "auto") %>%
+  dyLegend(width = 300) %>%
   dyOptions(stackedGraph = FALSE, drawPoints = TRUE, pointSize = 2) %>%
   dyAxis("x", valueRange = c(min(anos_iqa), max(anos_iqa)))
 
@@ -216,6 +236,29 @@ dygraph(contagem_faixa_iqa) %>%
 
 
 ```{=html}
+    </div>
+<div class="panel panel--wide panel--interpretative">
+
+<h3>O que dizem os resultados – Índice de Qualidade da Água (IQA)</h3>
+
+  <p>Os resultados do <strong>Índice de Qualidade da Água (IQA)</strong> indicam que, de forma agregada, a qualidade da água monitorada no Brasil é predominantemente classificada nas categorias <strong>Boa</strong> e <strong>Ótima</strong>. No entanto, a análise espacial e temporal mostra <strong>heterogeneidade significativa</strong> e a persistência de trechos com qualidade inferior, sobretudo em áreas sob maior pressão antrópica.</p>
+
+   <p>Os mapas de médias mostram que o IQA é superior em <strong>grandes rios</strong> e em regiões menos urbanizadas, onde a maior disponibilidade hídrica e a menor carga poluidora favorecem condições ambientais mais estáveis. Nessas áreas, o IQA indica menor risco ambiental e maior garantia de atendimento aos usos diversos da água.</p>
+
+  <p>Em contraste, as categorias <strong>Regular, Ruim e Péssima</strong> concentram-se em <strong>regiões metropolitanas</strong>, em bacias com intensa atividade econômica e trechos de rios urbanos, refletindo a influência combinada de <strong>poluição orgânica, nutrientes, sólidos em suspensão e alterações no regime hidrológico</strong>. Nesses casos, o indicador revela <strong>fragilidade da qualidade da água</strong> e maior vulnerabilidade a eventos extremos, sobretudo de secas.</p>
+
+  <p>A evolução temporal das médias anuais de IQA refletem a expansão do monitoramento no território. A inclusão de pontos de monitoramento em áreas afastadas das grandes cidades e menos críticas resultou no aumento do número de pontos na categoria Boa e Ótima entre 2010 e 2019. A queda registrada nestas categorias a partir de 2019 foi provavelmente consequência da suspensão parcial do monitoramento durante a pandemia de COVID neste pontos.</p>
+
+  <p>A persistência, ao longo do período analisado, de parcelas significativas de pontos classificados como <strong>Regular</strong> ou <strong>Ruim</strong> indica que os problemas estruturais de saneamento e de gestão de cargas poluidoras permanecem como fatores limitantes para a elevação sustentada do índice.</p>
+
+  <p>Do ponto de vista regional, os resultados do IQA refletem as desigualdades históricas de infraestrutura de saneamento no país. Regiões com <strong>maior déficit de coleta e tratamento de esgotos</strong> tendem a apresentar mais trechos de classes inferiores de qualidade, enquanto áreas com melhores índices de saneamento e maior disponibilidade hídrica exibem resultados mais favoráveis. Assim, o IQA atua como um <strong>indicador-síntese das condições ambientais e socioeconômicas</strong> associadas à qualidade da água.</p>
+  
+</div>
+
+
+  </div>
+</section>
+
 <section class="section section--cta">
   <div class="cta-box">
     <div>
