@@ -283,9 +283,7 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
   <div class="chart-block">
     <h3>Evolução do enquadramento no Brasil</h3>
   <p>
-  O enquadramento é um instrumento que tem discutido e evoluído com aperfeiçoamentos visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.
-  
-  </p>
+  O enquadramento é um instrumento que tem discutido e evoluído com aperfeiçoamentos visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.</p>
 
 ```
 
@@ -333,55 +331,80 @@ dygraph(evo_eca) %>%
       </ul>
   </div>
  </div>
-
-    <div class="chart-block">
-    
-    
- <strong>O mapa abaixo mostra as bacias estaduais e federais que já possuem algum normativo de enquadramento de enquadramento</strong>:    
-    
- <h3>Bacias com enquadramento</h3>
 ```
 
+```{=html}
+
+  <div class="chart-block">
+
+    <p>O enquadramento evoluiu de uma classificação normativa para um <strong>instrumento estruturante da gestão da qualidade da água.</strong></p>
+
+    <ul class="panel-list">
+      <li>
+        <strong>Conceito consolidado:</strong> há base normativa e metodológica clara para definir metas de qualidade alinhadas aos usos preponderantes.
+      </li>
+      <li>
+        <strong>Aplicação mais consistente em bacias estratégicas:</strong> especialmente em bacias federais com governança mais estruturada e histórico de planejamento.
+      </li>
+      <li>
+        <strong>Cobertura ainda limitada:</strong> muitos trechos operam sem metas pactuadas vigentes, o que enfraquece a integração entre monitoramento, licenciamento e investimentos.
+      </li>
+      <li>
+        <strong>Desafio atual:</strong> ampliar a aplicação do instrumento e fortalecer sua articulação com o monitoramento (médias e conformidade), tornando-o referência efetiva para a tomada de decisão.
+      </li>
+    </ul>
+
+    <p>Em síntese, o desafio passou a ser <strong>implemntá-lo</strong> com governança, dados e pactuação, de modo que a qualidade observada no monitoramento alcancem as <strong>metas da gestão</strong>.</p>
+      
+<p>O mapa abaixo mostra as bacias estaduais e federais que já possuem algum normativo de enquadramento de enquadramento.</p>
+
+ <h3>Bacias com enquadramento</h3>
+
+```
 
 ```{r mapa_enquadramento, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
-tmap_mode("view")
+# Força CRS compatível com Leaflet
+enq_estadual_final <- sf::st_transform(enq_estadual_final, 4326)
+enq_uniao_final <- sf::st_transform(enq_uniao_final, 4326)
 
-mapa_eca_tmap <- 
-  tm_shape(enq_estadual_final, name = "Enquadramento Estadual") + 
-  tm_polygons(
-    fill = "#329671",
-    alpha = 0.5,
-    border.col = "white",
-    lwd = 0.5,
-    popup.vars = c(
-      "UF:" = "uf", 
-      "Conselho RH:" = "conselho_rh", 
-      "Nome:" = "nome", 
-      "Normativo:" = "normativo"
-    ),
-    legend.show = FALSE
-  ) +
-  tm_shape(enq_uniao_final, name = "Enquadramento União") + 
-  tm_polygons(
-    fill = "#27BBF5",
-    alpha = 0.5,
-    border.col = "white",
-    lwd = 0.5,
-    popup.vars = c(
-      "UF:" = "uf", 
-      "Conselho RH:" = "conselho_rh", 
-      "Nome:" = "nome", 
-      "Normativo:" = "normativo"
-    ),
-    legend.show = FALSE
-  ) +
-  tm_layout(frame = FALSE)
-
-mapa_final_eca_tmap <- tmap_leaflet(mapa_eca_tmap) %>%
+mapa_final_eca_tmap <- leaflet::leaflet(
+  options = leaflet::leafletOptions(preferCanvas = FALSE)
+) %>%
   leaflet::setView(lng = -51.0, lat = -15, zoom = 4) %>%
   leaflet::addProviderTiles(providers$OpenStreetMap, group = "OpenStreetMap (Padrão)") %>%
   leaflet::addProviderTiles(providers$Esri.WorldImagery, group = "Satélite (Esri)") %>%
   leaflet::addProviderTiles(providers$CartoDB.Positron, group = "Tema Claro (CartoPositron)") %>%
+
+  leaflet::addPolygons(
+    data = enq_estadual_final,
+    fillColor = "#329671",
+    fillOpacity = 0.5,
+    color = "white",
+    weight = 0.5,
+    group = "Enquadramento Estadual",
+    popup = ~paste0(
+      "<strong>UF:</strong> ", uf, "<br>",
+      "<strong>Conselho RH:</strong> ", conselho_rh, "<br>",
+      "<strong>Nome:</strong> ", nome, "<br>",
+      "<strong>Normativo:</strong> ", normativo
+    )
+  ) %>%
+
+  leaflet::addPolygons(
+    data = enq_uniao_final,
+    fillColor = "#27BBF5",
+    fillOpacity = 0.5,
+    color = "white",
+    weight = 0.5,
+    group = "Enquadramento União",
+    popup = ~paste0(
+      "<strong>UF:</strong> ", uf, "<br>",
+      "<strong>Conselho RH:</strong> ", conselho_rh, "<br>",
+      "<strong>Nome:</strong> ", nome, "<br>",
+      "<strong>Normativo:</strong> ", normativo
+    )
+  ) %>%
+
   leaflet::addLayersControl(
     baseGroups = c("OpenStreetMap (Padrão)", "Satélite (Esri)", "Tema Claro (CartoPositron)"),
     overlayGroups = c("Enquadramento Estadual", "Enquadramento União"),
@@ -409,6 +432,7 @@ mapa_final_eca_tmap <- tmap_leaflet(mapa_eca_tmap) %>%
   leaflet.extras::addResetMapButton()
 
 mapa_final_eca_tmap
+
 ```
 
 ```{=html}

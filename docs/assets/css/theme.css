@@ -535,8 +535,7 @@ a.cta.cta--ghost{
   gap: 16px;
 
   background:
-    linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.84)),
-    url("../img/textura-ana-clara.png");
+    linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.84));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -38,6 +38,8 @@ eca_uniao_sql <- paste(
   "ORDER BY dominialidade, uf, nome ASC;"
 )
 
+
+
 enquadramentos_estadual <- st_read(con, query = eca_estadual_sql, quiet = TRUE)
 enquadramentos_uniao <- st_read(con, query = eca_uniao_sql, quiet = TRUE)
 

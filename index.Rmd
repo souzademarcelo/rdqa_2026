@@ -146,42 +146,50 @@ library(dplyr)
 library(leaflet)
 library(geobr)
 
-# parceiros <- data.frame(
-#   uf = c("SP","MG","RJ","BA"),
-#   parceiro = c("CETESB","IGAM","INEA","INEMA"),
-#   stringsAsFactors = FALSE
-# )
+# Cadastro longo (uma linha por parceiro)
 parceiros <- data.frame(
-  uf = c("SP","MG","RJ","BA","RS","PR"),
+  uf = c("AC", "AC", "AP", "AM", "AM", "AL", "AL", "BA", "BA", "CE", "CE", "CE",
+         "DF", "DF", "DF", "ES", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB",
+         "PB", "PE", "PE", "PE", "PR", "PR", "PI", "RJ", "RN", "RN", "RS", "RS",
+         "RO", "RR", "SC", "SP", "SP", "SP", "SE", "TO", "TO"),
   parceiros_txt = c(
-    "CETESB",
-    "IGAM",
-    "INEA",
-    "INEMA",
-    "FEPAM",
-    "IAT"
+    "SEMA", "IMAC", "SEMA", "SEMA", "IPAAM", "SEMARH", "IMA", "INEMA", "SIHS",
+    "SRH", "COGERH", "SEMACE", "ADASA", "SEMA", "CAESB", "AGERH", "IEMA", "SEMAD",
+    "SEMA", "SEMA", "IMASUL", "IGAM", "SEMAS", "AESA", "SUDEMA", "SRHS", "CPRH",
+    "APAC", "SEDEST", "IAT", "SEMARH", "INEA", "SEMARH", "IGARN", "SEMA", "FEPAM",
+    "SEDAM", "FEMARH", "SEMAE", "SEMIL", "CETESB", "SP ÁGUAS", "SEMAC",
+    "NATURATINS", "SEMARH"
   ),
   stringsAsFactors = FALSE
 )
 
+# Estados únicos do geobr
 estados <- geobr::read_state(year = 2020, simplified = TRUE) |>
   mutate(uf = abbrev_state)
 
-# Junta parceiros
+# Agrega por UF (mantém duplicados)
+parceiros_agg <- parceiros |>
+  group_by(uf) |>
+  summarise(
+    parceiros_txt = paste(parceiros_txt, collapse = ", "),
+    .groups = "drop"
+  )
+
+# Junta mantendo estados únicos
 estados2 <- estados |>
-  left_join(parceiros, by = "uf") |>
+  left_join(parceiros_agg, by = "uf") |>
   mutate(
     parceiros_txt = ifelse(is.na(parceiros_txt), "", parceiros_txt),
     tem_parceiro = parceiros_txt != ""
   )
 
-# Paleta discreta (só presença/ausência)
+# Paleta discreta (presença/ausência)
 pal <- colorFactor(
   palette = c("#e5e7eb", "#cfe8f3"),
   domain = c(FALSE, TRUE)
 )
 
-# Rótulos fixos (tooltip leve, não popup)
+# Tooltip
 labels <- paste0(
   "<strong>", estados2$name_state, " (", estados2$uf, ")</strong><br>",
   ifelse(estados2$parceiros_txt != "",
@@ -191,7 +199,6 @@ labels <- paste0(
 
 leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
   addProviderTiles(providers$CartoDB.Positron) |>
-
   addPolygons(
     fillColor = ~pal(tem_parceiro),
     fillOpacity = 0.85,
@@ -205,7 +212,6 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
       bringToFront = TRUE
     )
   )
-
 ```
 
 
