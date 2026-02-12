@@ -251,7 +251,7 @@ dygraph(contagem_faixa_iqa) %>%
 
   <p>A persistência, ao longo do período analisado, de parcelas significativas de pontos classificados como <strong>Regular</strong> ou <strong>Ruim</strong> indica que os problemas estruturais de saneamento e de gestão de cargas poluidoras permanecem como fatores limitantes para a elevação sustentada do índice.</p>
 
-  <p>Do ponto de vista regional, os resultados do IQA refletem as desigualdades históricas de infraestrutura de saneamento no país. Regiões com <strong>maior déficit de coleta e tratamento de esgotos</strong> tendem a apresentar mais trechos de classes inferiores de qualidade, enquanto áreas com melhores índices de saneamento e maior disponibilidade hídrica exibem resultados mais favoráveis. Assim, o IQA atua como um <strong>indicador-síntese das condições ambientais e socioeconômicas</strong> associadas à qualidade da água.</p>
+  <p>Do ponto de vista regional, os resultados do IQA refletem as desigualdades históricas de infraestrutura de saneamento no País. Regiões com <strong>maior déficit de coleta e tratamento de esgotos</strong> tendem a apresentar mais trechos de classes inferiores de qualidade, enquanto áreas com melhores índices de saneamento e maior disponibilidade hídrica exibem resultados mais favoráveis. Assim, o IQA atua como um <strong>indicador-síntese das condições ambientais e socioeconômicas</strong> associadas à qualidade da água.</p>
   
 </div>
 

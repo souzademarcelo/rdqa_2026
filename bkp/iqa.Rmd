@@ -1,0 +1,338 @@
+---
+output:
+  html_document:
+    theme: null
+    css: assets/css/theme.css
+    includes:
+      in_header: assets/includes/head.html
+      before_body: assets/includes/navbar.html
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(leaflet)
+library(leaflet.extras)
+library(mapview)
+library(leafpop)
+library(sf)
+library(lubridate)
+library(tidyr)
+library(dygraphs)
+
+source("scripts/load_preprocessed.R")
+```
+
+```{=html}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Índice de Qualidade da Água</h1>
+    <div class="section-head">
+      <h2>Síntese integrada das condições da água para seus principais usos</h2>
+    </div>
+  </div>
+</section>
+
+```
+
+```{=html}
+<section class="section">
+  <div class="panel panel--wide">
+  
+
+    <h3>Indicador-síntese da qualidade da água</h3>  
+
+    <p><strong>O Índice de Qualidade da Água (IQA)</strong> é um indicador composto por nove parâmetros físicos, químicos e biológicos: <strong>temperatura da água, pH, oxigênio dissolvido, demanda bioquímica de oxigênio, coliformes, nitrogênio total, fósforo total, sólidos totais e turbidez</strong>. 
+    <p>O IQA foi desenvolvido no final da década de 1970</strong>, com o objetivo de sintetizar múltiplos parâmetros físicos, químicos e biológicos em um único indicador de fácil comunicação. Essa característica torna o IQA particularmente útil para avaliações comparativas e comunicação com a sociedade, mas também implica que o índice reflete, de forma integrada, os efeitos combinados de diferentes pressões sobre os corpos de água.</p>
+
+    <p>O IQA pode ser representado por categorias:</p>
+
+    <ul class="panel-list">
+      <li><strong>Péssima: 0-19</li></strong>
+      <li><strong>Ruim: 19-36</li></strong>
+      <li><strong>Regular: 36-51</li></strong>
+      <li><strong>Boa: 51-79</li></strong>
+      <li><strong>Ótima: 79-100</li></strong>      
+    </ul>
+    
+<p>O mapa interativo apresenta os <strong>valores médios do IQA entre 2010 e 2024</strong> nos pontos de monitoramento da qualidade da água</p>.   
+
+    <h3>Valores médios do IQA entre 2010-2024</h3>
+
+    <div class="chart-block">
+
+
+```
+
+```{r mapa_iqa, echo=FALSE, message=FALSE, warning=FALSE}
+old_opts <- options(OutDec = ",", digits = 2)
+on.exit(options(old_opts), add = TRUE)
+
+iqa_filtrado <- grouped_obs_iqa %>%
+  filter(n >= 10)
+
+coords <- sf::st_coordinates(iqa_filtrado)
+iqa_map <- iqa_filtrado %>%
+  mutate(
+    lng = coords[, 1],
+    lat = coords[, 2]
+  ) %>%
+  sf::st_drop_geometry()
+
+bins_iqa <- c(0, 19, 36, 51, 79, 100)
+
+pal_ave_iqa <- leaflet::colorBin(
+  palette = c("red", "orange", "yellow", "lime green", "light sky blue"),
+  bins = bins_iqa,
+  domain = iqa_map$`Média`,
+  na.color = "#d1d5db",
+  right = TRUE
+)
+
+legend_labels <- c(
+  "Péssima: 0–19",
+  "Ruim: 19–36",
+  "Regular: 36–51",
+  "Boa: 51–79",
+  "Ótima: 79–100"
+)
+
+popup_iqa <- leafpop::popupTable(
+  iqa_map,
+  zcol = c("Código", "n", "De", "Até", "Média"),
+  row.numbers = FALSE,
+  feature.id = FALSE
+)
+
+mapa_final_iqa <- leaflet(iqa_map) %>%
+  leaflet::setView(
+    lng = -51.0,
+    lat = -15,
+    zoom = 4
+  ) %>%
+  # Adicionar Provider Tiles (Mapas Base)
+  leaflet::addProviderTiles(providers$OpenStreetMap, group = "Padrão") %>%
+  leaflet::addProviderTiles(providers$Esri.WorldImagery, group = "Satélite") %>% 
+  leaflet::addCircleMarkers(
+    lng = ~lng,
+    lat = ~lat,
+    radius = 3,
+    stroke = FALSE,
+    fillOpacity = 0.9,
+    color = ~pal_ave_iqa(`Média`),
+    fillColor = ~pal_ave_iqa(`Média`),
+    popup = popup_iqa,
+    group = "Média"
+  ) %>%
+    leaflet::addLegend(
+    position = "topright",
+    colors = pal_ave_iqa(bins_iqa[-length(bins_iqa)] + 0.0001),
+    labels = legend_labels,
+    opacity = 0.9,
+    title = "Média",
+    className = "legend-media"
+  ) %>%
+  # Reconfigurar o Controle de Camadas (adicionando os grupos base)
+  leaflet::addLayersControl(
+    baseGroups = c("Padrão", "Satélite"),
+    overlayGroups = c("Média"),
+
+    options = layersControlOptions(collapsed = TRUE, position = "topright")
+  ) %>%
+  # Adicionar a funcionalidade de busca (SearchOSM)
+  leaflet.extras::addSearchOSM(
+    options = leaflet.extras::searchOptions(
+      collapsed = TRUE, autoCollapse = TRUE, zoom = 10, position = "topleft",
+      textPlaceholder = "Buscar locais...", textErr = "Local não encontrado",
+      marker = list(icon = NULL, animate = TRUE, circle = list(radius = 10, weight = 3, color = "#c51b7d", stroke = TRUE, fill = FALSE))
+    ) 
+    ) %>%
+
+  leaflet.extras::addResetMapButton()
+
+# 5. Exibir o mapa no RMarkdown (chame o objeto)
+mapa_final_iqa
+```
+
+```{=html}
+
+
+    </div>
+
+    <p>O gráfico abaixo apresenta a <strong>quantidade de pontos de monitoramento distribuídos pelas categorias do IQA com  base em seus valores médios anuais entre 2010 e 2024</strong>. 
+
+    <div class="chart-block">
+      <h3>Contagem de pontos nas faixas de IQA entre 2010-2024</h3>
+```
+
+```{r grafico_faixas_iqa, echo=FALSE, message=FALSE, warning=FALSE}
+breaks_iqa <- c(0, 19, 36, 51, 79, 100)
+
+labels_iqa <- c(
+  "Pessima", 
+  "Ruim", 
+  "Regular", # A sua regra 'Boa=>50-70'
+  "Boa", # A sua regra 'Boa=>70-90' - **ATENÇÃO:** Mudei para "Ótima" para diferenciar de 50-70
+  "Otima" # A sua regra 'Ótima=>90-100' - **ATENÇÃO:** Mudei para "Excelente" para diferenciar de 70-90
+)
+
+
+tbl_iqa_faixa <- tbl_iqa %>%
+  mutate(
+    classificacao = cut(
+      x = valor,          # Coluna numérica a ser classificada
+      breaks = breaks_iqa, # Vetor de limites
+      labels = labels_iqa, # Vetor de rótulos (categorias)
+      right = TRUE,       # Indica que o intervalo é fechado à direita (ex: (25, 50] )
+      include.lowest = TRUE # Inclui o valor mais baixo (0) no primeiro intervalo
+    )
+  )
+
+iqa_faixa_year <- tbl_iqa_faixa %>%
+  group_by(year(data), classificacao) %>%
+  summarise(
+    contagem = n(),
+    .groups = 'drop' # Remove o agrupamento do resultado final
+  ) %>%
+  rename(
+    faixa_iqa = classificacao
+  )
+
+ano_final_iqa <- max(2024, max(year(tbl_iqa$data), na.rm = TRUE))
+anos_iqa <- seq(
+  min(year(tbl_iqa$data), na.rm = TRUE),
+  ano_final_iqa
+)
+
+iqa_faixa_year <- iqa_faixa_year %>%
+  rename("ano" = "year(data)") %>%
+  tidyr::complete(
+    ano = anos_iqa,
+    faixa_iqa = labels_iqa,
+    fill = list(contagem = 0)
+  )
+# Imprimindo o novo dataframe
+
+ 
+df_faixa_year_iqa <- iqa_faixa_year %>%
+  pivot_wider(
+    names_from = faixa_iqa,   # A coluna 'tipo' definirá os nomes das novas colunas
+    values_from = c(contagem)  # A coluna 'valor' fornecerá os valores para as novas colunas
+  )
+
+contagem_faixa_iqa <- df_faixa_year_iqa %>%
+select(ano, Pessima, Ruim, Regular, Boa, Otima)
+
+dygraph(contagem_faixa_iqa) %>%
+  dySeries("Pessima", label = "Péssima", color = "red") %>%
+  dySeries("Ruim", label = "Ruim", color = "darkorange") %>%
+  dySeries("Regular", label = "Regular", color = "gold") %>%
+  dySeries("Boa", label = "Boa", color = "green") %>%
+  dySeries("Otima", label = "Ótima", color = "blue") %>%
+  dyLegend(width = 300) %>%
+  dyOptions(stackedGraph = FALSE, drawPoints = TRUE, pointSize = 2) %>%
+  dyAxis("x", valueRange = c(min(anos_iqa), max(anos_iqa)))
+
+```
+
+
+```{=html}
+    </div>
+<div class="panel panel--wide panel--interpretative">
+
+<h3>O que dizem os resultados – Índice de Qualidade da Água (IQA)</h3>
+
+  <p>Os resultados do <strong>Índice de Qualidade da Água (IQA)</strong> indicam que, de forma agregada, a qualidade da água monitorada no Brasil é predominantemente classificada nas categorias <strong>Boa</strong> e <strong>Ótima</strong>. No entanto, a análise espacial e temporal mostra <strong>heterogeneidade significativa</strong> e a persistência de trechos com qualidade inferior, sobretudo em áreas sob maior pressão antrópica.</p>
+
+   <p>Os mapas de médias mostram que o IQA é superior em <strong>grandes rios</strong> e em regiões menos urbanizadas, onde a maior disponibilidade hídrica e a menor carga poluidora favorecem condições ambientais mais estáveis. Nessas áreas, o IQA indica menor risco ambiental e maior garantia de atendimento aos usos diversos da água.</p>
+
+  <p>Em contraste, as categorias <strong>Regular, Ruim e Péssima</strong> concentram-se em <strong>regiões metropolitanas</strong>, em bacias com intensa atividade econômica e trechos de rios urbanos, refletindo a influência combinada de <strong>poluição orgânica, nutrientes, sólidos em suspensão e alterações no regime hidrológico</strong>. Nesses casos, o indicador revela <strong>fragilidade da qualidade da água</strong> e maior vulnerabilidade a eventos extremos, sobretudo de secas.</p>
+
+  <p>A evolução temporal das médias anuais de IQA refletem a expansão do monitoramento no território. A inclusão de pontos de monitoramento em áreas afastadas das grandes cidades e menos críticas resultou no aumento do número de pontos na categoria Boa e Ótima entre 2010 e 2019. A queda registrada nestas categorias a partir de 2019 foi provavelmente consequência da suspensão parcial do monitoramento durante a pandemia de COVID neste pontos.</p>
+
+  <p>A persistência, ao longo do período analisado, de parcelas significativas de pontos classificados como <strong>Regular</strong> ou <strong>Ruim</strong> indica que os problemas estruturais de saneamento e de gestão de cargas poluidoras permanecem como fatores limitantes para a elevação sustentada do índice.</p>
+
+  <p>Do ponto de vista regional, os resultados do IQA refletem as desigualdades históricas de infraestrutura de saneamento no país. Regiões com <strong>maior déficit de coleta e tratamento de esgotos</strong> tendem a apresentar mais trechos de classes inferiores de qualidade, enquanto áreas com melhores índices de saneamento e maior disponibilidade hídrica exibem resultados mais favoráveis. Assim, o IQA atua como um <strong>indicador-síntese das condições ambientais e socioeconômicas</strong> associadas à qualidade da água.</p>
+  
+</div>
+
+
+  </div>
+</section>
+
+<section class="section section--cta">
+  <div class="cta-box">
+    <div>
+      <h2>Explore os indicadores</h2>
+      <p>Visualize mapas e gráficos interativos por tema.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="cta" href="iqa.html">IQA</a>
+      <a class="cta" href="od.html">OD</a>
+      <a class="cta" href="dbo.html">DBO</a>
+      <a class="cta" href="fosforo.html">Fósforo</a>
+    </div>
+  </div>
+</section>
+```
+    
+
+```{=html}
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <div>
+          <strong>Agência Nacional de Águas e Saneamento Básico</strong>
+          <div class="footer-gov">Governo Federal – Brasil</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Sobre o portal</h4>
+        <p>
+          Este portal apresenta informações oficiais sobre a qualidade das águas
+          superficiais no Brasil, com base em dados públicos e metodologias
+          padronizadas.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conteúdo</h4>
+        <ul>
+          <li><a href="iqa.html">Índice de Qualidade da Água</a></li>
+          <li><a href="od.html">Oxigênio Dissolvido</a></li>
+          <li><a href="dbo.html">DBO</a></li>
+          <li><a href="fosforo.html">Fósforo Total</a></li>
+          <li><a href="enquadramento.html">Enquadramento</a></li>          
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>
+            <a href="mailto:cqual@ana.gov.br">
+              cqual@ana.gov.br
+            </a>
+          </li>
+          <li>Atendimento institucional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © Agência Nacional de Águas e Saneamento Básico (ANA).
+        Dados públicos para apoio à gestão dos recursos hídricos.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+```

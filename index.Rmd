@@ -26,7 +26,7 @@ output:
   <div class="panel panel--wide">
   
     <h3>Apresentação</h3>  
-    <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados oficiais de qualidade das águas superficiais do país. A plataforma reúne informações produzidas pelas Unidades da Federação, no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
+    <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados oficiais de qualidade das águas superficiais do País. A plataforma reúne informações produzidas pelas Unidades da Federação (UFs), no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
     
       <p>Nosso compromisso é transformar dados técnicos em informação útil para a sociedade, fortalecendo a transparência, a participação social e a tomada de decisão baseada em evidências.</p>
 
@@ -46,7 +46,7 @@ output:
       técnicos coletam amostras de água em pontos fixos e em períodos regulares.
       Essas amostras são analisadas em laboratório ou por sensores em campo,
       seguindo procedimentos padronizados, o que permite comparar resultados ao
-      longo do tempo e entre diferentes regiões do país.
+      longo do tempo e entre diferentes regiões do País.
     </p>
 
     <p>
@@ -100,7 +100,7 @@ output:
     </div>
       
     <p class="eq-text">
-    Integra parâmetros importantes e resume tudo em uma escala de 0 a 100,           geralmente classificada como ótima, boa, regular ou ruim ou péssima.
+    Integra parâmetros importantes e resume tudo em uma escala de 0 a 100,           geralmente classificada como ótima, boa, regular, ruim ou péssima.
     </p>
   </div>
   
@@ -120,7 +120,7 @@ output:
     <ul class="panel-list">
       <li>Avaliar tendências de melhoria ou degradação da qualidade da água;</li>
       <li>Apoiar ações de gestão, fiscalização e saneamento;</li>
-      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">enquadramento dos corpos hídricos</a>;</li>
+      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">Enquadramento dos Corpos de Água em Classes de Qualidade e a Outorga de Direito de Uso de Recursos Hídricos </a>;</li>
       <li>Informar a sociedade sobre a situação dos recursos hídricos.</li>
     </ul>
 
@@ -216,7 +216,7 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
 
 
 ```{=html}      
-      <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do país.</p>
+      <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do País.</p>
     </div>
     
     

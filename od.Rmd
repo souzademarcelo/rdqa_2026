@@ -38,7 +38,7 @@ source("scripts/load_preprocessed.R")
 
     <h3>Indicador da vida aquática</h3>  
 
-    <p>O <strong>Oxigênio Dissolvido na Água (OD)</strong> é fundamental para a <strong>vida em ecossistemas aquático</strong>. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. Níveis críticos, especialmente <strong>abaixo de 2 mg/L</strong>, ameaçam a sobrevivência dos peixes. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
+    <p>O <strong>Oxigênio Dissolvido na Água (OD)</strong> é fundamental para a <strong>vida em ecossistemas aquáticos</strong>. Sua concentração diminui com o aumento da poluição por matéria orgânica, muito presente nos esgotos domésticos. A concentração de OD abaixo de 4 mg/L já compromete biodiversidade aquática. Níveis ainda mais críticos, <strong>abaixo de 2 mg/L</strong>, ameaçam a sobrevivência de peixes e outros organismos. O OD é um parâmetro chave no monitoramento da qualidade da água, sendo estratégico para avaliação da saúde de rios e lagos.</p>
 
     <p>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> define os níveis máximos de OD para rios (ambientes lóticos) e lagos (lênticos), de acordo com sua Classe de Qualidade:</p>
 
@@ -309,11 +309,11 @@ dygraph(freq_regime_od) %>%
 
   <p>Em contraste, a combinação de <strong>OD médio razoável</strong> com <strong>NC% elevada</strong> é recorrente em <strong>regiões metropolitanas</strong> e bacias intensamente usadas. Esse padrão é particularmente relevante porque indica que a média anual pode <strong>ocultar períodos críticos</strong> (picos de consumo de oxigênio) em que o funcionamento do ecossistema aquático opera sob condições precárias. Nesses trechos, é comum que eventos de chuva, extravasamentos e ligações irregulares elevem a carga orgânica, provocando quedas de OD e aumento da não conformidade.</p>
 
-  <p>Trechos com <strong>OD baixo e NC% alta</strong> caracterizam áreas fortemente poluídas por <strong> por matéria orgânica</strong>, com destaque para <strong>pequenos rios urbanos</strong>, de baixa vazão e reduzida capacidade de diluição*. Nesses contextos, podem ocorrer situações de <strong>hipóxia e anóxia</strong
+  <p>Trechos com <strong>OD baixo e NC% alta</strong> caracterizam áreas fortemente poluídas por <strong> matéria orgânica</strong>, com destaque para <strong>pequenos rios urbanos</strong>, de baixa vazão e reduzida capacidade de diluição*. Nesses contextos, podem ocorrer situações de <strong>hipóxia e anóxia</strong
 
 >, com perda de habitat, alteração de comunidades aquáticas e aumento do risco de <strong>mortandade de peixes</strong>.</p>
 
-  <p>A evolução temporal do OD entre <strong>2010 e 2024</strong> indica a resposta deste indicador às condições hidrológicas combinadas com a poluição por matéria orgânica. Em períodos de <strong>escassez hídrica</strong>, como a crise de <strong>2014–2015</strong> (com impactos marcantes no Sudeste e Centro-Oeste), a redução das vazões diminui a diluição e a reaeração, amplificando os impactos das cargas orgânicas e elevando a <strong>frequência de não conformidade (NC%)</strong>. </p>
+  <p>A evolução temporal do OD entre <strong>2010 e 2024</strong> aponta uma resposta deste indicador às condições hidrológicas combinadas com a poluição por matéria orgânica. Em períodos de <strong>escassez hídrica</strong>, como a crise de <strong>2014–2015</strong> (com impactos marcantes no Sudeste e Centro-Oeste), a redução das vazões diminui a diluição e a reaeração, amplificando os impactos das cargas orgânicas e elevando a <strong>frequência de não conformidade (NC%)</strong>. </p>
 
   <p>As diferenças regionais refletem as características hidrológicas e de uso do solo nas áreas monitoradas. Em geral, <strong>grandes rios</strong> e trechos com maior conectividade e vazão apresentam maior estabilidade do OD. Já em regiões com alta urbanização e em sistemas regulados, a qualidade pode ser mais sensível a eventos extremos. Além disso, ambientes com maior presença de áreas alagáveis e elevada matéria orgânica natural podem apresentar <strong>OD naturalmente reduzido</strong> em determinados períodos, o que reforça a necessidade de interpretar os resultados considerando o contexto ambiental local.</p>
 

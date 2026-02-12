@@ -39,10 +39,10 @@ source("scripts/load_enquadramento.R")
     <h3>Enquadramento e planejamento</h3>  
 
     <p>
-O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia, os usuários de água e a sociedade civil definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
+O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia (compostos por representates do poder público, dos usuários de água e da sociedade civil) definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
    </p>
     <p>
-A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a> e os órgãos gestores de recursos hídricos das Unidades da Federação atuam coordenando e fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
+A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>, as Agencias de Água (ou entidades delegatárias de suas funções) e os órgãos gestores de recursos hídricos das Unidades da Federação atuam coordenando e fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
    </p>
     <p>
 Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos</strong>. <strong><a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a></strong>.
@@ -78,7 +78,7 @@ Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o p
     </div>
 
     <p class="eq-text">
-       Águas com pouco poluídas, compatíveis com <strong>abastecimento humano após tratamento simplificado</strong>, <strong>irrigação de hortaliças que são consumidas cruas e proteção da vida aquática.</strong>.Classe mandatória em Terras Indígenas.
+       Águas com qualidade preservada, compatíveis com o <strong>abastecimento humano após tratamento simplificado</strong>, <strong>irrigação de hortaliças que são consumidas cruas e proteção da vida aquática.</strong>.Classe mandatória em Terras Indígenas.
     </p>
   </div>
 
@@ -121,7 +121,7 @@ Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o p
     </div>
 
     <p class="eq-text">
-Classe com a pior qualidade. Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>, não sendo indicadas para abastecimento humano nem para a maioria dos usos recreativos.
+Classe com a pior qualidade. Águas destinadas principalmente à <strong>navegação</strong> e à <strong>harmonia paisagística</strong>, não sendo indicadas para o abastecimento humano nem para usos recreativos.
     </p>
     </div>
 
@@ -283,7 +283,7 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
   <div class="chart-block">
     <h3>Evolução do enquadramento no Brasil</h3>
   <p>
-  O enquadramento é um instrumento que tem discutido e evoluído com aperfeiçoamentos visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.</p>
+  O enquadramento é um instrumento que tem sido discutido e tem evoluído com aperfeiçoamentos, visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.</p>
 
 ```
 
@@ -354,9 +354,9 @@ dygraph(evo_eca) %>%
       </li>
     </ul>
 
-    <p>Em síntese, o desafio passou a ser <strong>implemntá-lo</strong> com governança, dados e pactuação, de modo que a qualidade observada no monitoramento alcancem as <strong>metas da gestão</strong>.</p>
+    <p>Em síntese, o desafio passou a ser <strong>implementá-lo</strong> com governança, dados e pactuação, de modo que a qualidade observada no monitoramento alcance as <strong>metas da gestão</strong>.</p>
       
-<p>O mapa abaixo mostra as bacias estaduais e federais que já possuem algum normativo de enquadramento de enquadramento.</p>
+<p>O mapa abaixo mostra as bacias estaduais e federais que já possuem algum normativo de enquadramento.</p>
 
  <h3>Bacias com enquadramento</h3>
 
