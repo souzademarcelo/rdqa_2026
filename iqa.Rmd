@@ -47,11 +47,11 @@ source("scripts/load_preprocessed.R")
     <p>O IQA pode ser representado por categorias:</p>
 
     <ul class="panel-list">
-      <li><strong>Péssima: 0-19</li></strong>
-      <li><strong>Ruim: 19-36</li></strong>
-      <li><strong>Regular: 36-51</li></strong>
-      <li><strong>Boa: 51-79</li></strong>
-      <li><strong>Ótima: 79-100</li></strong>      
+      <li>Péssima: 0-19</li>
+      <li>Ruim: 19-36</li>
+      <li>Regular: 36-51</li>
+      <li>Boa: 51-79</li>
+      <li>Ótima: 79-100</li>      
     </ul>
     
 <p>O mapa interativo apresenta os <strong>valores médios do IQA entre 2010 e 2024</strong> nos pontos de monitoramento da qualidade da água</p>.   
@@ -229,8 +229,46 @@ dygraph(contagem_faixa_iqa) %>%
   dySeries("Boa", label = "Boa", color = "green") %>%
   dySeries("Otima", label = "Ótima", color = "blue") %>%
   dyLegend(width = 300) %>%
-  dyOptions(stackedGraph = FALSE, drawPoints = TRUE, pointSize = 2) %>%
-  dyAxis("x", valueRange = c(min(anos_iqa), max(anos_iqa)))
+  dyOptions(stackedGraph = FALSE, drawPoints = TRUE, pointSize = 2, rightGap = 25) %>%
+  dyAxis("y", label = "Número de pontos") %>%
+  dyAxis("x",
+    label = "Ano",
+    valueRange = c(min(contagem_faixa_iqa$ano) - 0.5, max(contagem_faixa_iqa$ano) + 0.5),
+    axisLabelFormatter = JS("function(v){ return String(Math.round(v)); }"),
+    ticker = JS("
+      function(min, max, pixels, opts, dygraph) {
+        var start = Math.ceil(min);
+        var end = Math.floor(max);
+
+        // quantos rótulos cabem (ajuste fino aqui):
+        // desktop -> mais rótulos; mobile -> menos rótulos
+        var approxLabels = Math.max(5, Math.floor(pixels / 35)); // 35px por label
+
+        var span = Math.max(1, end - start);
+        var rawStep = Math.ceil(span / approxLabels);
+
+        // arredonda step para 1,2,5*10^k (fica “bonito” e responsivo)
+        function niceStep(x){
+          var p = Math.pow(10, Math.floor(Math.log10(x)));
+          var n = x / p;
+          var s = (n <= 1) ? 1 : (n <= 2) ? 2 : (n <= 3) ? 3 : 10;
+          return s * p;
+        }
+        var step = niceStep(rawStep);
+
+        var ticks = [];
+        for (var y = start; y <= end; y += step) {
+          ticks.push({v: y, label: String(y)});
+        }
+
+        // garante o último ano sempre
+        if (ticks.length === 0 || ticks[ticks.length - 1].v !== end) {
+          ticks.push({v: end, label: String(end)});
+        }
+        return ticks;
+      }
+    ")
+  )
 
 ```
 
@@ -247,7 +285,7 @@ dygraph(contagem_faixa_iqa) %>%
 
   <p>Em contraste, as categorias <strong>Regular, Ruim e Péssima</strong> concentram-se em <strong>regiões metropolitanas</strong>, em bacias com intensa atividade econômica e trechos de rios urbanos, refletindo a influência combinada de <strong>poluição orgânica, nutrientes, sólidos em suspensão e alterações no regime hidrológico</strong>. Nesses casos, o indicador revela <strong>fragilidade da qualidade da água</strong> e maior vulnerabilidade a eventos extremos, sobretudo de secas.</p>
 
-  <p>A evolução temporal das médias anuais de IQA refletem a expansão do monitoramento no território. A inclusão de pontos de monitoramento em áreas afastadas das grandes cidades e menos críticas resultou no aumento do número de pontos na categoria Boa e Ótima entre 2010 e 2019. A queda registrada nestas categorias a partir de 2019 foi provavelmente consequência da suspensão parcial do monitoramento durante a pandemia de COVID neste pontos.</p>
+  <p>Até o ano de 2019, a evolução temporal do número de pontos com IQA médio mostra uma expansão na rede de monitoramento. Neste período observa-se aumento relevante da quantidade de pontos com IQA médio nas categorias Ótima e, de forma mais acentuada, Boa. Isto pode ser explicado pela inclusão de pontos em áreas mais afastadas das grandes cidades e menos críticas. A queda registrada nestas categorias a partir de 2019 foi provavelmente consequência da suspensão parcial do monitoramento durante a pandemia.</p>
 
   <p>A persistência, ao longo do período analisado, de parcelas significativas de pontos classificados como <strong>Regular</strong> ou <strong>Ruim</strong> indica que os problemas estruturais de saneamento e de gestão de cargas poluidoras permanecem como fatores limitantes para a elevação sustentada do índice.</p>
 

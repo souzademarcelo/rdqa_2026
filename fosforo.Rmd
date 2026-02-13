@@ -230,8 +230,47 @@ dygraph(media_urbano_fosfototal) %>%
     pointSize = 5,
     strokeWidth = 3,
     connectSeparatedPoints = TRUE) %>% 
-  dyAxis("x", valueRange = c(min(anos_fosforo), max(anos_fosforo)))
 
+
+  dyAxis("y", label = "Concentração(mg/L)") %>%
+  dyAxis("x",
+    label = "Ano",
+    valueRange = c(min(media_urbano_fosfototal$ano) - 0.5, max(media_urbano_fosfototal$ano) + 0.5),
+    axisLabelFormatter = JS("function(v){ return String(Math.round(v)); }"),
+    ticker = JS("
+      function(min, max, pixels, opts, dygraph) {
+        var start = Math.ceil(min);
+        var end = Math.floor(max);
+
+        // quantos rótulos cabem (ajuste fino aqui):
+        // desktop -> mais rótulos; mobile -> menos rótulos
+        var approxLabels = Math.max(5, Math.floor(pixels / 35)); // 35px por label
+
+        var span = Math.max(1, end - start);
+        var rawStep = Math.ceil(span / approxLabels);
+
+        // arredonda step para 1,2,5*10^k (fica “bonito” e responsivo)
+        function niceStep(x){
+          var p = Math.pow(10, Math.floor(Math.log10(x)));
+          var n = x / p;
+          var s = (n <= 1) ? 1 : (n <= 2) ? 2 : (n <= 3) ? 3 : 10;
+          return s * p;
+        }
+        var step = niceStep(rawStep);
+
+        var ticks = [];
+        for (var y = start; y <= end; y += step) {
+          ticks.push({v: y, label: String(y)});
+        }
+
+        // garante o último ano sempre
+        if (ticks.length === 0 || ticks[ticks.length - 1].v !== end) {
+          ticks.push({v: end, label: String(end)});
+        }
+        return ticks;
+      }
+    ")
+  )
 ```
 
 
@@ -278,7 +317,48 @@ dygraph(freq_regime_fosfototal) %>%
     strokeWidth = 3,
     connectSeparatedPoints = TRUE
   ) %>%
-  dyAxis("x", valueRange = c(min(anos_fosforo), max(anos_fosforo)))
+  
+  
+  dyAxis("y", label = "Percentual(%)") %>%
+  dyAxis("x",
+    label = "Ano",
+    valueRange = c(min(freq_regime_fosfototal$ano) - 0.5, max(freq_regime_fosfototal$ano) + 0.5),
+    axisLabelFormatter = JS("function(v){ return String(Math.round(v)); }"),
+    ticker = JS("
+      function(min, max, pixels, opts, dygraph) {
+        var start = Math.ceil(min);
+        var end = Math.floor(max);
+
+        // quantos rótulos cabem (ajuste fino aqui):
+        // desktop -> mais rótulos; mobile -> menos rótulos
+        var approxLabels = Math.max(5, Math.floor(pixels / 35)); // 35px por label
+
+        var span = Math.max(1, end - start);
+        var rawStep = Math.ceil(span / approxLabels);
+
+        // arredonda step para 1,2,5*10^k (fica “bonito” e responsivo)
+        function niceStep(x){
+          var p = Math.pow(10, Math.floor(Math.log10(x)));
+          var n = x / p;
+          var s = (n <= 1) ? 1 : (n <= 2) ? 2 : (n <= 3) ? 3 : 10;
+          return s * p;
+        }
+        var step = niceStep(rawStep);
+
+        var ticks = [];
+        for (var y = start; y <= end; y += step) {
+          ticks.push({v: y, label: String(y)});
+        }
+
+        // garante o último ano sempre
+        if (ticks.length === 0 || ticks[ticks.length - 1].v !== end) {
+          ticks.push({v: end, label: String(end)});
+        }
+        return ticks;
+      }
+    ")
+  )
+  
 
 ```
 

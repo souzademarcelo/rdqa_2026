@@ -119,3 +119,384 @@ $ git commit -m "atualização 02 fev 2026"
 $ git push --force origin main
 To https://github.com/souzademarcelo/rdqa_2026.git
    8caf134..52b570e  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M dbo.Rmd
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M enquadramento.Rmd
+ M index.Rmd
+ M iqa.Rmd
+ M od.Rmd
+ M push_log.txt
+?? bkp/
+?? docs/bkp/
+
+$ git add -A
+warning: in the working copy of 'bkp/docs/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/dygraphs-1.1.1/dygraph.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/dygraphs-1.1.1/shapes.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/header-attrs-2.29/header-attrs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/highlightjs-9.12.0/default.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/highlightjs-9.12.0/highlight.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/highlightjs-9.12.0/textmate.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-1.3.1/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/moment-2.8.4/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/moment-timezone-0.2.5/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/dygraphs-1.1.1/shapes.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/header-attrs-2.29/header-attrs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/highlightjs-9.12.0/default.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/highlightjs-9.12.0/highlight.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/highlightjs-9.12.0/textmate.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-1.3.1/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-2.8.4/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m "atualização 02 fev 2026"
+[main e99c962] atualização 02 fev 2026
+ 275 files changed, 100589 insertions(+), 66 deletions(-)
+ create mode 100644 bkp/dbo.Rmd
+ create mode 100644 bkp/docs/assets/css/theme.css
+ create mode 100644 bkp/docs/assets/img/ana-logo-2.png
+ create mode 100644 bkp/docs/assets/img/ana-logo.png
+ create mode 100644 bkp/docs/assets/img/cl-1.png
+ create mode 100644 bkp/docs/assets/img/cl-2.png
+ create mode 100644 bkp/docs/assets/img/cl-3.png
+ create mode 100644 bkp/docs/assets/img/cl-4.png
+ create mode 100644 bkp/docs/assets/img/cl-esp.png
+ create mode 100644 bkp/docs/assets/img/dbo.png
+ create mode 100644 bkp/docs/assets/img/fluxo_info.png
+ create mode 100644 bkp/docs/assets/img/hero_agua_2560x800_overlay.jpg
+ create mode 100644 bkp/docs/assets/img/icones classes juntas.png
+ create mode 100644 bkp/docs/assets/img/icones_qualidade_agua_web.zip
+ create mode 100644 bkp/docs/assets/img/iqa.png
+ create mode 100644 bkp/docs/assets/img/lixo/DBO_256.png
+ create mode 100644 bkp/docs/assets/img/lixo/Fosforo_Total_P.png
+ create mode 100644 bkp/docs/assets/img/lixo/Fosforo_Total_P_256.png
+ create mode 100644 bkp/docs/assets/img/lixo/IQA_256.png
+ create mode 100644 bkp/docs/assets/img/lixo/Oxigenio_Dissolvido_O2.png
+ create mode 100644 bkp/docs/assets/img/lixo/Oxigenio_Dissolvido_O2_256.png
+ create mode 100644 bkp/docs/assets/img/lixo/fluxo_info.png
+ create mode 100644 bkp/docs/assets/img/lixo/hero-cards.png
+ create mode 100644 bkp/docs/assets/img/lixo/hero_1.png
+ create mode 100644 bkp/docs/assets/img/lixo/hero_agua_2560x800.png
+ create mode 100644 bkp/docs/assets/img/lixo/hero_agua_2560x800_overlay.png
+ create mode 100644 bkp/docs/assets/img/lixo/hero_original.jpg
+ create mode 100644 bkp/docs/assets/img/lixo/icones juntos.png
+ create mode 100644 bkp/docs/assets/img/lixo/textura-ana-clara.png
+ create mode 100644 bkp/docs/assets/img/od.png
+ create mode 100644 bkp/docs/assets/img/ptotal.png
+ create mode 100644 bkp/docs/assets/includes/head.html
+ create mode 100644 bkp/docs/assets/includes/navbar.html
+ create mode 100644 bkp/docs/data/preprocessed/dbo.rds
+ create mode 100644 bkp/docs/data/preprocessed/enquadramento.rds
+ create mode 100644 bkp/docs/data/preprocessed/fosfototal.rds
+ create mode 100644 bkp/docs/data/preprocessed/iqa.rds
+ create mode 100644 bkp/docs/data/preprocessed/od.rds
+ create mode 100644 bkp/docs/dbo.html
+ create mode 100644 bkp/docs/eca.html
+ create mode 100644 bkp/docs/eca_chat.html
+ create mode 100644 bkp/docs/enquadramento.html
+ create mode 100644 bkp/docs/evolucao_eca.xlsx
+ create mode 100644 bkp/docs/fosforo.html
+ create mode 100644 bkp/docs/index.html
+ create mode 100644 bkp/docs/iqa.html
+ create mode 100644 bkp/docs/od.html
+ create mode 100644 bkp/docs/push_log.txt
+ create mode 100644 bkp/docs/scripts/load_enquadramento.R
+ create mode 100644 bkp/docs/scripts/load_preprocessed.R
+ create mode 100644 bkp/docs/scripts/preprocess_data.R
+ create mode 100644 bkp/docs/scripts/preprocess_enquadramento.R
+ create mode 100644 bkp/docs/site-qualidade-agua-final.zip
+ create mode 100644 bkp/docs/site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js
+ create mode 100644 bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js
+ create mode 100644 bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js
+ create mode 100644 bkp/docs/site_libs/dygraphs-1.1.1/dygraph.css
+ create mode 100644 bkp/docs/site_libs/dygraphs-1.1.1/shapes.js
+ create mode 100644 bkp/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js
+ create mode 100644 bkp/docs/site_libs/fuse_js-7.0.0/fuse_js-prod.js
+ create mode 100644 bkp/docs/site_libs/header-attrs-2.29/header-attrs.js
+ create mode 100644 bkp/docs/site_libs/highlightjs-9.12.0/default.css
+ create mode 100644 bkp/docs/site_libs/highlightjs-9.12.0/highlight.js
+ create mode 100644 bkp/docs/site_libs/highlightjs-9.12.0/textmate.css
+ create mode 100644 bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css
+ create mode 100644 bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/FontAwesome.otf
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.eot
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.ttf
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.woff
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.eot
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.ttf
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.woff
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.eot
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.ttf
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.woff
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-matte.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-matte@2x.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-plain.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-shadow.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-shadow@2x.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-soft.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/images/markers-soft@2x.png
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js
+ create mode 100644 bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js
+ create mode 100644 bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js
+ create mode 100644 bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js
+ create mode 100644 bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.map
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/images/layers-2x.png
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/images/layers.png
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/images/marker-icon-2x.png
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/images/marker-icon.png
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/images/marker-shadow.png
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/leaflet.css
+ create mode 100644 bkp/docs/site_libs/leaflet-1.3.1/leaflet.js
+ create mode 100644 bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js
+ create mode 100644 bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js
+ create mode 100644 bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE
+ create mode 100644 bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css
+ create mode 100644 bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js
+ create mode 100644 bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js
+ create mode 100644 bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js
+ create mode 100644 bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css
+ create mode 100644 bkp/docs/site_libs/lfx-search-4.0.0/18cd91b6672b08907d35.png
+ create mode 100644 bkp/docs/site_libs/lfx-search-4.0.0/42e88a566f5f3c20f556.gif
+ create mode 100644 bkp/docs/site_libs/lfx-search-4.0.0/b110a6248f50f33e02d1.png
+ create mode 100644 bkp/docs/site_libs/lfx-search-4.0.0/lfx-search-bindings.js
+ create mode 100644 bkp/docs/site_libs/lfx-search-4.0.0/lfx-search-prod.css
+ create mode 100644 bkp/docs/site_libs/lfx-search-4.0.0/lfx-search-prod.js
+ create mode 100644 bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js
+ create mode 100644 bkp/docs/site_libs/moment-2.8.4/moment.js
+ create mode 100644 bkp/docs/site_libs/moment-fquarter-1.0.0/moment-fquarter.min.js
+ create mode 100644 bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js
+ create mode 100644 bkp/docs/site_libs/moment-timezone-0.2.5/moment.js
+ create mode 100644 bkp/docs/site_libs/proj4-2.6.2/proj4.min.js
+ create mode 100644 bkp/docs/site_libs/rstudio_leaflet-1.3.1/images/1px.png
+ create mode 100644 bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css
+ create mode 100644 bkp/enquadramento.Rmd
+ create mode 100644 bkp/fosforo.Rmd
+ create mode 100644 bkp/index.Rmd
+ create mode 100644 bkp/iqa.Rmd
+ create mode 100644 bkp/od.Rmd
+ create mode 100644 docs/bkp/dbo.Rmd
+ create mode 100644 docs/bkp/docs/assets/css/theme.css
+ create mode 100644 docs/bkp/docs/assets/img/ana-logo-2.png
+ create mode 100644 docs/bkp/docs/assets/img/ana-logo.png
+ create mode 100644 docs/bkp/docs/assets/img/cl-1.png
+ create mode 100644 docs/bkp/docs/assets/img/cl-2.png
+ create mode 100644 docs/bkp/docs/assets/img/cl-3.png
+ create mode 100644 docs/bkp/docs/assets/img/cl-4.png
+ create mode 100644 docs/bkp/docs/assets/img/cl-esp.png
+ create mode 100644 docs/bkp/docs/assets/img/dbo.png
+ create mode 100644 docs/bkp/docs/assets/img/fluxo_info.png
+ create mode 100644 docs/bkp/docs/assets/img/hero_agua_2560x800_overlay.jpg
+ create mode 100644 docs/bkp/docs/assets/img/icones classes juntas.png
+ create mode 100644 docs/bkp/docs/assets/img/icones_qualidade_agua_web.zip
+ create mode 100644 docs/bkp/docs/assets/img/iqa.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/DBO_256.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/Fosforo_Total_P.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/Fosforo_Total_P_256.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/IQA_256.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/Oxigenio_Dissolvido_O2.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/Oxigenio_Dissolvido_O2_256.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/fluxo_info.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/hero-cards.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/hero_1.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/hero_agua_2560x800.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/hero_agua_2560x800_overlay.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/hero_original.jpg
+ create mode 100644 docs/bkp/docs/assets/img/lixo/icones juntos.png
+ create mode 100644 docs/bkp/docs/assets/img/lixo/textura-ana-clara.png
+ create mode 100644 docs/bkp/docs/assets/img/od.png
+ create mode 100644 docs/bkp/docs/assets/img/ptotal.png
+ create mode 100644 docs/bkp/docs/assets/includes/head.html
+ create mode 100644 docs/bkp/docs/assets/includes/navbar.html
+ create mode 100644 docs/bkp/docs/data/preprocessed/dbo.rds
+ create mode 100644 docs/bkp/docs/data/preprocessed/enquadramento.rds
+ create mode 100644 docs/bkp/docs/data/preprocessed/fosfototal.rds
+ create mode 100644 docs/bkp/docs/data/preprocessed/iqa.rds
+ create mode 100644 docs/bkp/docs/data/preprocessed/od.rds
+ create mode 100644 docs/bkp/docs/dbo.html
+ create mode 100644 docs/bkp/docs/eca.html
+ create mode 100644 docs/bkp/docs/eca_chat.html
+ create mode 100644 docs/bkp/docs/enquadramento.html
+ create mode 100644 docs/bkp/docs/evolucao_eca.xlsx
+ create mode 100644 docs/bkp/docs/fosforo.html
+ create mode 100644 docs/bkp/docs/index.html
+ create mode 100644 docs/bkp/docs/iqa.html
+ create mode 100644 docs/bkp/docs/od.html
+ create mode 100644 docs/bkp/docs/push_log.txt
+ create mode 100644 docs/bkp/docs/scripts/load_enquadramento.R
+ create mode 100644 docs/bkp/docs/scripts/load_preprocessed.R
+ create mode 100644 docs/bkp/docs/scripts/preprocess_data.R
+ create mode 100644 docs/bkp/docs/scripts/preprocess_enquadramento.R
+ create mode 100644 docs/bkp/docs/site-qualidade-agua-final.zip
+ create mode 100644 docs/bkp/docs/site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js
+ create mode 100644 docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js
+ create mode 100644 docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js
+ create mode 100644 docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph.css
+ create mode 100644 docs/bkp/docs/site_libs/dygraphs-1.1.1/shapes.js
+ create mode 100644 docs/bkp/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js
+ create mode 100644 docs/bkp/docs/site_libs/fuse_js-7.0.0/fuse_js-prod.js
+ create mode 100644 docs/bkp/docs/site_libs/header-attrs-2.29/header-attrs.js
+ create mode 100644 docs/bkp/docs/site_libs/highlightjs-9.12.0/default.css
+ create mode 100644 docs/bkp/docs/site_libs/highlightjs-9.12.0/highlight.js
+ create mode 100644 docs/bkp/docs/site_libs/highlightjs-9.12.0/textmate.css
+ create mode 100644 docs/bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css
+ create mode 100644 docs/bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/FontAwesome.otf
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.eot
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.ttf
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.woff
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.eot
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.ttf
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.woff
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.eot
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.ttf
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.woff
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-matte.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-matte@2x.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-plain.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-shadow.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-shadow@2x.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-soft.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/images/markers-soft@2x.png
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js
+ create mode 100644 docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js
+ create mode 100644 docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js
+ create mode 100644 docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js
+ create mode 100644 docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.map
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/images/layers-2x.png
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/images/layers.png
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/images/marker-icon-2x.png
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/images/marker-icon.png
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/images/marker-shadow.png
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/leaflet.css
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-1.3.1/leaflet.js
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js
+ create mode 100644 docs/bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js
+ create mode 100644 docs/bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css
+ create mode 100644 docs/bkp/docs/site_libs/lfx-search-4.0.0/18cd91b6672b08907d35.png
+ create mode 100644 docs/bkp/docs/site_libs/lfx-search-4.0.0/42e88a566f5f3c20f556.gif
+ create mode 100644 docs/bkp/docs/site_libs/lfx-search-4.0.0/b110a6248f50f33e02d1.png
+ create mode 100644 docs/bkp/docs/site_libs/lfx-search-4.0.0/lfx-search-bindings.js
+ create mode 100644 docs/bkp/docs/site_libs/lfx-search-4.0.0/lfx-search-prod.css
+ create mode 100644 docs/bkp/docs/site_libs/lfx-search-4.0.0/lfx-search-prod.js
+ create mode 100644 docs/bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js
+ create mode 100644 docs/bkp/docs/site_libs/moment-2.8.4/moment.js
+ create mode 100644 docs/bkp/docs/site_libs/moment-fquarter-1.0.0/moment-fquarter.min.js
+ create mode 100644 docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js
+ create mode 100644 docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment.js
+ create mode 100644 docs/bkp/docs/site_libs/proj4-2.6.2/proj4.min.js
+ create mode 100644 docs/bkp/docs/site_libs/rstudio_leaflet-1.3.1/images/1px.png
+ create mode 100644 docs/bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css
+ create mode 100644 docs/bkp/enquadramento.Rmd
+ create mode 100644 docs/bkp/fosforo.Rmd
+ create mode 100644 docs/bkp/index.Rmd
+ create mode 100644 docs/bkp/iqa.Rmd
+ create mode 100644 docs/bkp/od.Rmd
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   1d1c3ec..e99c962  main -> main

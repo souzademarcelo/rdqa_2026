@@ -1152,6 +1152,21 @@ a.cta.cta--ghost{
   .leaflet-container{
     min-height: 360px;
   }
+  
+  .dygraph-axis-label-x{
+    font-size: 11px !important;
+    width: 44px !important;
+    transform: rotate(-35deg);
+    transform-origin: top center;
+    margin-top: 6px;
+  }
+  .dygraph-label.dygraph-xlabel{
+    font-size: 13px !important;
+  }
+  .dygraph-legend{
+    font-size: 12px !important;
+  }
+  
 }
 
 /* =========================
