@@ -39,19 +39,20 @@ source("scripts/load_enquadramento.R")
     <h3>Enquadramento e planejamento</h3>  
 
     <p>
-O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia (compostos por representates do poder público, dos usuários de água e da sociedade civil) definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
+O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia (compostos por representantes do poder público, dos usuários de água e da sociedade civil) definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
    </p>
     <p>
 A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>, as Agencias de Água (ou entidades delegatárias de suas funções) e os órgãos gestores de recursos hídricos das Unidades da Federação atuam coordenando e fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
    </p>
     <p>
-Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos</strong>. <strong><a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a></strong>.
+Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos</strong>. <a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a>.
     </p>
 
-  <h3>Classes de qualidade</h3>
-  <p><strong>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> classifica rios, lagos e reservatórios em classes de qualidade</strong>, definindo metas a serem alcançadas ou mantidas conforme os usos preponderantes da água. Essas classes variam de acordo com os usos da água.
-  </p>
+  <h3>Classes de qualidade da água e seus indicadores</h3>
   
+  <p><strong>A <a href="https://conama.mma.gov.br/?id=450&amp;option=com_sisconama&amp;task=arquivo.download" target="_blank">Resolução CONAMA nº 357/2005</a> classifica as águas dos rios, lagos e reservatórios em classes de qualidade</strong>. As classes de qualidade da água definem os <strong>níveis de condição ambiental</strong> que um corpo d’água deve apresentar para atender a determinados <strong>usos preponderantes</strong>, considerando sempre o uso mais restritivo a ser protegido, como o abastecimento humano ou a preservação da vida aquática. Após a aprovação da proposta de enquadramento as classes se tornam metas para a gestão dos recursos hídricos na bacia.</p>
+   
+
   <div class="grid-2">
   
     <div class="eq-card eq-especial">
@@ -78,7 +79,7 @@ Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o p
     </div>
 
     <p class="eq-text">
-       Águas com qualidade preservada, compatíveis com o <strong>abastecimento humano após tratamento simplificado</strong>, <strong>irrigação de hortaliças que são consumidas cruas e proteção da vida aquática.</strong>.Classe mandatória em Terras Indígenas.
+       Águas com qualidade preservada, compatíveis com o <strong>abastecimento humano após tratamento simplificado</strong>, <strong>irrigação de hortaliças que são consumidas cruas e proteção da vida aquática</strong>. Classe mandatória em Terras Indígenas.
     </p>
   </div>
 
@@ -92,7 +93,7 @@ Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o p
     </div>
 
     <p class="eq-text">
-Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>,<strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>.</strong> Classe adotada quando não há enquadramento estabelecido, conforme artigo 42 da Resolução CONAMA nº 357/2005.
+Águas compatíveis com múltiplos usos, incluindo <strong>abastecimento humano após tratamento convencional</strong>, <strong>irrigação</strong>, <strong>aquicultura</strong> e <strong>recreação</strong>. Classe adotada quando não há enquadramento estabelecido, conforme artigo 42 da Resolução CONAMA nº 357/2005.
     </p>
   </div>
 
@@ -125,17 +126,16 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
     </p>
     </div>
 
+
+   <p>Cada classe possui <strong>padrões e limites</strong> específicos para os <strong>indicadores de qualidade da água</strong> — físicos, químicos e biológicos — que expressam, de forma mensurável, se a água está compatível com esses usos. Dessa forma, os <strong>indicadores funcionam como a base técnica de verificação</strong> do enquadramento, permitindo avaliar, monitorar e orientar ações de gestão para manter ou melhorar a qualidade da água conforme os objetivos definidos.</p>
+   
+
   </div>
 
-  <h3>Classes de qualidade da água e seus indicadores</h3>
-  
-    <p>As <strong>classes de qualidade da água</strong> definem os <strong>níveis de condição ambiental</strong> que um corpo d’água deve apresentar para atender a determinados <strong>usos preponderantes</strong>, considerando sempre o uso mais restritivo a ser protegido, como o abastecimento humano ou a preservação da vida aquática. Cada classe estabelece <strong>padrões e limites</strong> para os <strong>indicadores de qualidade da água</strong> — físicos, químicos e biológicos — que expressam, de forma mensurável, se a água está compatível com esses usos. Dessa forma, os indicadores funcionam como a <strong>base técnica de verificação</strong> do enquadramento, permitindo avaliar, monitorar e orientar ações de gestão para manter ou melhorar a qualidade da água conforme os objetivos definidos.</p>
+
+   
 
 
-<section class="section">
-  <div class="panel panel--wide">
-
-    <h3>Enquadramento e indicadores de qualidade da água</h3>
     <h4>Como cada indicador se relaciona com as classes de enquadramento e o que ele significa para a gestão da qualidade da água.</h4>
 
     <div class="qa-grid qa-grid--4">
@@ -272,8 +272,6 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
 
 
 
-  </div>
-</section>
 
 
 ```
@@ -282,8 +280,10 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
 
   <div class="chart-block">
     <h3>Evolução do enquadramento no Brasil</h3>
-  <p>
-  O enquadramento é um instrumento que tem sido discutido e tem evoluído com aperfeiçoamentos, visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.</p>
+  <p>O enquadramento é um instrumento que tem sido discutido e tem evoluído com aperfeiçoamentos, visando sua implementação em todo o país e, consequentemente, a garantia de água com qualidade para todos os usos, incluindo a preservação dos ecossistemas. O gráfico mostra a evolução da implementação do enquadramento com base no número de propostas aprovadas ao longo do tempo e os principais marcos legais que definem este instrumento.</p>
+  
+
+
 
 ```
 
@@ -336,6 +336,15 @@ dygraph(evo_eca) %>%
 ```{=html}
 
   <div class="chart-block">
+  
+      <h3>Planejamento nacional e metas estratégicas</h3>
+  <p>O Plano Nacional de Recursos Hídricos (PNRH), aprovado pela Resolução CNRH nº 232, de 2022, com horizonte temporal até 2040, estabeleceu metas de curto (2026) e médio prazo (2030) para aprovação do enquadramento dos corpos d'água em bacias de especial interesse para a gestão dos recursos hídricos. </p>
+  <p>Como metas de curto prazo, foram selecionadas as bacias do rio Doce, do rio Paraíba do Sul e dos rios Piracicaba, Capivari e Jundiaí (PCJ). Como metas de médio prazo, foram selecionadas as bacias do rio Paranaíba, do rio Verde Grande, do rio São Francisco e do rio Paranapanema. </p>
+
+  <p>Desde a promulgação da Lei nº 9.433/1997, a Bacia Hidrográfica do Rio Doce foi a primeira bacia interestadual a ter o enquadramento dos corpos d’água aprovado. A Resolução CNRH nº 238, de 27 de dezembro de 2023, definiu o enquadramento dos corpos d’água superficiais de domínio da União na bacia do rio Doce e apresentou um programa para efetivação do seu enquadramento, em conformidade com a Resolução CNRH nº 91/2008. </p>
+
+  <p>Os enquadramentos das bacias dos rios Paranaíba, Verde Grande, Paraíba do Sul, PCJ e São Francisco estão sob elaboração. O enquadramento da bacia do rio Paranapanema ainda não se iniciou.</p>
+
 
     <p>O enquadramento evoluiu de uma classificação normativa para um <strong>instrumento estruturante da gestão da qualidade da água.</strong></p>
 
