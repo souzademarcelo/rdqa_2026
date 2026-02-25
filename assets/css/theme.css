@@ -947,8 +947,21 @@ a.cta.cta--ghost{
   
 }
 
+.qa-card__title{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qa-card__title .eq-icon{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex: 0 0 28px;
+}
+
 .qa-card__title h4{
-  margin: 6px 0 2px;
+  margin: 0;
   font-size: 18px;
   font-weight: 800;
   text-align: left;

@@ -138,13 +138,16 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
 
     <h4>Como cada indicador se relaciona com as classes de enquadramento e o que ele significa para a gestão da qualidade da água.</h4>
 
+
+
+
     <div class="qa-grid qa-grid--4">
 
       <!-- OD -->
       <article class="qa-card qa-card--od">
         <header class="qa-card__head">
           <div class="qa-card__title">
-           
+            <img class="eq-icon" src="assets/img/od.png" alt="Ícone de Oxigênio Dissolvido">
             <h4>Oxigênio Dissolvido (OD)</h4>
 
           </div>
@@ -176,7 +179,7 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
       <article class="qa-card qa-card--dbo">
         <header class="qa-card__head">
           <div class="qa-card__title">
-         
+            <img class="eq-icon" src="assets/img/dbo.png" alt="Ícone de Demanda Bioquímica de Oxigênio">
             <h4>Demanda Bioquímica de Oxigênio (DBO)</h4>
 
           </div>
@@ -208,7 +211,7 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
       <article class="qa-card qa-card--p">
         <header class="qa-card__head">
           <div class="qa-card__title">
-
+            <img class="eq-icon" src="assets/img/ptotal.png" alt="Ícone de Fósforo Total">
             <h4>Fósforo Total</h4>
 
           </div>
@@ -240,7 +243,7 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
       <article class="qa-card qa-card--iqa">
         <header class="qa-card__head">
           <div class="qa-card__title">
-
+            <img class="eq-icon" src="assets/img/iqa.png" alt="Ícone de Índice de Qualidade da Água">
             <h4>Índice de Qualidade da Água (IQA)</h4>
  
           </div>

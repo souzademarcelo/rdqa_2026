@@ -538,3 +538,36 @@ $ git commit -m "atualização 02 fev 2026"
 $ git push --force origin main
 To https://github.com/souzademarcelo/rdqa_2026.git
    e99c962..6d3ba12  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M docs/push_log.txt
+ M enquadramento.Rmd
+ M push_log.txt
+
+$ git add -A
+
+
+$ git commit -m "atualização 02 fev 2026"
+[main 8686e74] atualização 02 fev 2026
+ 10 files changed, 155 insertions(+), 66 deletions(-)
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   6d3ba12..8686e74  main -> main

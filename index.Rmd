@@ -145,6 +145,21 @@ output:
 library(dplyr)
 library(leaflet)
 library(geobr)
+library(htmltools)
+
+od <- readRDS("data/preprocessed/od.rds")$grouped_obs
+
+od_filtrado <- od |>
+  filter(
+    !is.na(uf),
+    !is.na(`Código`),
+    n >= 10
+  )
+
+contagem_uf <- od_filtrado |>
+  sf::st_drop_geometry() |>
+  group_by(uf) |>
+  summarise(n_pontos = n_distinct(`Código`), .groups = "drop")
 
 # Cadastro longo (uma linha por parceiro)
 parceiros <- data.frame(
@@ -177,21 +192,27 @@ parceiros_agg <- parceiros |>
 
 # Junta mantendo estados únicos
 estados2 <- estados |>
+  left_join(contagem_uf, by = "uf") |>
   left_join(parceiros_agg, by = "uf") |>
   mutate(
+    n_pontos = ifelse(is.na(n_pontos), 0L, as.integer(n_pontos)),
     parceiros_txt = ifelse(is.na(parceiros_txt), "", parceiros_txt),
     tem_parceiro = parceiros_txt != ""
   )
 
-# Paleta discreta (presença/ausência)
-pal <- colorFactor(
-  palette = c("#e5e7eb", "#cfe8f3"),
-  domain = c(FALSE, TRUE)
+# Paleta por contagem de pontos OD por estado
+pal <- colorBin(
+  palette = "YlGnBu",
+  bins = 6,
+  domain = estados2$n_pontos,
+  na.color = "#e5e7eb"
 )
 
 # Tooltip
 labels <- paste0(
   "<strong>", estados2$name_state, " (", estados2$uf, ")</strong><br>",
+  "<strong>Pontos OD:</strong> ", estados2$n_pontos, "<br>",
+  "<strong>Parceiros:</strong> ",
   ifelse(estados2$parceiros_txt != "",
          estados2$parceiros_txt,
          "<em>Sem parceiro cadastrado</em>")
@@ -200,25 +221,35 @@ labels <- paste0(
 leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
   addProviderTiles(providers$CartoDB.Positron) |>
   addPolygons(
-    fillColor = ~pal(tem_parceiro),
+    fillColor = ~pal(n_pontos),
     fillOpacity = 0.85,
     color = "#334155",
     weight = 1,
-    label = lapply(labels, htmltools::HTML),
+    popup = lapply(labels, htmltools::HTML),
     highlightOptions = highlightOptions(
       weight = 2,
       color = "#0f172a",
       fillOpacity = 0.95,
       bringToFront = TRUE
     )
+  ) |>
+  addLegend(
+    position = "bottomright",
+    pal = pal,
+    values = ~n_pontos,
+    title = "Pontos por UF",
+    opacity = 0.9,
+    className = "legend-media"
   )
 ```
 
 
-```{=html}      
-      <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do País.</p>
-    </div>
+```{=html} 
+
+    <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do País.</p>
+    <p class="footnote">*O número de pontos do mapa é baseado nas medições de OD disponíveis em nossa base de dados entre 2010 e 2024.</p>
     
+    </div>
     
   </div>
 </section>
