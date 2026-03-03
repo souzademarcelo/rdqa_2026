@@ -571,3 +571,37 @@ $ git commit -m "atualização 02 fev 2026"
 $ git push --force origin main
 To https://github.com/souzademarcelo/rdqa_2026.git
    6d3ba12..8686e74  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M assets/css/theme.css
+ M carregar_github.R
+ M docs/assets/css/theme.css
+ M docs/enquadramento.html
+ M docs/index.html
+ M docs/push_log.txt
+ M enquadramento.Rmd
+ M index.Rmd
+ M push_log.txt
+
+$ git add -A
+warning: in the working copy of 'assets/css/theme.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/assets/css/theme.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'enquadramento.Rmd', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m "atualização 25 fev 2026"
+[main 7dc9ace] atualização 25 fev 2026
+ 9 files changed, 153 insertions(+), 23 deletions(-)
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   8686e74..7dc9ace  main -> main

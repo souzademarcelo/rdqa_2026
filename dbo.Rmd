@@ -422,7 +422,7 @@ dygraph(freq_regime_dbo) %>%
       <div class="footer-brand">
         <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
         <div>
-          <strong>Agência Nacional de Águas e Saneamento Básico</strong>
+          <strong>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</strong>
           <div class="footer-gov">Governo Federal – Brasil</div>
         </div>
       </div>
@@ -430,11 +430,9 @@ dygraph(freq_regime_dbo) %>%
 
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Sobre o portal</h4>
+
         <p>
-          Este portal apresenta informações oficiais sobre a qualidade das águas
-          superficiais no Brasil, com base em dados públicos e metodologias
-          padronizadas.
+          Todos os direitos reservados. É permitida a reprodução de dados e de informações contidos nesta publicação, desde que citada a fonte.
         </p>
       </div>
 
@@ -465,7 +463,7 @@ dygraph(freq_regime_dbo) %>%
     <div class="footer-bottom">
       <p>
         © Agência Nacional de Águas e Saneamento Básico (ANA).
-        Dados públicos para apoio à gestão dos recursos hídricos.
+
       </p>
     </div>
 

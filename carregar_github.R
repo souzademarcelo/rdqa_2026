@@ -4,7 +4,7 @@ rmarkdown::render_site()
 repo_dir       <- "C:/pgquali/site-qualidade-agua-final"
 remote_name    <- "origin"
 branch         <- "main"
-commit_msg     <- "atualização 25 fev 2026"
+commit_msg     <- "atualização 03 mar 2026"
 expected_remote <- "https://github.com/souzademarcelo/rdqa_2026.git"
 
 git_user_name  <- "Marcelo Souza"

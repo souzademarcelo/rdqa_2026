@@ -228,9 +228,7 @@ dygraph(evo_eca) %>%
       <div class="footer-col">
         <h4>Sobre o portal</h4>
         <p>
-          Este portal apresenta informações oficiais sobre a qualidade das águas
-          superficiais no Brasil, com base em dados públicos e metodologias
-          padronizadas.
+          Todos os direitos reservados. É permitida a reprodução de dados e de informações contidos nesta publicação, desde que citada a fonte.
         </p>
       </div>
 
