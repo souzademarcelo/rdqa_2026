@@ -42,10 +42,10 @@ source("scripts/load_enquadramento.R")
 O enquadramento é o instrumento de planejamento previsto na <a href="https://www.planalto.gov.br/ccivil_03/leis/l9433.htm" target="_blank">Política Nacional de Recursos Hídricos</a> que visa assegurar água com qualidade adequada para os diversos usos. Por meio de um processo participativo, os Comitês de Bacia (compostos por representantes do poder público, dos usuários de água e da sociedade civil) definem metas de qualidade para as águas da bacia hidrográfica a serem alcançados por meio de ações planejadas.
    </p>
     <p>
-A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>, as Agencias de Água (ou entidades delegatárias de suas funções) e os órgãos gestores de recursos hídricos das Unidades da Federação atuam coordenando e fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. 
+A <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>, as Agencias de Água (ou entidades delegatárias de suas funções) e os órgãos gestores de recursos hídricos das Unidades da Federação atuam coordenando e fornecendo suporte técnico aos comitês de bacia para estabelecer e monitorar as metas de qualidade de água necessárias para garantir os diversos usos previstos no enquadramento. <a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a>.
    </p>
     <p>
-Esse instrumento orienta o <strong>controle da poluição, o monitoramento e o planejamento de ações de gestão dos recursos hídricos</strong>. <a href="https://www.snirh.gov.br/portal/snirh/centrais-de-conteudos/conjuntura-dos-recursos-hidricos/encarte_enquadramento_conjuntura2019.pdf" target="_blank">Saiba mais sobre o Enquadramento clicando aqui</a>.
+Esse instrumento orienta o planejamento de ações para o controle da poluição hídrica, o monitoramento e outros instrumentos de gestão das águas, como a <strong>outorga de direito de uso dos recursos hídricos</strong>. A outorga de direito de uso dos recursos hídricos se baseia no enquadramento porque este define as metas de qualidade. As classes estabelecidas servem como referência para avaliar se captações ou lançamentos de efluentes são compatíveis com os objetivos definidos para a bacia, permitindo impor limites e condicionantes quando necessário. Assim, o enquadramento fixa o objetivo de qualidade, e a outorga atua como instrumento para garantir que os usos autorizados não comprometam essas metas.
     </p>
 
   <h3>Classes de qualidade da água e seus indicadores</h3>
@@ -295,19 +295,103 @@ Classe com a pior qualidade. Águas destinadas principalmente à <strong>navega�
       <h3>Implementação e marcos legais do enquadramento</h3>
 ```
 
-```{r grafico_evol_eca, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+```{r grafico_evol_eca_animado, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+library(dplyr)
+library(plotly)
+library(htmlwidgets)
+
 evolucao_eca <- read_excel("evolucao_eca.xlsx")
 evo_eca <- evolucao_eca %>% select(1, 2)
 
-dygraph(evo_eca) %>%
-  dyAxis("y", label = "Número de normativos aprovados", valueRange = c(0, 130)) %>%
-  dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE) %>%
-#  dyRangeSelector(height = 5) %>%
-  dyEvent("1977", "Port. nº 13 do Ministério do Interior", labelLoc = "bottom") %>%
-  dyEvent("1986", "Res. Conama nº 20/1986", labelLoc = "bottom") %>%
-  dyEvent("1997", "Lei federal nº 9.433/1997", labelLoc = "bottom") %>%
-  dyEvent("2005", "Res. CONAMA nº 357/2005", labelLoc = "bottom") %>%
-  dyEvent("2008", "Res. CNRH nº 91/2008", labelLoc = "bottom")
+# Base: usa evo_eca já existente (colunas Ano, Total)
+base <- evo_eca %>%
+  transmute(
+    Ano = as.numeric(Ano),
+    Total = as.numeric(Total)
+  ) %>%
+  arrange(Ano)
+
+# Frames cumulativos (ano a ano)
+anim_data <- bind_rows(lapply(seq_len(nrow(base)), function(i) {
+  d <- base[1:i, ]
+  d$frame <- as.character(base$Ano[i])
+  d$point_id <- paste0("p", seq_len(nrow(d)))
+  d
+}))
+
+# Marcos legais
+marcos <- data.frame(
+  ano = c(1977, 1986, 1997, 2005, 2008),
+  label = c(
+    "Port. no 13/1977",
+    "Res. CONAMA 20/1986",
+    "Lei 9.433/1997",
+    "Res. CONAMA 357/2005",
+    "Res. CNRH 91/2008"
+  )
+)
+
+shapes <- lapply(seq_len(nrow(marcos)), function(i) {
+  list(
+    type = "line", xref = "x", yref = "paper",
+    x0 = marcos$ano[i], x1 = marcos$ano[i], y0 = 0, y1 = 1,
+    line = list(color = "rgba(28,55,130,0.35)", width = 1, dash = "dot")
+  )
+})
+
+annotations <- lapply(seq_len(nrow(marcos)), function(i) {
+  list(
+    x = marcos$ano[i], y = 1.03, xref = "x", yref = "paper",
+    text = marcos$label[i], showarrow = FALSE, textangle = -35,
+    font = list(size = 10, color = "#1C3782")
+  )
+})
+
+plot_ly(
+  anim_data,
+  x = ~Ano,
+  y = ~Total,
+  frame = ~frame,
+  ids = ~point_id,
+  type = "scatter",
+  mode = "lines+markers",
+  line = list(color = "#1C3782", width = 2),
+  marker = list(size = 5, color = "#0093DD"),
+  fill = "tozeroy",
+  fillcolor = "rgba(0,147,221,0.18)",
+  hovertemplate = "Ano: %{x}<br>Total: %{y}<extra></extra>"
+) %>%
+  layout(
+    autosize = TRUE,
+    width = NULL,
+    yaxis = list(title = "Numero de normativos aprovados", range = c(0, 130), fixedrange = TRUE),
+    xaxis = list(title = "", dtick = 2, fixedrange = TRUE),
+    shapes = shapes,
+    annotations = annotations,
+    margin = list(l = 40, r = 10, t = 85, b = 40)
+  ) %>%
+  config(displayModeBar = FALSE, responsive = TRUE) %>%
+  animation_opts(frame = 250, transition = 0, redraw = FALSE, mode = "immediate") %>%
+  animation_slider(hide = TRUE) %>%   # remove slider
+  animation_button(hide = TRUE) %>%   # remove play/pause
+  config(responsive = TRUE) %>%
+  onRender("
+    function(el, x){
+      function playLoop(){
+        if(window.Plotly){
+          Plotly.animate(el, null, {
+            frame: {duration: 250, redraw: true},
+            transition: {duration: 0},
+            mode: 'immediate'
+          });
+        }
+      }
+      setTimeout(playLoop, 0);
+      el.on('plotly_animated', function(){ playLoop(); }); // loop infinito
+    }
+  ")
+
 ```
 
 ```{=html}

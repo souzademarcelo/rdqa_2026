@@ -745,3 +745,52 @@ $ git status --porcelain
 ?? docs/assets/img/lixo/background2_ana.png
 
 $ git add -A
+
+
+$ git commit -m "atualização 03 mar 2026"
+[main d440ef2] atualização 03 mar 2026
+ 20 files changed, 246 insertions(+), 48 deletions(-)
+ create mode 100644 assets/img/background3_ana.png
+ create mode 100644 assets/img/background5_ana.png
+ create mode 100644 assets/img/lixo/background2_ana.png
+ create mode 100644 docs/assets/img/background3_ana.png
+ create mode 100644 docs/assets/img/background5_ana.png
+ create mode 100644 docs/assets/img/lixo/background2_ana.png
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   48e693a..d440ef2  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M dbo.Rmd
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M docs/push_log.txt
+ M enquadramento.Rmd
+ M fosforo.Rmd
+ M index.Rmd
+ M iqa.Rmd
+ M od.Rmd
+ M push_log.txt
+?? docs/site_libs/crosstalk-1.2.2/
+?? docs/site_libs/plotly-binding-4.11.0/
+?? docs/site_libs/plotly-htmlwidgets-css-2.11.1/
+?? docs/site_libs/plotly-main-2.11.1/
+?? docs/site_libs/typedarray-0.1/
+
+$ git add -A

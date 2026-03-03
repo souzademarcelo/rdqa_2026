@@ -711,3 +711,52 @@ $ git commit -m "atualização 03 mar 2026"
 $ git push --force origin main
 To https://github.com/souzademarcelo/rdqa_2026.git
    7dc9ace..48e693a  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M assets/img/background_ana.png
+ M docs/assets/img/background_ana.png
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M docs/push_log.txt
+ M enquadramento.Rmd
+ M index.Rmd
+ M iqa.Rmd
+ M push_log.txt
+?? assets/img/background3_ana.png
+?? assets/img/background5_ana.png
+?? assets/img/lixo/background2_ana.png
+?? docs/assets/img/background3_ana.png
+?? docs/assets/img/background5_ana.png
+?? docs/assets/img/lixo/background2_ana.png
+
+$ git add -A
+
+
+$ git commit -m "atualização 03 mar 2026"
+[main d440ef2] atualização 03 mar 2026
+ 20 files changed, 246 insertions(+), 48 deletions(-)
+ create mode 100644 assets/img/background3_ana.png
+ create mode 100644 assets/img/background5_ana.png
+ create mode 100644 assets/img/lixo/background2_ana.png
+ create mode 100644 docs/assets/img/background3_ana.png
+ create mode 100644 docs/assets/img/background5_ana.png
+ create mode 100644 docs/assets/img/lixo/background2_ana.png
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   48e693a..d440ef2  main -> main

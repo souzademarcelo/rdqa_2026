@@ -54,9 +54,9 @@ source("scripts/load_preprocessed.R")
       <li>Ótima: 79-100</li>      
     </ul>
     
-    <p>O mapa interativo apresenta os <strong>valores médios do IQA entre 2010 e 2024</strong> nos pontos de monitoramento da qualidade da água</p>.
+    <p>O mapa interativo apresenta os <strong>valores médios do IQA entre 2010 e 2024</strong> nos pontos de monitoramento da qualidade da água*. A quantidade de pontos com resultados para o índice é menor quando comparado com os outros indicadores apresentados no Portal, visto que o cálculo do IQA demanda medições de todos os parâmetros listados acima.</p>
 
-    <p class="footnote"><strong>*É importante observar que, como o cálculo do IQA depende da disponiblidade de todos os parãmetros listados acima, a quantidade de pontos com resultados para o índice é menor quando comparado com os outros indicadores apresentados no Portal</strong>.</p>
+    <p class="footnote"><strong>*As datas de início e fim das séries podem variar de um ponto para o outro conforme a disponibilidade dos dados</strong>. Clique nos pontos para obter informações sobre número de observações (n), séries históricas e médias</strong>.</p>
 
     <h3>Valores médios do IQA entre 2010-2024</h3>
 

@@ -119,7 +119,7 @@ output:
     <ul class="panel-list">
       <li>Avaliar tendências de melhoria ou degradação da qualidade da água;</li>
       <li>Apoiar ações de gestão, fiscalização e saneamento;</li>
-      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">Enquadramento dos Corpos de Água em Classes de Qualidade e a Outorga de Direito de Uso de Recursos Hídricos </a>;</li>
+      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">Enquadramento dos Corpos de Água em Classes de Qualidade</a> e a Outorga de Direito de Uso de Recursos Hídricos;</li>
       <li>Informar a sociedade sobre a situação dos recursos hídricos.</li>
     </ul>
 

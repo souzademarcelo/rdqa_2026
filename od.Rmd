@@ -49,9 +49,11 @@ source("scripts/load_preprocessed.R")
       <li>Classe 4: mínimo de 2 mg/L</li>
     </ul>
 
-    <p>O mapa apresenta a <strong>média das medições de OD (mg/L) entre 2010 e 2024</strong>. A <strong>Não-Conformidade (NC%)*</strong> revela <strong>com que frequência</strong> estas medições não atendem aos padrões de qualidade da sua classe no mesmo período. Para trechos sem enquadramento, o limite mínimo de 5 mg/L da classe 2 foi considerado.</p>
+    <p>O mapa apresenta a <strong>média das medições de OD (mg/L) entre 2010 e 2024</strong>. A <strong>Não-Conformidade (NC%)*</strong> revela <strong>com que frequência</strong> estas medições não atendem aos padrões de qualidade da sua classe de enquadramento no mesmo período. <strong>Ative a camada no mapa para visualizar a NC%</strong>. Para trechos sem enquadramento, foi considerado o limite mínimo de 5 mg/L da classe 2.</p>
     
-    <p class="footnote"><strong>*Ative a camada no mapa para visualizar a NC%</strong>.</p>
+    <p class="footnote"><strong>*As datas de início e fim das séries podem variar de um ponto para o outro conforme a disponibilidade dos dados</strong>.</p>
+        
+    <p class="footnote"><strong>**Clique nos pontos para obter informações sobre número de observações (n), séries históricas, médias e NC%</strong>.</p>
     
     <h3>Valores médios (mg/L) e Não-Conformidade (NC%) de OD entre 2010-2024</h3>
     
