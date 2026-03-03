@@ -605,3 +605,109 @@ $ git commit -m "atualização 25 fev 2026"
 $ git push --force origin main
 To https://github.com/souzademarcelo/rdqa_2026.git
    8686e74..7dc9ace  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M assets/css/theme.css
+ D assets/img/ana-logo-2.png
+ D assets/img/ana-logo.png
+ M assets/includes/navbar.html
+ M carregar_github.R
+ M dbo.Rmd
+ M docs/assets/css/theme.css
+ D docs/assets/img/ana-logo-2.png
+ D docs/assets/img/ana-logo.png
+ M docs/assets/includes/navbar.html
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/eca_chat.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M docs/push_log.txt
+ M eca.Rmd
+ M enquadramento.Rmd
+ M fosforo.Rmd
+ M index.Rmd
+ M iqa.Rmd
+ M od.Rmd
+ M push_log.txt
+?? assets/img/background_ana.png
+?? assets/img/lixo/ana-logo-2.png
+?? assets/img/lixo/ana-logo-25.png
+?? assets/img/lixo/background_ana.png
+?? assets/img/logo-ana.png
+?? docs/assets/img/background_ana.png
+?? docs/assets/img/lixo/ana-logo-2.png
+?? docs/assets/img/lixo/ana-logo-25.png
+?? docs/assets/img/lixo/background_ana.png
+?? docs/assets/img/logo-ana.png
+
+$ git add -A
+warning: in the working copy of 'assets/css/theme.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/assets/css/theme.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/highlightjs-9.12.0/default.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/highlightjs-9.12.0/highlight.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/highlightjs-9.12.0/textmate.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-1.3.1/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-2.8.4/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eca.Rmd', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m "atualização 03 mar 2026"
+[main 48e693a] atualização 03 mar 2026
+ 32 files changed, 302 insertions(+), 189 deletions(-)
+ create mode 100644 assets/img/background_ana.png
+ rename assets/img/{ => lixo}/ana-logo-2.png (100%)
+ rename assets/img/{ana-logo.png => lixo/ana-logo-25.png} (100%)
+ create mode 100644 assets/img/lixo/background_ana.png
+ create mode 100644 assets/img/logo-ana.png
+ create mode 100644 docs/assets/img/background_ana.png
+ rename docs/assets/img/{ => lixo}/ana-logo-2.png (100%)
+ rename docs/assets/img/{ana-logo.png => lixo/ana-logo-25.png} (100%)
+ create mode 100644 docs/assets/img/lixo/background_ana.png
+ create mode 100644 docs/assets/img/logo-ana.png
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   7dc9ace..48e693a  main -> main

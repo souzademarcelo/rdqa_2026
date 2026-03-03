@@ -26,7 +26,7 @@ output:
   <div class="panel panel--wide">
   
     <h3>Apresentação</h3>  
-    <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados oficiais de qualidade das águas superficiais do País. A plataforma reúne informações produzidas pelas Unidades da Federação (UFs), no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
+    <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados de qualidade das águas superficiais do País produzidas pelas Unidades da Federação (UFs), no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
     
       <p>Nosso compromisso é transformar dados técnicos em informação útil para a sociedade, fortalecendo a transparência, a participação social e a tomada de decisão baseada em evidências.</p>
 
@@ -36,14 +36,13 @@ output:
     <p>
       A qualidade da água de rios, lagos e reservatórios não é observada apenas
       pela aparência. Ela é avaliada por meio de indicadores físico-químicos e
-      biológicos, obtidos a partir do monitoramento sistemático realizado em
-      estações distribuídas pelo território nacional.
+      biológicos obtidos a partir do monitoramento sistemático.
     </p>
 
 
     <p>
       Nas estações da Rede Nacional de Monitoramento da Qualidade da Água (RNQA),
-      técnicos coletam amostras de água em pontos fixos e em períodos regulares.
+      técnicos coletam amostras de água com frequências regulares em pontos distribuídos pelo território nacional.
       Essas amostras são analisadas em laboratório ou por sensores em campo,
       seguindo procedimentos padronizados, o que permite comparar resultados ao
       longo do tempo e entre diferentes regiões do País.
