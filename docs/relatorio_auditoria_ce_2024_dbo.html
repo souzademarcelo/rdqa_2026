@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Relatorio de Auditoria - DBO CE 2024 (NC em ambientes lenticos)</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="assets/css/theme.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+<nav class="topnav">
+  <a class="brand" href="index.html">
+    <img src="assets/img/logo-ana.png" alt="ANA">
+    <span>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</span>
+  </a>
+
+  <input id="nav-toggle" type="checkbox" class="nav-toggle">
+  <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </label>
+
+  <div class="nav-links">
+    <a href="index.html">Início</a>
+    <a href="enquadramento.html">Enquadramento</a>
+    <a href="od.html">OD</a>
+    <a href="dbo.html">DBO</a>
+    <a href="fosforo.html">Fósforo</a>
+    <a href="iqa.html">IQA</a>
+  </div>
+</nav>
+
+
+
+
+
+<h1 class="title toc-ignore">Relatorio de Auditoria - DBO CE 2024 (NC em
+ambientes lenticos)</h1>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#objetivo" id="toc-objetivo"><span
+class="toc-section-number">1</span> Objetivo</a></li>
+<li><a href="#base-e-recortes" id="toc-base-e-recortes"><span
+class="toc-section-number">2</span> Base e recortes</a></li>
+<li><a href="#cobertura-de-amostragem"
+id="toc-cobertura-de-amostragem"><span
+class="toc-section-number">3</span> 1) Cobertura de amostragem</a></li>
+<li><a href="#mudanca-de-composicao-de-pontos"
+id="toc-mudanca-de-composicao-de-pontos"><span
+class="toc-section-number">4</span> 2) Mudanca de composicao de
+pontos</a></li>
+<li><a href="#consistencia-de-metadados"
+id="toc-consistencia-de-metadados"><span
+class="toc-section-number">5</span> 3) Consistencia de
+metadados</a></li>
+<li><a href="#qualidade-dos-valores-analiticos"
+id="toc-qualidade-dos-valores-analiticos"><span
+class="toc-section-number">6</span> 4) Qualidade dos valores
+analiticos</a></li>
+<li><a href="#influencia-por-ponto-leave-one-station-out"
+id="toc-influencia-por-ponto-leave-one-station-out"><span
+class="toc-section-number">7</span> 5) Influencia por ponto
+(leave-one-station-out)</a></li>
+<li><a href="#teste-formal-de-mudanca-de-proporcao"
+id="toc-teste-formal-de-mudanca-de-proporcao"><span
+class="toc-section-number">8</span> 6) Teste formal de mudanca de
+proporcao</a></li>
+<li><a href="#contexto-climatico-e-hidrologico-seca-e-calor"
+id="toc-contexto-climatico-e-hidrologico-seca-e-calor"><span
+class="toc-section-number">9</span> 7) Contexto climatico e hidrologico
+(seca e calor)</a></li>
+<li><a href="#comentarios-automaticos"
+id="toc-comentarios-automaticos"><span
+class="toc-section-number">10</span> Comentarios automaticos</a>
+<ul>
+<li><a href="#sintese" id="toc-sintese"><span
+class="toc-section-number">10.1</span> Sintese</a></li>
+<li><a href="#possiveis-causas-do-aumento-da-nc"
+id="toc-possiveis-causas-do-aumento-da-nc"><span
+class="toc-section-number">10.2</span> Possiveis causas do aumento da
+NC</a></li>
+<li><a href="#recomendacoes" id="toc-recomendacoes"><span
+class="toc-section-number">10.3</span> Recomendacoes</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="objetivo" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Objetivo</h1>
+<p>Este relatorio audita os dados de DBO no CE (regime lentico) para
+avaliar se o aumento acentuado da NC em 2024 pode estar ligado a:</p>
+<ol style="list-style-type: decimal">
+<li>mudanca de cobertura amostral;</li>
+<li>mudanca de composicao de pontos;</li>
+<li>inconsistencias de metadados;</li>
+<li>comportamento anomalo dos valores analiticos;</li>
+<li>dependencia de poucos pontos (influencia);</li>
+<li>mudanca estatisticamente robusta na proporcao de NC.</li>
+</ol>
+</div>
+<div id="base-e-recortes" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Base e recortes</h1>
+<table>
+<caption>Resumo anual CE lentico</caption>
+<thead>
+<tr class="header">
+<th align="right">ano</th>
+<th align="right">n_obs</th>
+<th align="right">n_validos</th>
+<th align="right">n_codigos</th>
+<th align="right">nc</th>
+<th align="right">nc_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">26</td>
+<td align="right">26</td>
+<td align="right">24</td>
+<td align="right">8</td>
+<td align="right">30.77</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="right">44</td>
+<td align="right">44</td>
+<td align="right">27</td>
+<td align="right">21</td>
+<td align="right">47.73</td>
+</tr>
+<tr class="odd">
+<td align="right">2012</td>
+<td align="right">168</td>
+<td align="right">168</td>
+<td align="right">94</td>
+<td align="right">52</td>
+<td align="right">30.95</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">302</td>
+<td align="right">302</td>
+<td align="right">114</td>
+<td align="right">94</td>
+<td align="right">31.13</td>
+</tr>
+<tr class="odd">
+<td align="right">2014</td>
+<td align="right">93</td>
+<td align="right">93</td>
+<td align="right">23</td>
+<td align="right">53</td>
+<td align="right">56.99</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">153</td>
+<td align="right">153</td>
+<td align="right">54</td>
+<td align="right">70</td>
+<td align="right">45.75</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">306</td>
+<td align="right">306</td>
+<td align="right">89</td>
+<td align="right">207</td>
+<td align="right">67.65</td>
+</tr>
+<tr class="even">
+<td align="right">2017</td>
+<td align="right">372</td>
+<td align="right">372</td>
+<td align="right">114</td>
+<td align="right">168</td>
+<td align="right">45.16</td>
+</tr>
+<tr class="odd">
+<td align="right">2018</td>
+<td align="right">439</td>
+<td align="right">439</td>
+<td align="right">122</td>
+<td align="right">179</td>
+<td align="right">40.77</td>
+</tr>
+<tr class="even">
+<td align="right">2019</td>
+<td align="right">440</td>
+<td align="right">440</td>
+<td align="right">126</td>
+<td align="right">196</td>
+<td align="right">44.55</td>
+</tr>
+<tr class="odd">
+<td align="right">2020</td>
+<td align="right">421</td>
+<td align="right">421</td>
+<td align="right">129</td>
+<td align="right">170</td>
+<td align="right">40.38</td>
+</tr>
+<tr class="even">
+<td align="right">2021</td>
+<td align="right">561</td>
+<td align="right">561</td>
+<td align="right">143</td>
+<td align="right">236</td>
+<td align="right">42.07</td>
+</tr>
+<tr class="odd">
+<td align="right">2022</td>
+<td align="right">349</td>
+<td align="right">349</td>
+<td align="right">132</td>
+<td align="right">153</td>
+<td align="right">43.84</td>
+</tr>
+<tr class="even">
+<td align="right">2023</td>
+<td align="right">274</td>
+<td align="right">274</td>
+<td align="right">135</td>
+<td align="right">91</td>
+<td align="right">33.21</td>
+</tr>
+<tr class="odd">
+<td align="right">2024</td>
+<td align="right">573</td>
+<td align="right">573</td>
+<td align="right">153</td>
+<td align="right">546</td>
+<td align="right">95.29</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cobertura-de-amostragem" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 1) Cobertura de
+amostragem</h1>
+<table>
+<caption>CE 2024 por mes</caption>
+<thead>
+<tr class="header">
+<th align="right">mes</th>
+<th align="right">n_obs</th>
+<th align="right">n_validos</th>
+<th align="right">n_codigos</th>
+<th align="right">nc</th>
+<th align="right">nc_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">82</td>
+<td align="right">82</td>
+<td align="right">74</td>
+<td align="right">79</td>
+<td align="right">96.34</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">48</td>
+<td align="right">48</td>
+<td align="right">42</td>
+<td align="right">43</td>
+<td align="right">89.58</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">11</td>
+<td align="right">12</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">57</td>
+<td align="right">57</td>
+<td align="right">56</td>
+<td align="right">50</td>
+<td align="right">87.72</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">44</td>
+<td align="right">44</td>
+<td align="right">37</td>
+<td align="right">44</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">21</td>
+<td align="right">21</td>
+<td align="right">16</td>
+<td align="right">20</td>
+<td align="right">95.24</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">78</td>
+<td align="right">78</td>
+<td align="right">68</td>
+<td align="right">75</td>
+<td align="right">96.15</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">61</td>
+<td align="right">61</td>
+<td align="right">48</td>
+<td align="right">59</td>
+<td align="right">96.72</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">36</td>
+<td align="right">36</td>
+<td align="right">28</td>
+<td align="right">34</td>
+<td align="right">94.44</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">81</td>
+<td align="right">81</td>
+<td align="right">72</td>
+<td align="right">77</td>
+<td align="right">95.06</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="right">41</td>
+<td align="right">41</td>
+<td align="right">41</td>
+<td align="right">41</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">100.00</td>
+</tr>
+</tbody>
+</table>
+<p><img src="relatorio_auditoria_ce_2024_dbo_files/figure-html/cobertura-1.png" width="672" /></p>
+</div>
+<div id="mudanca-de-composicao-de-pontos" class="section level1"
+number="4">
+<h1><span class="header-section-number">4</span> 2) Mudanca de
+composicao de pontos</h1>
+<table>
+<caption>CE 2024: comparacao entre pontos antigos e novos</caption>
+<thead>
+<tr class="header">
+<th align="left">grupo_ponto</th>
+<th align="right">n_validos</th>
+<th align="right">nc</th>
+<th align="right">nc_pct</th>
+<th align="right">n_codigos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ponto antigo</td>
+<td align="right">485</td>
+<td align="right">461</td>
+<td align="right">95.05</td>
+<td align="right">130</td>
+</tr>
+<tr class="even">
+<td align="left">Ponto novo</td>
+<td align="right">88</td>
+<td align="right">85</td>
+<td align="right">96.59</td>
+<td align="right">23</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="consistencia-de-metadados" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> 3) Consistencia de
+metadados</h1>
+<pre><code>## 
+## 
+## Table: Top codigos com variacao em limite
+## 
+## |codigo   | n_val_distintos|
+## |:--------|---------------:|
+## |1136     |               1|
+## |1137     |               1|
+## |1138     |               1|
+## |1168     |               1|
+## |1313     |               1|
+## |1555     |               1|
+## |1556     |               1|
+## |1573     |               1|
+## |1574     |               1|
+## |1726     |               1|
+## |1728     |               1|
+## |1739     |               1|
+## |1858     |               1|
+## |1859     |               1|
+## |2068     |               1|
+## |2069     |               1|
+## |2168     |               1|
+## |34694000 |               1|
+## |35372000 |               1|
+## |35840000 |               1|
+## 
+## 
+## Table: Top codigos com variacao em enquadramento
+## 
+## |codigo   | n_val_distintos|
+## |:--------|---------------:|
+## |1136     |               1|
+## |1137     |               1|
+## |1138     |               1|
+## |1168     |               1|
+## |1313     |               1|
+## |1555     |               1|
+## |1556     |               1|
+## |1573     |               1|
+## |1574     |               1|
+## |1726     |               1|
+## |1728     |               1|
+## |1739     |               1|
+## |1858     |               1|
+## |1859     |               1|
+## |2068     |               1|
+## |2069     |               1|
+## |2168     |               1|
+## |34694000 |               1|
+## |35372000 |               1|
+## |35840000 |               1|
+## 
+## 
+## Table: Top codigos com variacao em status
+## 
+## |codigo   | n_val_distintos|
+## |:--------|---------------:|
+## |36270500 |               2|
+## |36770000 |               2|
+## |ACM-06   |               2|
+## |ADB-01   |               2|
+## |AMA-01   |               2|
+## |ARA-01   |               2|
+## |ARN-02   |               2|
+## |ATA-01   |               2|
+## |AYS-01   |               2|
+## |BAN-01   |               2|
+## |BAT-01   |               2|
+## |BAV-01   |               2|
+## |BBA-01   |               2|
+## |BEN-01   |               2|
+## |CAC-01   |               2|
+## |CAN-02   |               2|
+## |CAS-11   |               2|
+## |CAU-01   |               2|
+## |CAX-01   |               2|
+## |CIP-10   |               2|</code></pre>
+<table>
+<caption>Possiveis mudancas de metadados em 2024</caption>
+<colgroup>
+<col width="8%" />
+<col width="12%" />
+<col width="12%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">limite_ref</th>
+<th align="right">enquad_ref</th>
+<th align="right">limite_2024</th>
+<th align="right">enquad_2024</th>
+<th align="left">mudou_limite</th>
+<th align="left">mudou_enquadramento</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div id="qualidade-dos-valores-analiticos" class="section level1"
+number="6">
+<h1><span class="header-section-number">6</span> 4) Qualidade dos
+valores analiticos</h1>
+<table>
+<caption>Distribuicao anual dos valores de DBO</caption>
+<thead>
+<tr class="header">
+<th align="right">ano</th>
+<th align="right">n</th>
+<th align="right">media</th>
+<th align="right">p50</th>
+<th align="right">p90</th>
+<th align="right">p95</th>
+<th align="right">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">26</td>
+<td align="right">4.62</td>
+<td align="right">3.24</td>
+<td align="right">7.57</td>
+<td align="right">8.57</td>
+<td align="right">25.49</td>
+</tr>
+<tr class="even">
+<td align="right">2011</td>
+<td align="right">44</td>
+<td align="right">5.17</td>
+<td align="right">4.20</td>
+<td align="right">8.57</td>
+<td align="right">9.89</td>
+<td align="right">12.69</td>
+</tr>
+<tr class="odd">
+<td align="right">2012</td>
+<td align="right">168</td>
+<td align="right">5.01</td>
+<td align="right">3.29</td>
+<td align="right">10.08</td>
+<td align="right">13.36</td>
+<td align="right">34.65</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">302</td>
+<td align="right">5.09</td>
+<td align="right">3.49</td>
+<td align="right">9.50</td>
+<td align="right">16.01</td>
+<td align="right">47.16</td>
+</tr>
+<tr class="odd">
+<td align="right">2014</td>
+<td align="right">93</td>
+<td align="right">92.52</td>
+<td align="right">5.89</td>
+<td align="right">18.96</td>
+<td align="right">19.85</td>
+<td align="right">7880.00</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">153</td>
+<td align="right">5.90</td>
+<td align="right">3.87</td>
+<td align="right">12.76</td>
+<td align="right">16.14</td>
+<td align="right">23.52</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">306</td>
+<td align="right">8.30</td>
+<td align="right">7.00</td>
+<td align="right">15.41</td>
+<td align="right">20.03</td>
+<td align="right">81.86</td>
+</tr>
+<tr class="even">
+<td align="right">2017</td>
+<td align="right">372</td>
+<td align="right">7.94</td>
+<td align="right">4.62</td>
+<td align="right">14.63</td>
+<td align="right">19.01</td>
+<td align="right">203.55</td>
+</tr>
+<tr class="odd">
+<td align="right">2018</td>
+<td align="right">439</td>
+<td align="right">6.44</td>
+<td align="right">4.06</td>
+<td align="right">13.80</td>
+<td align="right">17.49</td>
+<td align="right">76.84</td>
+</tr>
+<tr class="even">
+<td align="right">2019</td>
+<td align="right">440</td>
+<td align="right">7.29</td>
+<td align="right">4.22</td>
+<td align="right">13.94</td>
+<td align="right">20.29</td>
+<td align="right">125.49</td>
+</tr>
+<tr class="odd">
+<td align="right">2020</td>
+<td align="right">421</td>
+<td align="right">6.94</td>
+<td align="right">4.16</td>
+<td align="right">14.73</td>
+<td align="right">19.28</td>
+<td align="right">76.60</td>
+</tr>
+<tr class="even">
+<td align="right">2021</td>
+<td align="right">561</td>
+<td align="right">5.77</td>
+<td align="right">4.21</td>
+<td align="right">11.41</td>
+<td align="right">14.78</td>
+<td align="right">37.06</td>
+</tr>
+<tr class="odd">
+<td align="right">2022</td>
+<td align="right">349</td>
+<td align="right">18.44</td>
+<td align="right">4.26</td>
+<td align="right">16.31</td>
+<td align="right">22.43</td>
+<td align="right">4016.00</td>
+</tr>
+<tr class="even">
+<td align="right">2023</td>
+<td align="right">274</td>
+<td align="right">5.60</td>
+<td align="right">3.25</td>
+<td align="right">13.38</td>
+<td align="right">17.60</td>
+<td align="right">32.26</td>
+</tr>
+<tr class="odd">
+<td align="right">2024</td>
+<td align="right">573</td>
+<td align="right">22.67</td>
+<td align="right">20.56</td>
+<td align="right">37.60</td>
+<td align="right">54.16</td>
+<td align="right">151.63</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Outliers em 2024 (criterio IQR da base 2020-2023)</caption>
+<thead>
+<tr class="header">
+<th align="right">n</th>
+<th align="right">n_out</th>
+<th align="right">pct_out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">573</td>
+<td align="right">390</td>
+<td align="right">68.06</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Possiveis repeticoes de valor em 2024 (n_rep &gt;= 3)</caption>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">mes</th>
+<th align="right">valor</th>
+<th align="right">n_rep</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div id="influencia-por-ponto-leave-one-station-out"
+class="section level1" number="7">
+<h1><span class="header-section-number">7</span> 5) Influencia por ponto
+(leave-one-station-out)</h1>
+<table>
+<caption>Top pontos com maior impacto na NC 2024</caption>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">nc_pct_sem_ponto</th>
+<th align="right">impacto_pp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1168</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">1556</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">1726</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">1728</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">2068</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">2168</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">34694000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">35372000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">35840000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">36030000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">36172000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">36270500</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">36376000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">36384000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">36516000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">36519000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">36522000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">36565000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="odd">
+<td align="left">36592500</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+<tr class="even">
+<td align="left">36770000</td>
+<td align="right">95.255</td>
+<td align="right">0.033</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="teste-formal-de-mudanca-de-proporcao" class="section level1"
+number="8">
+<h1><span class="header-section-number">8</span> 6) Teste formal de
+mudanca de proporcao</h1>
+<table>
+<caption>Comparacao agregada de proporcoes</caption>
+<thead>
+<tr class="header">
+<th align="left">periodo</th>
+<th align="right">n_validos</th>
+<th align="right">nc</th>
+<th align="right">nc_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Referencia 2020-2023</td>
+<td align="right">1605</td>
+<td align="right">650</td>
+<td align="right">40.50</td>
+</tr>
+<tr class="even">
+<td align="left">Ano 2024</td>
+<td align="right">573</td>
+<td align="right">546</td>
+<td align="right">95.29</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Teste de proporcao agregado (2020-2023 vs 2024)</caption>
+<thead>
+<tr class="header">
+<th align="right">p_value</th>
+<th align="right">conf_inf</th>
+<th align="right">conf_sup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">-0.577522</td>
+<td align="right">-0.518268</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Top pontos por aumento de NC (com ajuste BH)</caption>
+<colgroup>
+<col width="6%" />
+<col width="13%" />
+<col width="15%" />
+<col width="6%" />
+<col width="8%" />
+<col width="7%" />
+<col width="8%" />
+<col width="10%" />
+<col width="11%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">codigo</th>
+<th align="right">n_validos_ref</th>
+<th align="right">n_validos_y2024</th>
+<th align="right">nc_ref</th>
+<th align="right">nc_y2024</th>
+<th align="right">p_value</th>
+<th align="right">p_adj_bh</th>
+<th align="right">nc_ref_pct</th>
+<th align="right">nc_2024_pct</th>
+<th align="right">delta_pp</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div id="contexto-climatico-e-hidrologico-seca-e-calor"
+class="section level1" number="9">
+<h1><span class="header-section-number">9</span> 7) Contexto climatico e
+hidrologico (seca e calor)</h1>
+<p>Os resultados devem ser interpretados junto com o contexto ambiental
+recente. Em periodos de <strong>seca</strong> e <strong>temperaturas
+elevadas</strong>, reservatorios lenticos tendem a apresentar:</p>
+<ol style="list-style-type: decimal">
+<li>menor volume util e menor capacidade de diluicao;</li>
+<li>maior tempo de residencia da agua;</li>
+<li>aquecimento da coluna d’agua, com aceleracao de processos
+biologicos;</li>
+<li>concentracao de materia organica em condicoes de baixa
+renovacao.</li>
+</ol>
+<p>Esses fatores podem elevar a frequencia de nao conformidade de DBO,
+mesmo sem mudanca imediata na infraestrutura de saneamento.</p>
+<p>Ao mesmo tempo, o aumento da NC pode resultar de combinacoes entre
+clima, pressao antropica e efeitos de dados. Por isso, este relatorio
+integra hipoteses climaticas com verificacoes de cobertura, composicao
+amostral, metadados e consistencia analitica.</p>
+</div>
+<div id="comentarios-automaticos" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Comentarios
+automaticos</h1>
+<div id="sintese" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Sintese</h2>
+<ul>
+<li><p>NC media no periodo de referencia (2020-2023):
+<strong>40.50%</strong>.</p></li>
+<li><p>NC em 2024: <strong>95.29%</strong>.</p></li>
+<li><p>Diferenca: <strong>54.79 p.p.</strong>.</p></li>
+<li><p>p-valor do teste agregado:
+<strong>2.37035e-113</strong>.</p></li>
+<li><p>Ponto com maior influencia no indicador 2024:
+<strong>1168</strong> (impacto de <strong>0.03 p.p.</strong>).</p></li>
+<li><p>Nao foram detectadas mudancas evidentes de limite/enquadramento
+no resumo por moda.</p></li>
+</ul>
+</div>
+<div id="possiveis-causas-do-aumento-da-nc" class="section level2"
+number="10.2">
+<h2><span class="header-section-number">10.2</span> Possiveis causas do
+aumento da NC</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Eventos climaticos e hidrologicos (seca e calor)</strong>:
+reducao de volume, menor diluicao, maior tempo de residencia e
+aquecimento da agua podem elevar a DBO e a NC.</li>
+<li><strong>Mudanca real de qualidade da agua por pressao
+antropica</strong>: aumento de carga organica (esgoto e aportes difusos)
+em reservatorios com baixa capacidade de assimilacao.</li>
+<li><strong>Mudanca na composicao da rede</strong>: entrada de pontos
+mais criticos em 2024 ou maior peso amostral em subareas mais
+impactadas.</li>
+<li><strong>Mudanca de metadados/regras</strong>: limite ou
+enquadramento alterado para alguns pontos, elevando automaticamente a
+NC.</li>
+<li><strong>Problema de qualidade de dados</strong>: repeticoes
+atipicas, picos concentrados, falha de integracao, unidade/metodo ou
+validacao laboratorial.</li>
+</ol>
+</div>
+<div id="recomendacoes" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Recomendacoes</h2>
+<ol style="list-style-type: decimal">
+<li>Auditar os top codigos por impacto e os pontos com maior delta de
+NC.</li>
+<li>Cruzar NC/DBO com indicadores climaticos e hidrologicos (chuva,
+volume, vazao, temperatura da agua/ar) por mes e por sub-bacia.</li>
+<li>Validar cadeia laboratorial (metodo, unidade, limite de
+quantificacao, lote e controle de qualidade).</li>
+<li>Verificar alteracoes cadastrais de enquadramento/limite com data de
+vigencia.</li>
+<li>Recalcular NC com painel fixo de pontos (somente pontos presentes em
+todos os anos) para teste de robustez.</li>
+</ol>
+<p>O valor 58,07 em 2024 está alto porque, no seu cálculo, ele é a
+fração de excedências no grupo lentico:</p>
+<p>Fórmula no chunk dbo.Rmd: freq_nc = (NC / nao_nulos) * 100, onde NC =
+sum(desc == 1) e nao_nulos = sum(!is.na(desc)). Com base no tbl_dbo
+(arquivo data/preprocessed/dbo.rds), os números de 2024 são:</p>
+<p>lentico 2024: nao_nulos = 1400, NC = 813 -&gt; 813/1400*100 =
+58,07142857 lotico 2024: nao_nulos = 8216, NC = 1411 -&gt; 17,17% Por
+que o salto em lentico:</p>
+<p>Em 2023, lentico estava em 26,97% (318/1179). Em 2024, houve forte
+aumento de excedência no grupo com limite = 5 mg/L: 2023: 299/1075 =
+27,81% 2024: 809/1290 = 62,71% A UF que mais puxou isso foi CE em
+lentico 2024: 546 NC de 813 totais do lentico (67,16% das NC) frequência
+local 95,29% (546/573) Resumo: não é bug do gráfico; o 58,07 reflete os
+dados de 2024 no tbl_dbo, principalmente o aumento real de desc==1 em
+lentico (sobretudo CE, no estrato limite=5 mg/L).</p>
+<p>qual é a DBO média no CE em 2024?</p>
+<p>1 previous message No tbl_dbo, para UF = “CE” em 2024:</p>
+<p>DBO média geral: 23,32 mg/L (n = 719) Lêntico: 22,67 mg/L (n = 573)
+Lótico: 25,86 mg/L (n = 146)</p>
+<p>faça um gráfico com a evolução ao longo dos anos da desconformidade
+entre lenticos e lóticos excluindo o CE</p>
+<p>Sem o CE, a UF que mais contribui para o aumento da NC em ambientes
+lênticos é o RN (Rio Grande do Norte):</p>
+<p>NC: de 22 (2023) para 76 (2024) Aumento absoluto: +54 ocorrências de
+NC A segunda é PE:</p>
+<p>NC: de 55 para 87 Aumento absoluto: +32</p>
+<p>houve algum fenômeno climático extremo no Nordeste para os
+reservatórios terem um aumento tão significatido da DBO nos últimos
+anos?</p>
+<p>Sim, é plausível que fenômenos climáticos tenham contribuído.</p>
+<p>O que aparece nos dados oficiais:</p>
+<p>Entre junho de 2023 e abril de 2024, o El Niño atuou e o boletim da
+ANA registra que no Nordeste houve áreas com seca grave nesse período
+(com melhora a partir de março/abril de 2024). Fonte: ANA (boletim El
+Niño, publicado em 2024) <a
+href="https://www.gov.br/ana/pt-br/assuntos/noticias-e-eventos/noticias/boletim-sobre-el-nino-informa-sobre-o-fim-do-fenomeno-climatico-e-a-alta-probabilidade-de-la-nina-em-2024"
+class="uri">https://www.gov.br/ana/pt-br/assuntos/noticias-e-eventos/noticias/boletim-sobre-el-nino-informa-sobre-o-fim-do-fenomeno-climatico-e-a-alta-probabilidade-de-la-nina-em-2024</a></p>
+<p>O ano de 2024 foi o mais quente da série histórica no Brasil (INMET),
+com anomalia de temperatura positiva. Calor elevado favorece piora de
+qualidade da água (menos O2 dissolvido, mais atividade biológica).
+Fonte: INMET (02/01/2025) <a
+href="https://portal.inmet.gov.br/noticias/2024-%C3%A9-o-ano-mais-quente-da-s%C3%A9rie-hist%C3%B3rica-no-brasil"
+class="uri">https://portal.inmet.gov.br/noticias/2024-%C3%A9-o-ano-mais-quente-da-s%C3%A9rie-hist%C3%B3rica-no-brasil</a></p>
+<p>No Ceará, mesmo com boa recarga na quadra chuvosa de 2024, houve
+queda de armazenamento no 2º semestre e a própria COGERH cita
+temperaturas acima da média impactando a evaporação. Fonte: COGERH
+(03/01/2025) <a
+href="https://www.cogerh.com.br/reservatorios-do-ceara-registram-43-da-capacidade-total-no-inicio-de-2025/"
+class="uri">https://www.cogerh.com.br/reservatorios-do-ceara-registram-43-da-capacidade-total-no-inicio-de-2025/</a></p>
+<p>Então, resposta curta: sim, houve sinal climático relevante (El Niño
++ calor anômalo) compatível com aumento de NC/DBO em reservatórios.</p>
+<p>Mas tecnicamente isso é associação, não prova causal isolada. Para
+fechar causalidade, vale testar no seu banco: DBO/NC vs. temperatura da
+água, chuva, vazão, volume do reservatório e carga de esgoto por
+bacia/ano.</p>
+<p>faça um gráfico mostrando a evolução da conformidades nessas uf.</p>
+<p>Boa pergunta. Para investigar possível erro em DBO CE 2024, eu usaria
+um protocolo em 6 frentes:</p>
+<p>Quebra de cobertura da amostragem Comparar n por mês e por codigo
+entre 2020-2023 vs 2024. Se 2024 tiver concentração em poucos pontos
+críticos, NC sobe sem “piora real estadual”. Mudança de composição de
+pontos Ver se entraram pontos novos em 2024 (ou saíram pontos
+historicamente bons). Decompor NC em “pontos antigos” vs “pontos novos”.
+Consistência de metadados Auditar em 2024: limite, enquadramento,
+regime, status. Erro comum: mudança de classe/limite aplicada errado em
+lote. Qualidade dos valores analíticos Procurar picos improváveis,
+valores repetidos em bloco, arredondamento atípico, mudanças abruptas
+por laboratório/método. Ver percentis (P50/P90/P95) por mês e ponto, não
+só média. Influência por ponto (diagnóstico de alavancagem)
+“Leave-one-station-out”: recalcular NC 2024 removendo 1 codigo por vez.
+Se poucos pontos derrubam muito a NC, indício de problema localizado
+(dado ou evento extremo local). Teste formal de mudança Teste de
+diferença de proporções para NC (2020-2023 vs 2024) por ponto e
+agregado. Ajustar múltiplos testes (FDR). Mudança “real” tende a
+aparecer em vários pontos independentes. Se quiser, te entrego um chunk
+único que já gera:</p>
+<p>tabela de auditoria CE-2024, ranking de pontos que mais aumentaram
+NC, análise “leave-one-station-out”, e flag automático de possíveis
+inconsistências.</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

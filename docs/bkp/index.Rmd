@@ -26,7 +26,7 @@ output:
   <div class="panel panel--wide">
   
     <h3>Apresentação</h3>  
-    <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados oficiais de qualidade das águas superficiais do país. A plataforma reúne informações produzidas pelas Unidades da Federação, no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
+    <p>O Qualidade da Água no Brasil é um portal público dedicado a apresentar, de forma clara, padronizada e acessível, os dados de qualidade das águas superficiais do País produzidas pelas Unidades da Federação (UFs), no âmbito da <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/qualidade-da-agua" target="_blank">Rede Nacional de Monitoramento da Qualidade da Água (RNQA)</a>, coordenada pela <a href="https://www.gov.br/ana/pt-br" target="_blank">Agência Nacional de Águas e Saneamento Básico (ANA)</a>.</p>
     
       <p>Nosso compromisso é transformar dados técnicos em informação útil para a sociedade, fortalecendo a transparência, a participação social e a tomada de decisão baseada em evidências.</p>
 
@@ -36,17 +36,16 @@ output:
     <p>
       A qualidade da água de rios, lagos e reservatórios não é observada apenas
       pela aparência. Ela é avaliada por meio de indicadores físico-químicos e
-      biológicos, obtidos a partir do monitoramento sistemático realizado em
-      estações distribuídas pelo território nacional.
+      biológicos obtidos a partir do monitoramento sistemático.
     </p>
 
 
     <p>
       Nas estações da Rede Nacional de Monitoramento da Qualidade da Água (RNQA),
-      técnicos coletam amostras de água em pontos fixos e em períodos regulares.
+      técnicos coletam amostras de água com frequências regulares em pontos distribuídos pelo território nacional.
       Essas amostras são analisadas em laboratório ou por sensores em campo,
       seguindo procedimentos padronizados, o que permite comparar resultados ao
-      longo do tempo e entre diferentes regiões do país.
+      longo do tempo e entre diferentes regiões do País.
     </p>
 
     <p>
@@ -100,7 +99,7 @@ output:
     </div>
       
     <p class="eq-text">
-    Integra parâmetros importantes e resume tudo em uma escala de 0 a 100,           geralmente classificada como ótima, boa, regular ou ruim ou péssima.
+    Integra parâmetros importantes e resume tudo em uma escala de 0 a 100,           geralmente classificada como ótima, boa, regular, ruim ou péssima.
     </p>
   </div>
   
@@ -120,7 +119,7 @@ output:
     <ul class="panel-list">
       <li>Avaliar tendências de melhoria ou degradação da qualidade da água;</li>
       <li>Apoiar ações de gestão, fiscalização e saneamento;</li>
-      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">enquadramento dos corpos hídricos</a>;</li>
+      <li>Avaliar efeitos das políticas públicas, como o <a href="enquadramento.html">Enquadramento dos Corpos de Água em Classes de Qualidade</a> e a Outorga de Direito de Uso de Recursos Hídricos;</li>
       <li>Informar a sociedade sobre a situação dos recursos hídricos.</li>
     </ul>
 
@@ -145,6 +144,21 @@ output:
 library(dplyr)
 library(leaflet)
 library(geobr)
+library(htmltools)
+
+od <- readRDS("data/preprocessed/od.rds")$grouped_obs
+
+od_filtrado <- od |>
+  filter(
+    !is.na(uf),
+    !is.na(`Código`),
+    n >= 10
+  )
+
+contagem_uf <- od_filtrado |>
+  sf::st_drop_geometry() |>
+  group_by(uf) |>
+  summarise(n_pontos = n_distinct(`Código`), .groups = "drop")
 
 # Cadastro longo (uma linha por parceiro)
 parceiros <- data.frame(
@@ -177,21 +191,27 @@ parceiros_agg <- parceiros |>
 
 # Junta mantendo estados únicos
 estados2 <- estados |>
+  left_join(contagem_uf, by = "uf") |>
   left_join(parceiros_agg, by = "uf") |>
   mutate(
+    n_pontos = ifelse(is.na(n_pontos), 0L, as.integer(n_pontos)),
     parceiros_txt = ifelse(is.na(parceiros_txt), "", parceiros_txt),
     tem_parceiro = parceiros_txt != ""
   )
 
-# Paleta discreta (presença/ausência)
-pal <- colorFactor(
-  palette = c("#e5e7eb", "#cfe8f3"),
-  domain = c(FALSE, TRUE)
+# Paleta por contagem de pontos OD por estado
+pal <- colorBin(
+  palette = "YlGnBu",
+  bins = 6,
+  domain = estados2$n_pontos,
+  na.color = "#e5e7eb"
 )
 
 # Tooltip
 labels <- paste0(
   "<strong>", estados2$name_state, " (", estados2$uf, ")</strong><br>",
+  "<strong>Pontos OD:</strong> ", estados2$n_pontos, "<br>",
+  "<strong>Parceiros:</strong> ",
   ifelse(estados2$parceiros_txt != "",
          estados2$parceiros_txt,
          "<em>Sem parceiro cadastrado</em>")
@@ -200,25 +220,35 @@ labels <- paste0(
 leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
   addProviderTiles(providers$CartoDB.Positron) |>
   addPolygons(
-    fillColor = ~pal(tem_parceiro),
+    fillColor = ~pal(n_pontos),
     fillOpacity = 0.85,
     color = "#334155",
     weight = 1,
-    label = lapply(labels, htmltools::HTML),
+    popup = lapply(labels, htmltools::HTML),
     highlightOptions = highlightOptions(
       weight = 2,
       color = "#0f172a",
       fillOpacity = 0.95,
       bringToFront = TRUE
     )
+  ) |>
+  addLegend(
+    position = "bottomright",
+    pal = pal,
+    values = ~n_pontos,
+    title = "Pontos por UF",
+    opacity = 0.9,
+    className = "legend-media"
   )
 ```
 
 
-```{=html}      
-      <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do país.</p>
-    </div>
+```{=html} 
+
+    <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do País.</p>
+    <p class="footnote">*O número de pontos do mapa é baseado nas medições de OD disponíveis em nossa base de dados entre 2010 e 2024.</p>
     
+    </div>
     
   </div>
 </section>
@@ -249,9 +279,9 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
 
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <img src="assets/img/logo-ana.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
         <div>
-          <strong>Agência Nacional de Águas e Saneamento Básico</strong>
+          <strong>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</strong>
           <div class="footer-gov">Governo Federal – Brasil</div>
         </div>
       </div>
@@ -259,11 +289,9 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
 
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Sobre o portal</h4>
+
         <p>
-          Este portal apresenta informações oficiais sobre a qualidade das águas
-          superficiais no Brasil, com base em dados públicos e metodologias
-          padronizadas.
+          Todos os direitos reservados. É permitida a reprodução de dados e de informações contidos nesta publicação, desde que citada a fonte.
         </p>
       </div>
 
@@ -294,7 +322,7 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
     <div class="footer-bottom">
       <p>
         © Agência Nacional de Águas e Saneamento Básico (ANA).
-        Dados públicos para apoio à gestão dos recursos hídricos.
+
       </p>
     </div>
 

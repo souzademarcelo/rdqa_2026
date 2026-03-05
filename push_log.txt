@@ -794,3 +794,59 @@ $ git status --porcelain
 ?? docs/site_libs/typedarray-0.1/
 
 $ git add -A
+warning: in the working copy of 'docs/site_libs/crosstalk-1.2.2/css/crosstalk.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/crosstalk-1.2.2/js/crosstalk.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/crosstalk-1.2.2/js/crosstalk.js.map', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/crosstalk-1.2.2/js/crosstalk.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/crosstalk-1.2.2/scss/crosstalk.scss', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/plotly-binding-4.11.0/plotly.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/site_libs/plotly-main-2.11.1/plotly-latest.min.js', LF will be replaced by CRLF the next time Git touches it
+
+$ git commit -m "atualização 03 mar 2026"
+[main a8dbbf2] atualização 03 mar 2026
+ 25 files changed, 2876 insertions(+), 73 deletions(-)
+ create mode 100644 docs/site_libs/crosstalk-1.2.2/css/crosstalk.min.css
+ create mode 100644 docs/site_libs/crosstalk-1.2.2/js/crosstalk.js
+ create mode 100644 docs/site_libs/crosstalk-1.2.2/js/crosstalk.js.map
+ create mode 100644 docs/site_libs/crosstalk-1.2.2/js/crosstalk.min.js
+ create mode 100644 docs/site_libs/crosstalk-1.2.2/js/crosstalk.min.js.map
+ create mode 100644 docs/site_libs/crosstalk-1.2.2/scss/crosstalk.scss
+ create mode 100644 docs/site_libs/plotly-binding-4.11.0/plotly.js
+ create mode 100644 docs/site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css
+ create mode 100644 docs/site_libs/plotly-main-2.11.1/plotly-latest.min.js
+ create mode 100644 docs/site_libs/typedarray-0.1/typedarray.min.js
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   d440ef2..a8dbbf2  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M bkp/index.Rmd
+ M docs/bkp/index.Rmd
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M docs/push_log.txt
+ M index.Rmd
+ M push_log.txt
+?? DBO_ANALISE.R
+?? docs/relatorio_auditoria_ce_2024_dbo.html
+?? docs/relatorio_auditoria_ce_2024_dbo_files/
+?? relatorio_auditoria_ce_2024_dbo.Rmd
+
+$ git add -A

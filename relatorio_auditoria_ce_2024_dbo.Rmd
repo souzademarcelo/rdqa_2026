@@ -1,0 +1,444 @@
+---
+title: "Relatorio de Auditoria - DBO CE 2024 (NC em ambientes lenticos)"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(purrr)
+library(ggplot2)
+library(knitr)
+library(scales)
+source("scripts/load_preprocessed.R")
+```
+
+# Objetivo
+
+Este relatorio audita os dados de DBO no CE (regime lentico) para avaliar se o aumento acentuado da NC em 2024 pode estar ligado a:
+
+1. mudanca de cobertura amostral;
+2. mudanca de composicao de pontos;
+3. inconsistencias de metadados;
+4. comportamento anomalo dos valores analiticos;
+5. dependencia de poucos pontos (influencia);
+6. mudanca estatisticamente robusta na proporcao de NC.
+
+# Base e recortes
+
+```{r base}
+df <- tbl_dbo %>%
+  filter(uf == "CE", regime == "lentico") %>%
+  mutate(
+    data = as.Date(data),
+    ano = year(data),
+    mes = month(data),
+    valido = !is.na(desc),
+    nc_bin = if_else(desc == 1, 1L, 0L, missing = 0L)
+  ) %>%
+  filter(!is.na(ano), ano >= 2010, ano <= 2024)
+
+base_ref <- df %>% filter(ano >= 2020, ano <= 2023)
+ano_alvo <- df %>% filter(ano == 2024)
+
+if (nrow(ano_alvo) == 0) stop("Nao ha dados de CE/lentico em 2024.")
+
+resumo <- df %>%
+  group_by(ano) %>%
+  summarise(
+    n_obs = n(),
+    n_validos = sum(valido),
+    n_codigos = n_distinct(codigo),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    nc_pct = 100 * nc / pmax(n_validos, 1),
+    .groups = "drop"
+  )
+
+kable(resumo, digits = 2, caption = "Resumo anual CE lentico")
+```
+
+# 1) Cobertura de amostragem
+
+```{r cobertura}
+cobertura_mes_2024 <- ano_alvo %>%
+  group_by(mes) %>%
+  summarise(
+    n_obs = n(),
+    n_validos = sum(valido),
+    n_codigos = n_distinct(codigo),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    nc_pct = 100 * nc / pmax(n_validos, 1),
+    .groups = "drop"
+  )
+
+kable(cobertura_mes_2024, digits = 2, caption = "CE 2024 por mes")
+
+ggplot(resumo, aes(ano, nc_pct)) +
+  geom_line(color = "#b91c1c", linewidth = 1) +
+  geom_point(color = "#b91c1c", size = 2) +
+  scale_y_continuous(labels = label_number(accuracy = 0.1, suffix = "%")) +
+  labs(title = "Evolucao da NC (%) - CE lentico", x = "Ano", y = "NC (%)") +
+  theme_minimal()
+```
+
+# 2) Mudanca de composicao de pontos
+
+```{r composicao}
+codigos_ref <- unique(base_ref$codigo)
+comp_2024 <- ano_alvo %>%
+  mutate(grupo_ponto = if_else(codigo %in% codigos_ref, "Ponto antigo", "Ponto novo"))
+
+tab_comp <- comp_2024 %>%
+  group_by(grupo_ponto) %>%
+  summarise(
+    n_validos = sum(valido),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    nc_pct = 100 * nc / pmax(n_validos, 1),
+    n_codigos = n_distinct(codigo),
+    .groups = "drop"
+  )
+
+kable(tab_comp, digits = 2, caption = "CE 2024: comparacao entre pontos antigos e novos")
+```
+
+# 3) Consistencia de metadados
+
+```{r metadados}
+vars_meta <- c("limite", "enquadramento", "status")
+vars_meta <- vars_meta[vars_meta %in% names(df)]
+
+if (length(vars_meta) > 0) {
+  lista_tabs <- list()
+  for (v in vars_meta) {
+    lista_tabs[[v]] <- df %>%
+      group_by(codigo) %>%
+      summarise(n_val_distintos = n_distinct(.data[[v]], na.rm = TRUE), .groups = "drop") %>%
+      arrange(desc(n_val_distintos)) %>%
+      slice_head(n = 20)
+  }
+
+  for (nm in names(lista_tabs)) {
+    print(kable(lista_tabs[[nm]], caption = paste("Top codigos com variacao em", nm)))
+  }
+}
+
+if (all(c("limite", "enquadramento") %in% names(df))) {
+  ref_mode <- base_ref %>%
+    group_by(codigo) %>%
+    summarise(
+      limite_ref = as.numeric(names(sort(table(limite), decreasing = TRUE))[1]),
+      enquad_ref = as.numeric(names(sort(table(enquadramento), decreasing = TRUE))[1]),
+      .groups = "drop"
+    )
+
+  alvo_mode <- ano_alvo %>%
+    group_by(codigo) %>%
+    summarise(
+      limite_2024 = as.numeric(names(sort(table(limite), decreasing = TRUE))[1]),
+      enquad_2024 = as.numeric(names(sort(table(enquadramento), decreasing = TRUE))[1]),
+      .groups = "drop"
+    )
+
+  mudancas_meta <- ref_mode %>%
+    inner_join(alvo_mode, by = "codigo") %>%
+    mutate(
+      mudou_limite = limite_ref != limite_2024,
+      mudou_enquadramento = enquad_ref != enquad_2024
+    ) %>%
+    filter(mudou_limite | mudou_enquadramento)
+
+  kable(mudancas_meta, digits = 2, caption = "Possiveis mudancas de metadados em 2024")
+}
+```
+
+# 4) Qualidade dos valores analiticos
+
+```{r qualidade}
+qualidade_ano <- df %>%
+  group_by(ano) %>%
+  summarise(
+    n = n(),
+    media = mean(valor, na.rm = TRUE),
+    p50 = quantile(valor, 0.50, na.rm = TRUE),
+    p90 = quantile(valor, 0.90, na.rm = TRUE),
+    p95 = quantile(valor, 0.95, na.rm = TRUE),
+    max = max(valor, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(qualidade_ano, digits = 2, caption = "Distribuicao anual dos valores de DBO")
+
+q1 <- quantile(base_ref$valor, 0.25, na.rm = TRUE)
+q3 <- quantile(base_ref$valor, 0.75, na.rm = TRUE)
+iqr_val <- q3 - q1
+lim_inf <- q1 - 1.5 * iqr_val
+lim_sup <- q3 + 1.5 * iqr_val
+
+out_2024 <- ano_alvo %>%
+  mutate(outlier_iqr = valor < lim_inf | valor > lim_sup) %>%
+  summarise(
+    n = n(),
+    n_out = sum(outlier_iqr, na.rm = TRUE),
+    pct_out = 100 * n_out / pmax(n, 1)
+  )
+
+kable(out_2024, digits = 2, caption = "Outliers em 2024 (criterio IQR da base 2020-2023)")
+
+rep_2024 <- ano_alvo %>%
+  group_by(codigo, mes, valor) %>%
+  summarise(n_rep = n(), .groups = "drop") %>%
+  filter(n_rep >= 3) %>%
+  arrange(desc(n_rep))
+
+kable(head(rep_2024, 30), digits = 2, caption = "Possiveis repeticoes de valor em 2024 (n_rep >= 3)")
+```
+
+# 5) Influencia por ponto (leave-one-station-out)
+
+```{r influencia}
+nc_global_2024 <- ano_alvo %>%
+  summarise(
+    n_validos = sum(valido),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    nc_pct = 100 * nc / pmax(n_validos, 1)
+  )
+
+impacto_ponto <- map_dfr(unique(ano_alvo$codigo), function(cd) {
+  d <- ano_alvo %>% filter(codigo != cd)
+  n_validos <- sum(d$valido)
+  nc <- sum(d$nc_bin[d$valido], na.rm = TRUE)
+  nc_pct_sem <- 100 * nc / pmax(n_validos, 1)
+  tibble(
+    codigo = cd,
+    nc_pct_sem_ponto = nc_pct_sem,
+    impacto_pp = nc_global_2024$nc_pct - nc_pct_sem
+  )
+}) %>%
+  arrange(desc(impacto_pp))
+
+kable(head(impacto_ponto, 20), digits = 3, caption = "Top pontos com maior impacto na NC 2024")
+```
+
+# 6) Teste formal de mudanca de proporcao
+
+```{r teste}
+base_ref_stats <- base_ref %>%
+  summarise(
+    n_validos = sum(valido),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    .groups = "drop"
+  )
+
+ano_2024_stats <- ano_alvo %>%
+  summarise(
+    n_validos = sum(valido),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    .groups = "drop"
+  )
+
+teste_agregado <- prop.test(
+  x = c(base_ref_stats$nc, ano_2024_stats$nc),
+  n = c(base_ref_stats$n_validos, ano_2024_stats$n_validos),
+  correct = FALSE
+)
+
+estat_agg <- tibble(
+  periodo = c("Referencia 2020-2023", "Ano 2024"),
+  n_validos = c(base_ref_stats$n_validos, ano_2024_stats$n_validos),
+  nc = c(base_ref_stats$nc, ano_2024_stats$nc),
+  nc_pct = 100 * c(base_ref_stats$nc / base_ref_stats$n_validos,
+                   ano_2024_stats$nc / ano_2024_stats$n_validos)
+)
+
+kable(estat_agg, digits = 2, caption = "Comparacao agregada de proporcoes")
+
+kable(
+  tibble(
+    p_value = teste_agregado$p.value,
+    conf_inf = teste_agregado$conf.int[1],
+    conf_sup = teste_agregado$conf.int[2]
+  ),
+  digits = 6,
+  caption = "Teste de proporcao agregado (2020-2023 vs 2024)"
+)
+
+teste_ponto <- df %>%
+  filter(ano >= 2020, ano <= 2024) %>%
+  mutate(periodo = if_else(ano == 2024, "y2024", "ref")) %>%
+  group_by(codigo, periodo) %>%
+  summarise(
+    n_validos = sum(valido),
+    nc = sum(nc_bin[valido], na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_wider(
+    names_from = periodo,
+    values_from = c(n_validos, nc),
+    values_fill = 0
+  ) %>%
+  filter(n_validos_ref >= 20, n_validos_y2024 >= 20) %>%
+  mutate(
+    p_value = pmap_dbl(
+      list(nc_ref, nc_y2024, n_validos_ref, n_validos_y2024),
+      ~ prop.test(x = c(..1, ..2), n = c(..3, ..4), correct = FALSE)$p.value
+    ),
+    p_adj_bh = p.adjust(p_value, method = "BH"),
+    nc_ref_pct = 100 * nc_ref / pmax(n_validos_ref, 1),
+    nc_2024_pct = 100 * nc_y2024 / pmax(n_validos_y2024, 1),
+    delta_pp = nc_2024_pct - nc_ref_pct
+  ) %>%
+  arrange(desc(delta_pp))
+
+kable(head(teste_ponto, 30), digits = 3, caption = "Top pontos por aumento de NC (com ajuste BH)")
+```
+
+# 7) Contexto climatico e hidrologico (seca e calor)
+
+Os resultados devem ser interpretados junto com o contexto ambiental recente. Em periodos de **seca** e **temperaturas elevadas**, reservatorios lenticos tendem a apresentar:
+
+1. menor volume util e menor capacidade de diluicao;
+2. maior tempo de residencia da agua;
+3. aquecimento da coluna d'agua, com aceleracao de processos biologicos;
+4. concentracao de materia organica em condicoes de baixa renovacao.
+
+Esses fatores podem elevar a frequencia de nao conformidade de DBO, mesmo sem mudanca imediata na infraestrutura de saneamento.
+
+Ao mesmo tempo, o aumento da NC pode resultar de combinacoes entre clima, pressao antropica e efeitos de dados. Por isso, este relatorio integra hipoteses climaticas com verificacoes de cobertura, composicao amostral, metadados e consistencia analitica.
+
+# Comentarios automaticos
+
+```{r comentarios, results='asis'}
+nc_2024 <- 100 * ano_2024_stats$nc / ano_2024_stats$n_validos
+nc_ref <- 100 * base_ref_stats$nc / base_ref_stats$n_validos
+
+cat("## Sintese\n\n")
+cat(sprintf("- NC media no periodo de referencia (2020-2023): **%.2f%%**.\n", nc_ref))
+cat(sprintf("- NC em 2024: **%.2f%%**.\n", nc_2024))
+cat(sprintf("- Diferenca: **%.2f p.p.**.\n", nc_2024 - nc_ref))
+cat(sprintf("- p-valor do teste agregado: **%.6g**.\n\n", teste_agregado$p.value))
+
+if (nrow(impacto_ponto) > 0) {
+  top1 <- impacto_ponto[1, ]
+  cat(sprintf("- Ponto com maior influencia no indicador 2024: **%s** (impacto de **%.2f p.p.**).\n", top1$codigo, top1$impacto_pp))
+}
+
+if (exists("mudancas_meta") && nrow(mudancas_meta) > 0) {
+  cat(sprintf("- Foram detectados **%d** codigos com possivel mudanca de limite/enquadramento em 2024.\n", nrow(mudancas_meta)))
+} else {
+  cat("- Nao foram detectadas mudancas evidentes de limite/enquadramento no resumo por moda.\n")
+}
+
+cat("\n## Possiveis causas do aumento da NC\n\n")
+cat("1. **Eventos climaticos e hidrologicos (seca e calor)**: reducao de volume, menor diluicao, maior tempo de residencia e aquecimento da agua podem elevar a DBO e a NC.\n")
+cat("2. **Mudanca real de qualidade da agua por pressao antropica**: aumento de carga organica (esgoto e aportes difusos) em reservatorios com baixa capacidade de assimilacao.\n")
+cat("3. **Mudanca na composicao da rede**: entrada de pontos mais criticos em 2024 ou maior peso amostral em subareas mais impactadas.\n")
+cat("4. **Mudanca de metadados/regras**: limite ou enquadramento alterado para alguns pontos, elevando automaticamente a NC.\n")
+cat("5. **Problema de qualidade de dados**: repeticoes atipicas, picos concentrados, falha de integracao, unidade/metodo ou validacao laboratorial.\n")
+cat("\n## Recomendacoes\n\n")
+cat("1. Auditar os top codigos por impacto e os pontos com maior delta de NC.\n")
+cat("2. Cruzar NC/DBO com indicadores climaticos e hidrologicos (chuva, volume, vazao, temperatura da agua/ar) por mes e por sub-bacia.\n")
+cat("3. Validar cadeia laboratorial (metodo, unidade, limite de quantificacao, lote e controle de qualidade).\n")
+cat("4. Verificar alteracoes cadastrais de enquadramento/limite com data de vigencia.\n")
+cat("5. Recalcular NC com painel fixo de pontos (somente pontos presentes em todos os anos) para teste de robustez.\n")
+```
+
+
+
+
+O valor 58,07 em 2024 está alto porque, no seu cálculo, ele é a fração de excedências no grupo lentico:
+
+Fórmula no chunk dbo.Rmd:
+freq_nc = (NC / nao_nulos) * 100, onde NC = sum(desc == 1) e nao_nulos = sum(!is.na(desc)).
+Com base no tbl_dbo (arquivo data/preprocessed/dbo.rds), os números de 2024 são:
+
+lentico 2024: nao_nulos = 1400, NC = 813 -> 813/1400*100 = 58,07142857
+lotico 2024: nao_nulos = 8216, NC = 1411 -> 17,17%
+Por que o salto em lentico:
+
+Em 2023, lentico estava em 26,97% (318/1179).
+Em 2024, houve forte aumento de excedência no grupo com limite = 5 mg/L:
+2023: 299/1075 = 27,81%
+2024: 809/1290 = 62,71%
+A UF que mais puxou isso foi CE em lentico 2024:
+546 NC de 813 totais do lentico (67,16% das NC)
+frequência local 95,29% (546/573)
+Resumo: não é bug do gráfico; o 58,07 reflete os dados de 2024 no tbl_dbo, principalmente o aumento real de desc==1 em lentico (sobretudo CE, no estrato limite=5 mg/L).
+
+
+qual é a DBO média no CE em 2024?
+
+
+1 previous message
+No tbl_dbo, para UF = "CE" em 2024:
+
+DBO média geral: 23,32 mg/L (n = 719)
+Lêntico: 22,67 mg/L (n = 573)
+Lótico: 25,86 mg/L (n = 146)
+
+faça um gráfico com a evolução ao longo dos anos da desconformidade entre lenticos e lóticos excluindo  o CE
+
+Sem o CE, a UF que mais contribui para o aumento da NC em ambientes lênticos é o RN (Rio Grande do Norte):
+
+NC: de 22 (2023) para 76 (2024)
+Aumento absoluto: +54 ocorrências de NC
+A segunda é PE:
+
+NC: de 55 para 87
+Aumento absoluto: +32
+
+houve algum fenômeno climático extremo no Nordeste para os reservatórios terem um aumento tão significatido da DBO nos últimos anos?
+
+Sim, é plausível que fenômenos climáticos tenham contribuído.
+
+O que aparece nos dados oficiais:
+
+Entre junho de 2023 e abril de 2024, o El Niño atuou e o boletim da ANA registra que no Nordeste houve áreas com seca grave nesse período (com melhora a partir de março/abril de 2024).
+Fonte: ANA (boletim El Niño, publicado em 2024)
+https://www.gov.br/ana/pt-br/assuntos/noticias-e-eventos/noticias/boletim-sobre-el-nino-informa-sobre-o-fim-do-fenomeno-climatico-e-a-alta-probabilidade-de-la-nina-em-2024
+
+O ano de 2024 foi o mais quente da série histórica no Brasil (INMET), com anomalia de temperatura positiva. Calor elevado favorece piora de qualidade da água (menos O2 dissolvido, mais atividade biológica).
+Fonte: INMET (02/01/2025)
+https://portal.inmet.gov.br/noticias/2024-%C3%A9-o-ano-mais-quente-da-s%C3%A9rie-hist%C3%B3rica-no-brasil
+
+No Ceará, mesmo com boa recarga na quadra chuvosa de 2024, houve queda de armazenamento no 2º semestre e a própria COGERH cita temperaturas acima da média impactando a evaporação.
+Fonte: COGERH (03/01/2025)
+https://www.cogerh.com.br/reservatorios-do-ceara-registram-43-da-capacidade-total-no-inicio-de-2025/
+
+Então, resposta curta: sim, houve sinal climático relevante (El Niño + calor anômalo) compatível com aumento de NC/DBO em reservatórios.
+
+Mas tecnicamente isso é associação, não prova causal isolada. Para fechar causalidade, vale testar no seu banco: DBO/NC vs. temperatura da água, chuva, vazão, volume do reservatório e carga de esgoto por bacia/ano.
+
+
+faça um gráfico mostrando a evolução da conformidades nessas uf.
+
+Boa pergunta. Para investigar possível erro em DBO CE 2024, eu usaria um protocolo em 6 frentes:
+
+Quebra de cobertura da amostragem
+Comparar n por mês e por codigo entre 2020-2023 vs 2024.
+Se 2024 tiver concentração em poucos pontos críticos, NC sobe sem “piora real estadual”.
+Mudança de composição de pontos
+Ver se entraram pontos novos em 2024 (ou saíram pontos historicamente bons).
+Decompor NC em “pontos antigos” vs “pontos novos”.
+Consistência de metadados
+Auditar em 2024: limite, enquadramento, regime, status.
+Erro comum: mudança de classe/limite aplicada errado em lote.
+Qualidade dos valores analíticos
+Procurar picos improváveis, valores repetidos em bloco, arredondamento atípico, mudanças abruptas por laboratório/método.
+Ver percentis (P50/P90/P95) por mês e ponto, não só média.
+Influência por ponto (diagnóstico de alavancagem)
+“Leave-one-station-out”: recalcular NC 2024 removendo 1 codigo por vez.
+Se poucos pontos derrubam muito a NC, indício de problema localizado (dado ou evento extremo local).
+Teste formal de mudança
+Teste de diferença de proporções para NC (2020-2023 vs 2024) por ponto e agregado.
+Ajustar múltiplos testes (FDR). Mudança “real” tende a aparecer em vários pontos independentes.
+Se quiser, te entrego um chunk único que já gera:
+
+tabela de auditoria CE-2024,
+ranking de pontos que mais aumentaram NC,
+análise “leave-one-station-out”,
+e flag automático de possíveis inconsistências.
