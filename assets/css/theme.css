@@ -2,8 +2,6 @@
    THEME.CSS — PORTAL ANA (FINAL LIMPO)
    ========================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
-
 :root{
   --ana-azul-escuro:#1C3782;
   --ana-azul:#0093DD;
@@ -73,11 +71,13 @@ div.author, div.date{
   justify-content: space-between;
   gap: 16px;
 
-  background: linear-gradient(90deg, var(--ana-azul-escuro), var(--ana-azul));
+  background: linear-gradient(90deg, rgba(15, 47, 114, .95), rgba(0, 118, 186, .92));
   color: #fff;
+  backdrop-filter: blur(4px);
 
   padding: 12px calc((100% - var(--layout-max)) / 2 + 18px);
-  box-shadow: 0 12px 28px rgba(28,55,130,.18);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 10px 24px rgba(9, 36, 92, .28);
 }
 
 /* Brand */
@@ -96,7 +96,7 @@ div.author, div.date{
 }
 
 .topnav .brand img{
-  height: 40px;
+  height: 34px;
   width: auto;
   display:block;
 }
@@ -126,14 +126,21 @@ div.author, div.date{
   padding: 10px 12px;
   border-radius: 12px;
 
-  opacity: .9;
+  opacity: .96;
   transition: background .15s ease, opacity .15s ease, transform .15s ease;
 }
 
 .topnav .nav-links a:hover{
-  background: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.14);
   opacity: 1;
   transform: translateY(-1px);
+}
+
+.topnav .nav-links a.is-active,
+.topnav .nav-links a[aria-current="page"]{
+  background: rgba(255,255,255,.22);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+  opacity: 1;
 }
 
 /* Toggle */
@@ -160,13 +167,14 @@ div.author, div.date{
    ========================= */
 .hero{
   position:relative;
+  isolation: isolate;
   margin-top:0;
   border-radius:0;
   overflow:hidden;
   min-height:420px;
 
  /* background: url("../img/hero_agua_2560x800_overlay.jpg") center / cover no-repeat;*/
-  background: url("../img/background_ana.png") center / cover no-repeat;
+  background: url("../img/hero-background.svg") center / cover no-repeat;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -178,7 +186,17 @@ div.author, div.date{
   box-shadow: 0 22px 50px rgba(28,55,130,.20);
 }
 
+.hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 34, 74, 0.42);
+  z-index: 0;
+}
+
 .hero-content{
+  position: relative;
+  z-index: 1;
   max-width: var(--content-max);
   padding: 84px 28px;
   text-align:center;
@@ -679,7 +697,7 @@ a.cta.cta--ghost{
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 36px calc((100% - var(--layout-max)) / 2 + 24px) 20px;
+  padding: 36px max(20px, calc((100% - var(--layout-max)) / 2 + 24px)) 20px;
 }
 
 .section--cta .cta-box{
@@ -835,7 +853,7 @@ a.cta.cta--ghost{
     align-items:flex-start;
 
     width:100%;
-    background: var(--ana-azul-escuro);
+    background: rgba(14, 42, 103, .98);
     padding: 10px 14px 14px;
 
     border-top: 1px solid rgba(255,255,255,.14);
@@ -881,7 +899,7 @@ a.cta.cta--ghost{
     gap: 6px;
   }
 
-  .topnav .brand img{ height: 32px; }
+  .topnav .brand img{ height: 28px; }
 
   .topnav .brand span{
     font-size: 10px;
@@ -903,20 +921,39 @@ a.cta.cta--ghost{
 
     border-radius: 0;
     min-height: 300px;
-  /*   background-image: url("../img/background_ana.png");*/
- background-image: url("../img/background_ana.png");
+  /*   background-image: url("../img/hero-background.svg");*/
+ background-image: url("../img/hero-background.svg");
+    background-size: cover;
+    background-position: 62% center;
+  }
+
+  .hero::before{
+    background: rgba(8, 34, 74, 0.55);
   }
 
   .hero-content{ padding: 36px 16px; }
 
   .hero h1{
-    font-size: 26px;
-    line-height: 1.2;
+    font-size: 24px;
+    line-height: 1.18;
+    margin-bottom: 10px;
+  }
+
+  .hero .section-head h2{
+    font-size: 20px;
+    line-height: 1.28;
+    margin: 0 auto;
+    max-width: 34ch;
   }
   .hero p{ font-size: 15px; }
   .hero .meta{ font-size: 12px; }
 
   .leaflet-container{ min-height: 420px; }
+
+  .footer-container{
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 }
 
 /* =========================
@@ -1078,7 +1115,7 @@ a.cta.cta--ghost{
   }
 
   .topnav .brand img{
-    height: 28px;
+    height: 24px;
   }
 
   /* Encorta o texto da marca (vira 2 linhas no máximo) */
@@ -1131,9 +1168,11 @@ a.cta.cta--ghost{
   .hero{
     margin-top: 10px;
     border-radius: 0;
-    min-height: 260px;
-   /* background-image: url("../img/background_ana.png");*/
-    background-image: url("../img/background_ana.png");
+    min-height: 230px;
+   /* background-image: url("../img/hero-background.svg");*/
+    background-image: url("../img/hero-background.svg");
+    background-size: cover;
+    background-position: 68% center;
   }
 
   .hero-content{
@@ -1141,9 +1180,16 @@ a.cta.cta--ghost{
   }
 
   .hero h1{
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.15;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+
+  .hero .section-head h2{
+    font-size: 17px;
+    line-height: 1.3;
+    margin: 0 auto;
+    max-width: 30ch;
   }
 
   .hero p{
@@ -1185,6 +1231,11 @@ a.cta.cta--ghost{
   }
   .dygraph-legend{
     font-size: 12px !important;
+  }
+
+  .footer-container{
+    padding-left: 14px;
+    padding-right: 14px;
   }
   
 }
@@ -1242,5 +1293,6 @@ div[id^="htmlwidget-"]{
     padding: 16px;
   }
 }
+
 
 

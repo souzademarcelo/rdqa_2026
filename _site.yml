@@ -1,8 +1,12 @@
 name: "qualidade-agua"
 output_dir: "docs"
+exclude:
+  - "*.R"
 
 output:
   html_document:
+    self_contained: false
+    lib_dir: site_libs
     theme: null
     css: assets/css/theme.css
     includes:

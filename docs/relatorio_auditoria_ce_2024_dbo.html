@@ -17,12 +17,20 @@
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" as="image" href="assets/img/logo-ana.png">
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var images = document.querySelectorAll("img:not(.brand img)");
+    images.forEach(function (img) {
+      if (!img.getAttribute("loading")) img.setAttribute("loading", "lazy");
+      if (!img.getAttribute("decoding")) img.setAttribute("decoding", "async");
+    });
+  });
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -66,11 +74,11 @@ if (window.hljs) {
   </a>
 
   <input id="nav-toggle" type="checkbox" class="nav-toggle">
-  <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu">
+  <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu" aria-controls="topnav-links" aria-expanded="false">
     <span></span><span></span><span></span>
   </label>
 
-  <div class="nav-links">
+  <div class="nav-links" id="topnav-links">
     <a href="index.html">Início</a>
     <a href="enquadramento.html">Enquadramento</a>
     <a href="od.html">OD</a>
@@ -80,8 +88,67 @@ if (window.hljs) {
   </div>
 </nav>
 
+<script>
+  (function () {
+    var nav = document.querySelector(".topnav");
+    if (!nav) return;
 
+    var toggle = nav.querySelector("#nav-toggle");
+    var burger = nav.querySelector(".nav-burger");
+    var links = nav.querySelectorAll(".nav-links a");
+    var autoCloseTimer = null;
+    var AUTO_CLOSE_MS = 8000;
 
+    var currentPath = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    links.forEach(function (link) {
+      var href = (link.getAttribute("href") || "").toLowerCase();
+      if (href === currentPath || (currentPath === "" && href === "index.html")) {
+        link.classList.add("is-active");
+        link.setAttribute("aria-current", "page");
+      }
+
+      link.addEventListener("click", function () {
+        if (toggle) {
+          toggle.checked = false;
+          if (burger) burger.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    function clearCloseTimer() {
+      if (autoCloseTimer) {
+        clearTimeout(autoCloseTimer);
+        autoCloseTimer = null;
+      }
+    }
+
+    function scheduleClose() {
+      clearCloseTimer();
+      autoCloseTimer = setTimeout(function () {
+        if (toggle) {
+          toggle.checked = false;
+          if (burger) burger.setAttribute("aria-expanded", "false");
+        }
+      }, AUTO_CLOSE_MS);
+    }
+
+    if (toggle) {
+      toggle.addEventListener("change", function () {
+        var expanded = !!toggle.checked;
+        if (burger) burger.setAttribute("aria-expanded", expanded ? "true" : "false");
+        if (expanded) scheduleClose();
+        else clearCloseTimer();
+      });
+    }
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900 && toggle && toggle.checked) {
+        toggle.checked = false;
+        if (burger) burger.setAttribute("aria-expanded", "false");
+      }
+    });
+  })();
+</script>
 
 
 <h1 class="title toc-ignore">Relatorio de Auditoria - DBO CE 2024 (NC em

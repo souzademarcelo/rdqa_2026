@@ -1,15 +1,15 @@
-<nav class="topnav">
+﻿<nav class="topnav">
   <a class="brand" href="index.html">
     <img src="assets/img/logo-ana.png" alt="ANA">
     <span>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</span>
   </a>
 
   <input id="nav-toggle" type="checkbox" class="nav-toggle">
-  <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu">
+  <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu" aria-controls="topnav-links" aria-expanded="false">
     <span></span><span></span><span></span>
   </label>
 
-  <div class="nav-links">
+  <div class="nav-links" id="topnav-links">
     <a href="index.html">Início</a>
     <a href="enquadramento.html">Enquadramento</a>
     <a href="od.html">OD</a>
@@ -19,5 +19,64 @@
   </div>
 </nav>
 
+<script>
+  (function () {
+    var nav = document.querySelector(".topnav");
+    if (!nav) return;
 
+    var toggle = nav.querySelector("#nav-toggle");
+    var burger = nav.querySelector(".nav-burger");
+    var links = nav.querySelectorAll(".nav-links a");
+    var autoCloseTimer = null;
+    var AUTO_CLOSE_MS = 8000;
 
+    var currentPath = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    links.forEach(function (link) {
+      var href = (link.getAttribute("href") || "").toLowerCase();
+      if (href === currentPath || (currentPath === "" && href === "index.html")) {
+        link.classList.add("is-active");
+        link.setAttribute("aria-current", "page");
+      }
+
+      link.addEventListener("click", function () {
+        if (toggle) {
+          toggle.checked = false;
+          if (burger) burger.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    function clearCloseTimer() {
+      if (autoCloseTimer) {
+        clearTimeout(autoCloseTimer);
+        autoCloseTimer = null;
+      }
+    }
+
+    function scheduleClose() {
+      clearCloseTimer();
+      autoCloseTimer = setTimeout(function () {
+        if (toggle) {
+          toggle.checked = false;
+          if (burger) burger.setAttribute("aria-expanded", "false");
+        }
+      }, AUTO_CLOSE_MS);
+    }
+
+    if (toggle) {
+      toggle.addEventListener("change", function () {
+        var expanded = !!toggle.checked;
+        if (burger) burger.setAttribute("aria-expanded", expanded ? "true" : "false");
+        if (expanded) scheduleClose();
+        else clearCloseTimer();
+      });
+    }
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900 && toggle && toggle.checked) {
+        toggle.checked = false;
+        if (burger) burger.setAttribute("aria-expanded", "false");
+      }
+    });
+  })();
+</script>

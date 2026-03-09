@@ -1,6 +1,14 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" as="image" href="assets/img/logo-ana.png">
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var images = document.querySelectorAll("img:not(.brand img)");
+    images.forEach(function (img) {
+      if (!img.getAttribute("loading")) img.setAttribute("loading", "lazy");
+      if (!img.getAttribute("decoding")) img.setAttribute("decoding", "async");
+    });
+  });
+</script>

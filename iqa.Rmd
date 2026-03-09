@@ -322,7 +322,7 @@ dygraph(contagem_faixa_iqa) %>%
 
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <img src="assets/img/logo-ana.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
         <div>
           <strong>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</strong>
           <div class="footer-gov">Governo Federal – Brasil</div>

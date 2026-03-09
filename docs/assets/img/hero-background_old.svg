@@ -1,0 +1,96 @@
+<svg viewBox="0 0 1920 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Background abstrato em ondas azuis para hero">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1C3782"/>
+      <stop offset="100%" stop-color="#0093DD"/>
+    </linearGradient>
+
+    <radialGradient id="centerDepth" cx="50%" cy="52%" r="52%">
+      <stop offset="0%" stop-color="#0f2f86" stop-opacity="0.78"/>
+      <stop offset="45%" stop-color="#12439a" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#12439a" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="leftSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="rightSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.14"/>
+    </linearGradient>
+
+    <linearGradient id="waveA" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d7ebfb" stop-opacity="0.40"/>
+      <stop offset="50%" stop-color="#78b7f4" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.36"/>
+    </linearGradient>
+
+    <linearGradient id="waveB" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="50%" stop-color="#8bc4fb" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.24"/>
+    </linearGradient>
+
+    <linearGradient id="waveC" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9ed1ff" stop-opacity="0.22"/>
+      <stop offset="50%" stop-color="#59a8f1" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#dff1ff" stop-opacity="0.22"/>
+    </linearGradient>
+
+    <linearGradient id="strokeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.42"/>
+      <stop offset="50%" stop-color="#d7efff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.36"/>
+    </linearGradient>
+
+    <filter id="blur18" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <filter id="blur10" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="900" fill="url(#bg)"/>
+  <rect width="1920" height="900" fill="url(#centerDepth)"/>
+  <rect width="420" height="900" fill="url(#leftSheen)"/>
+  <rect x="1500" width="420" height="900" fill="url(#rightSheen)"/>
+
+  <!-- massas suaves de fundo -->
+  <path d="M-80 690 C220 560 470 520 760 575 C1080 635 1270 530 1540 505 C1760 486 1900 538 2020 600 L2020 930 L-80 930 Z"
+        fill="#86c5fb" opacity="0.18" filter="url(#blur18)"/>
+  <path d="M-50 360 C250 250 520 245 780 310 C1060 380 1320 335 1560 280 C1740 238 1860 256 1980 310 L1980 -40 L-50 -40 Z"
+        fill="#a7d8ff" opacity="0.12" filter="url(#blur18)"/>
+
+  <!-- ondas principais -->
+  <path d="M-90 525 C180 395 420 398 660 505 C905 612 1180 612 1450 490 C1650 400 1840 390 2020 455"
+        fill="none" stroke="url(#waveA)" stroke-width="190" stroke-linecap="round" opacity="0.72"/>
+
+  <path d="M-110 610 C170 475 430 470 690 570 C960 674 1210 674 1490 562 C1700 476 1860 476 2025 535"
+        fill="none" stroke="url(#waveB)" stroke-width="150" stroke-linecap="round" opacity="0.62"/>
+
+  <path d="M-120 700 C160 560 425 560 710 655 C980 744 1230 742 1510 650 C1710 585 1875 590 2025 635"
+        fill="none" stroke="url(#waveC)" stroke-width="128" stroke-linecap="round" opacity="0.48"/>
+
+  <path d="M-80 430 C150 330 410 325 650 408 C935 505 1225 512 1495 392 C1700 302 1865 302 2010 360"
+        fill="none" stroke="url(#waveC)" stroke-width="96" stroke-linecap="round" opacity="0.34"/>
+
+  <!-- linhas fluidas -->
+  <path d="M-40 487 C220 355 475 360 715 468 C970 580 1225 576 1490 458 C1705 360 1880 360 2015 425"
+        fill="none" stroke="url(#strokeSoft)" stroke-width="4" stroke-linecap="round" opacity="0.95"/>
+
+  <path d="M-50 575 C205 450 455 450 710 548 C975 648 1220 648 1488 548 C1700 468 1878 470 2015 520"
+        fill="none" stroke="url(#strokeSoft)" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+
+  <path d="M-60 660 C190 545 448 548 712 635 C988 727 1232 725 1496 645 C1705 582 1878 585 2015 625"
+        fill="none" stroke="url(#strokeSoft)" stroke-width="2.5" stroke-linecap="round" opacity="0.58"/>
+
+  <!-- brilho suave lateral -->
+  <path d="M1670 -20 C1560 120 1550 250 1650 385 C1765 540 1775 690 1645 920"
+        fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="120" filter="url(#blur10)"/>
+  <path d="M210 915 C320 745 360 620 280 505 C185 370 195 205 330 -10"
+        fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="120" filter="url(#blur10)"/>
+</svg>

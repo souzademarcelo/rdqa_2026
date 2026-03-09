@@ -1,0 +1,60 @@
+<svg viewBox="0 0 1920 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1C3782"/>
+      <stop offset="100%" stop-color="#0093DD"/>
+    </linearGradient>
+
+    <radialGradient id="core" cx="50%" cy="46%" r="52%">
+      <stop offset="0%" stop-color="#15357f" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#174a9f" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#174a9f" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="lineSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.18"/>
+    </linearGradient>
+
+    <linearGradient id="lineBright" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.46"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.32"/>
+    </linearGradient>
+
+    <linearGradient id="veil" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <filter id="blur40" x="-10%" y="-20%" width="120%" height="140%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="900" fill="url(#bg)"/>
+  <rect width="1920" height="900" fill="url(#core)"/>
+
+  <!-- broad horizontal veils: no vertical side panels -->
+  <path d="M0 170 C320 110 670 120 960 165 C1260 210 1580 220 1920 170 L1920 300 C1590 255 1270 250 960 275 C650 300 320 275 0 335 Z" fill="url(#veil)"/>
+  <path d="M0 380 C360 320 720 330 960 380 C1240 438 1590 448 1920 395 L1920 540 C1600 490 1260 485 960 525 C670 565 345 555 0 610 Z" fill="url(#veil)"/>
+  <path d="M0 625 C370 580 700 590 960 632 C1260 680 1585 690 1920 650 L1920 830 C1595 785 1260 790 960 825 C675 858 350 845 0 890 Z" fill="url(#veil)"/>
+
+  <!-- soft glow behind center text area -->
+  <ellipse cx="960" cy="390" rx="620" ry="180" fill="#0d3ea4" opacity="0.14" filter="url(#blur40)"/>
+
+  <!-- flowing white lines -->
+  <path d="M-40 210 C250 150 560 165 890 210 C1215 255 1530 255 1960 190" stroke="url(#lineSoft)" stroke-width="6" fill="none"/>
+  <path d="M-60 455 C285 395 585 405 915 455 C1255 505 1560 500 1965 445" stroke="url(#lineSoft)" stroke-width="6" fill="none"/>
+  <path d="M-35 710 C300 655 640 665 945 710 C1260 755 1570 752 1960 700" stroke="url(#lineSoft)" stroke-width="5" fill="none"/>
+
+  <!-- brighter accent wave lower third -->
+  <path d="M-30 790 C240 735 520 745 790 800 C1110 865 1450 855 1955 770" stroke="url(#lineBright)" stroke-width="5" fill="none"/>
+
+  <!-- subtle inner ribbons -->
+  <path d="M0 250 C340 190 650 215 950 255 C1260 296 1590 305 1920 255" stroke="#ffffff" stroke-opacity="0.08" stroke-width="28" fill="none"/>
+  <path d="M0 505 C350 450 675 470 955 515 C1245 562 1565 570 1920 520" stroke="#ffffff" stroke-opacity="0.08" stroke-width="26" fill="none"/>
+  <path d="M0 760 C355 705 685 715 960 760 C1260 808 1590 810 1920 765" stroke="#ffffff" stroke-opacity="0.08" stroke-width="24" fill="none"/>
+</svg>

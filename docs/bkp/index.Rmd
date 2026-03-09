@@ -99,7 +99,7 @@ output:
     </div>
       
     <p class="eq-text">
-    Integra parâmetros importantes e resume tudo em uma escala de 0 a 100,           geralmente classificada como ótima, boa, regular, ruim ou péssima.
+    Integra parâmetros importantes e resume tudo em uma escala de 0 a 100, geralmente classificada como ótima, boa, regular, ruim ou péssima.
     </p>
   </div>
   
@@ -123,21 +123,19 @@ output:
       <li>Informar a sociedade sobre a situação dos recursos hídricos.</li>
     </ul>
 
-    <figure class="panel-figure">
-      <img src="assets/img/fluxo_info.png" alt="Informações de qualidade da água para apoiar a gestão dos recursos hídricos.">
-      <figcaption>
-        Informações de qualidade da água para apoiar a gestão dos recursos hídricos.
-      </figcaption>
-    </figure>
-
 
       <h3>Origem e confiabilidade dos dados</h3>
       
       <p>Todos os dados apresentados neste portal são provenientes da Rede Nacional de Monitoramento da Qualidade da Água (RNQA), formada por estações de monitoramento operadas por órgãos estaduais e distritais de recursos hídricos e meio ambiente. As informações seguem metodologias padronizadas e critérios técnicos nacionais, promovidos pela ANA, o que garante a comparabilidade dos dados em escala nacional. Este portal atua exclusivamente como uma plataforma de organização, visualização e divulgação, não alterando nem reinterpretando tecnicamente os dados originais.</p>
      
      <h3>Monitoramento nas unidades da federação</h3> 
+     
+     <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do País.</p>
+     
+    <p>O mapa apresenta as instituições parceiras nas UFs e quantos pontos de monitoramento elas operam*.</p>
       
 ```
+
 
 
 ```{r mapa_parceiros, echo=FALSE, message=FALSE, warning=FALSE}
@@ -146,7 +144,9 @@ library(leaflet)
 library(geobr)
 library(htmltools)
 
-od <- readRDS("data/preprocessed/od.rds")$grouped_obs
+od_data <- readRDS("data/preprocessed/od.rds")
+od <- od_data$grouped_obs
+tbl_od <- od_data$tbl
 
 od_filtrado <- od |>
   filter(
@@ -245,8 +245,92 @@ leaflet(estados2, options = leafletOptions(zoomControl = TRUE)) |>
 
 ```{=html} 
 
-    <p>Nas estações da RNQA, técnicos coletam amostras de água em pontos fixos e em períodos regulares. Essas amostras são analisadas em laboratório ou por sensores em campo, seguindo procedimentos padronizados, o que permite comparar resultados ao longo do tempo e entre diferentes regiões do País.</p>
-    <p class="footnote">*O número de pontos do mapa é baseado nas medições de OD disponíveis em nossa base de dados entre 2010 e 2024.</p>
+    <p>A expansão da RNQA é importante para conhecermos e cuidarmos da qualidade das águas de nossos rios e lagos em todo o território nacional. O gráfico mostra a evolução do monitoramento da qualidade da água entre 2010 e 2024 no Brasil com base na quantidade de pontos*.</p>
+        
+```    
+    
+```{r evolucao_redes, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(lubridate)
+
+df_codigos_ano <- tbl_od %>%
+  mutate(
+    data = as.Date(data),        # ajuste se sua data estiver em outro formato
+    ano  = year(data)
+  ) %>%
+  filter(!is.na(ano)) %>%
+  group_by(ano) %>%
+  summarise(
+    n_codigos_distintos = n_distinct(codigo, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(ano)
+
+library(plotly)
+library(htmlwidgets)
+
+# Base: usa df_codigos_ano (colunas: ano, n_codigos_distintos)
+base <- df_codigos_ano %>%
+  transmute(
+    Ano = as.numeric(ano),
+    Total = as.numeric(n_codigos_distintos)
+  ) %>%
+  arrange(Ano)
+
+# Frames cumulativos (ano a ano)
+anim_data <- bind_rows(lapply(seq_len(nrow(base)), function(i) {
+  d <- base[1:i, ]
+  d$frame <- as.character(base$Ano[i])
+  d$point_id <- paste0("p", seq_len(nrow(d)))
+  d
+}))
+
+ymax <- max(base$Total, na.rm = TRUE) * 1.1
+
+plot_ly(
+  anim_data,
+  x = ~Ano,
+  y = ~Total,
+  frame = ~frame,
+  ids = ~point_id,
+  type = "scatter",
+  mode = "lines+markers",
+  line = list(color = "#1C3782", width = 2),
+  marker = list(size = 5, color = "#0093DD"),
+  fill = "tozeroy",
+  fillcolor = "rgba(0,147,221,0.18)",
+  hovertemplate = "Ano: %{x}<br>Códigos distintos: %{y}<extra></extra>"
+) %>%
+  layout(
+    autosize = TRUE,
+    width = NULL,
+    yaxis = list(title = "Pontos de monitoramento", range = c(0, ymax), fixedrange = TRUE),
+    xaxis = list(title = "", dtick = 1, fixedrange = TRUE),
+    margin = list(l = 40, r = 10, t = 20, b = 40)
+  ) %>%
+  config(displayModeBar = FALSE, responsive = TRUE) %>%
+  animation_opts(frame = 250, transition = 0, redraw = FALSE, mode = "immediate") %>%
+  animation_slider(hide = TRUE) %>%
+  animation_button(hide = TRUE) %>%
+  onRender("
+    function(el, x){
+      function playLoop(){
+        if(window.Plotly){
+          Plotly.animate(el, null, {
+            frame: {duration: 250, redraw: true},
+            transition: {duration: 0},
+            mode: 'immediate'
+          });
+        }
+      }
+      setTimeout(playLoop, 0);
+      el.on('plotly_animated', function(){ playLoop(); });
+    }
+  ")
+```
+
+```{=html} 
+    <p class="footnote">*O número de pontos no mapa e no gráfico é calculado com base nas medições de OD entre 2010 e 2024 utilizadas neste portal.</p>
     
     </div>
     

@@ -343,8 +343,8 @@ shapes <- lapply(seq_len(nrow(marcos)), function(i) {
 annotations <- lapply(seq_len(nrow(marcos)), function(i) {
   list(
     x = marcos$ano[i], y = 1.03, xref = "x", yref = "paper",
-    text = marcos$label[i], showarrow = FALSE, textangle = -35,
-    font = list(size = 10, color = "#1C3782")
+    text = marcos$label[i], showarrow = FALSE, textangle = -90,
+    font = list(size = 11, color = "#1C3782")
   )
 })
 
@@ -559,7 +559,7 @@ mapa_final_eca_tmap
 
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <img src="assets/img/logo-ana.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
         <div>
           <strong>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</strong>
           <div class="footer-gov">Governo Federal – Brasil</div>

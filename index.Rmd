@@ -11,7 +11,7 @@ output:
 ```{=html}
 <section class="hero">
   <div class="hero-content">
-    <h1>Qualidade da Água no Brasil</h1>
+    <h1>Qualidade da Água no Brasil - Versão Teste</h1>
   <div class="section-head">
     <h2>Transparência, informação pública e apoio à gestão dos recursos hídricos</h2>
   </div>
@@ -179,6 +179,10 @@ parceiros <- data.frame(
 
 # Estados únicos do geobr
 estados <- geobr::read_state(year = 2020, simplified = TRUE) |>
+  # Simplifica a geometria para reduzir o payload enviado ao html final.
+  sf::st_transform(5880) |>
+  sf::st_simplify(dTolerance = 5000, preserveTopology = TRUE) |>
+  sf::st_transform(4674) |>
   mutate(uf = abbrev_state)
 
 # Agrega por UF (mantém duplicados)
@@ -210,7 +214,7 @@ pal <- colorBin(
 # Tooltip
 labels <- paste0(
   "<strong>", estados2$name_state, " (", estados2$uf, ")</strong><br>",
-  "<strong>Pontos OD:</strong> ", estados2$n_pontos, "<br>",
+  "<strong>Pontos:</strong> ", estados2$n_pontos, "<br>",
   "<strong>Parceiros:</strong> ",
   ifelse(estados2$parceiros_txt != "",
          estados2$parceiros_txt,

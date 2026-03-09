@@ -387,6 +387,12 @@ dygraph(freq_regime_dbo) %>%
   <p>Trechos com <strong>DBO elevada e NC% alta</strong> caracterizam corpos de água sob forte impacto, com maior recorrência em <strong>pequenos rios urbanos</strong> e em áreas densamente ocupadas. Nesses casos, a menor capacidade de diluição torna os efeitos das cargas orgânicas mais intensos, resultando em maior risco de restrição de usos e comprometimento da vida aquática.</p>
 
   <p>A evolução temporal da DBO entre <strong>2010 e 2024</strong> sugere sensibilidade às condições hidrológicas. Em períodos de <strong>estiagem e vazões reduzidas</strong>, a capacidade de diluição diminui e a DBO tende a se tornar mais crítica, elevando a frequência de não conformidade, sobretudo em áreas urbanizadas. Em fases de recuperação hidrológica, pode haver melhora conjuntural, mas a persistência de não conformidades evidencia que a pressão orgânica de base permanece elevada onde há deficiência estrutural de saneamento.</p>
+  
+   <p>Observa-se uma <strong>forte elevação da não conformidade da DBO (NC%) em ambientes lênticos entre 2023 e 2024</strong> , passando de 27% para 58%. Esse aumento foi impulsionado principalmente pela degradação da qualidade da água na Região Nordeste, com destaque para Ceará, Rio Grande do Norte e Pernambuco.
+   
+  <p>O Ceará concentra cerca de 67% dos pontos de monitoramento em ambientes lênticos do país, devido à importância dos açudes para a segurança hídrica no Semiárido. No estado, a NC% de DBO nos açudes aumentou de 33% para 95% entre 2023 e 2024, elevando significativamente a média nacional.</p>
+
+ <p>Fatores climáticos podem ter contribuído para esse cenário. Entre junho de 2023 e abril de 2024, ocorreu um episódio de El Niño, associado a condições de seca em áreas do Nordeste, com melhora apenas a partir de março/abril de 2024 (ANA). No Ceará, mesmo com boa recarga na quadra chuvosa de 2024, houve redução do armazenamento no segundo semestre, associada a temperaturas acima da média e maior evaporação, conforme registrado pela COGERH. Além disso, 2024 foi o ano mais quente da série histórica no Brasil (INMET), e temperaturas elevadas tendem a reduzir o oxigênio dissolvido e intensificar a atividade biológica, favorecendo o aumento da DBO.</p>
 
   <p>Em termos regionais, os resultados são coerentes com o padrão nacional de saneamento: as condições mais críticas de DBO tendem a se concentrar onde há <strong>maiores déficits de coleta e tratamento de esgotos</strong> e maior densidade populacional, reforçando o papel do saneamento como principal determinante da carga orgânica lançada nos corpos de água. Assim, a melhoria sustentável da DBO depende fundamentalmente de <strong>ações estruturais</strong> (expansão e eficiência do tratamento, controle de ligações irregulares e gestão de cargas), além de medidas de controle difuso em áreas urbanas.</p>
 
@@ -422,7 +428,7 @@ dygraph(freq_regime_dbo) %>%
 
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/img/ana-logo.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
+        <img src="assets/img/logo-ana.png" alt="Agência Nacional de Águas e Saneamento Básico (ANA)">
         <div>
           <strong>AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO</strong>
           <div class="footer-gov">Governo Federal – Brasil</div>

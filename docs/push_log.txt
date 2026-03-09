@@ -820,3 +820,46 @@ $ git commit -m "atualização 03 mar 2026"
 $ git push --force origin main
 To https://github.com/souzademarcelo/rdqa_2026.git
    d440ef2..a8dbbf2  main -> main
+
+$ git config user.name "Marcelo Souza"
+
+
+$ git config user.email "souzademarcelo@gmail.com"
+
+
+$ git remote -v
+origin	https://github.com/souzademarcelo/rdqa_2026.git (fetch)
+origin	https://github.com/souzademarcelo/rdqa_2026.git (push)
+
+$ git status --porcelain
+ M bkp/index.Rmd
+ M docs/bkp/index.Rmd
+ M docs/dbo.html
+ M docs/eca.html
+ M docs/enquadramento.html
+ M docs/fosforo.html
+ M docs/index.html
+ M docs/iqa.html
+ M docs/od.html
+ M docs/push_log.txt
+ M index.Rmd
+ M push_log.txt
+?? DBO_ANALISE.R
+?? docs/relatorio_auditoria_ce_2024_dbo.html
+?? docs/relatorio_auditoria_ce_2024_dbo_files/
+?? relatorio_auditoria_ce_2024_dbo.Rmd
+
+$ git add -A
+
+
+$ git commit -m "atualização 03 mar 2026"
+[main 4bec67e] atualização 03 mar 2026
+ 16 files changed, 2339 insertions(+), 100 deletions(-)
+ create mode 100644 DBO_ANALISE.R
+ create mode 100644 docs/relatorio_auditoria_ce_2024_dbo.html
+ create mode 100644 docs/relatorio_auditoria_ce_2024_dbo_files/figure-html/cobertura-1.png
+ create mode 100644 relatorio_auditoria_ce_2024_dbo.Rmd
+
+$ git push --force origin main
+To https://github.com/souzademarcelo/rdqa_2026.git
+   a8dbbf2..4bec67e  main -> main

@@ -1,0 +1,244 @@
+
+[C:/pgquali/qualidade-da-agua] $ git config user.name "Marcelo Souza"
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git config user.email "souzademarcelo@gmail.com"
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git remote -v
+origin	https://gitlab.ana.gov.br/qualidade-da-agua/qualidade-da-agua.git (fetch)
+origin	https://gitlab.ana.gov.br/qualidade-da-agua/qualidade-da-agua.git (push) 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git config --get-all remote.origin.fetch
++refs/heads/*:refs/remotes/origin/* 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git fetch --all --prune
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git ls-remote --heads origin main
+d4428011fb4c59c805b4e25b67eaa8e347effd8f	refs/heads/main 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git reset --hard
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git clean -fd
+Removing rdqa_2026/ 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git checkout -B main origin/main
+branch 'main' set up to track 'origin/main'.
+Reset branch 'main' 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git branch --set-upstream-to=origin/main main
+branch 'main' set up to track 'origin/main'. 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git pull --ff-only origin main
+From https://gitlab.ana.gov.br/qualidade-da-agua/qualidade-da-agua
+ * branch            main       -> FETCH_HEAD
+Already up to date. 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git add "rdqa_2026"
+warning: in the working copy of 'rdqa_2026/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/_site.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/assets/css/theme.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/assets/includes/head.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/dygraphs-1.1.1/dygraph.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/dygraphs-1.1.1/shapes.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/header-attrs-2.29/header-attrs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/highlightjs-9.12.0/default.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/highlightjs-9.12.0/highlight.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/highlightjs-9.12.0/textmate.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-1.3.1/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/moment-2.8.4/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/moment-timezone-0.2.5/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/carregar_gitlab_rdqa_2026.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/assets/css/theme.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/assets/includes/head.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/dygraphs-1.1.1/dygraph.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/dygraphs-1.1.1/shapes.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/header-attrs-2.29/header-attrs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/highlightjs-9.12.0/default.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/highlightjs-9.12.0/highlight.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/highlightjs-9.12.0/textmate.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/htmltools-fill-0.5.8.1/fill.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/bootstrap.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/font-awesome.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/ionicons.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-1.3.1/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-binding-2.2.3/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/leafletfix-1.0.0/leafletfix.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/moment-2.8.4/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/moment-timezone-0.2.5/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/bkp/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/dygraphs-1.1.1/dygraph-combined-dev.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/dygraphs-1.1.1/dygraph-combined.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/dygraphs-1.1.1/dygraph.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/dygraphs-1.1.1/shapes.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/dygraphs-binding-1.1.1.6/dygraphs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/header-attrs-2.29/header-attrs.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/highlightjs-9.12.0/default.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/highlightjs-9.12.0/highlight.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/highlightjs-9.12.0/textmate.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/bootstrap-theme.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/bootstrap.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/bootstrap.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/font-awesome.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/fonts/fontawesome-webfont.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/fonts/glyphicons-halflings-regular.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/fonts/ionicons.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/ionicons.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/ionicons-2.0.1/leaflet.awesome-markers.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/jquery-3.6.0/jquery-3.6.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/jquery-3.6.0/jquery-3.6.0.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-1.3.1/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-binding-2.2.3/leaflet.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-easybutton-1.3.1/EasyButton-binding.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-easybutton-1.3.1/LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-easybutton-1.3.1/easy-button.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/leafletfix-1.0.0/leafletfix.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/moment-2.8.4/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/moment-2.8.4/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/moment-timezone-0.2.5/moment.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/plotly-binding-4.11.0/plotly.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/plotly-main-2.11.1/plotly-latest.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/eca.Rmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/index.Rmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/scripts/load_enquadramento.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/scripts/load_preprocessed.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/scripts/preprocess_data.R', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/crosstalk-1.2.2/css/crosstalk.min.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.js.map', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.min.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/crosstalk-1.2.2/scss/crosstalk.scss', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/htmltools-fill-0.5.8.1/fill.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'rdqa_2026/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js', LF will be replaced by CRLF the next time Git touches it 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git status --porcelain -- "rdqa_2026"
+M  rdqa_2026/_site.yml
+M  rdqa_2026/assets/css/theme.css
+M  rdqa_2026/assets/includes/head.html
+M  rdqa_2026/bkp/index.Rmd
+M  rdqa_2026/carregar_gitlab_rdqa_2026.R
+M  rdqa_2026/dbo.Rmd
+M  rdqa_2026/docs/assets/css/theme.css
+M  rdqa_2026/docs/assets/includes/head.html
+M  rdqa_2026/docs/bkp/index.Rmd
+M  rdqa_2026/docs/dbo.html
+M  rdqa_2026/docs/eca.html
+M  rdqa_2026/docs/eca_chat.html
+M  rdqa_2026/docs/enquadramento.html
+M  rdqa_2026/docs/fosforo.html
+M  rdqa_2026/docs/index.html
+M  rdqa_2026/docs/iqa.html
+M  rdqa_2026/docs/od.html
+A  rdqa_2026/docs/push_gitlab_log.txt
+M  rdqa_2026/docs/push_log.txt
+D  rdqa_2026/docs/rdqa_2026-main.zip
+M  rdqa_2026/docs/relatorio_auditoria_ce_2024_dbo.html
+M  rdqa_2026/docs/relatorio_auditoria_ce_2024_dbo_files/figure-html/cobertura-1.png
+R  rdqa_2026/docs/site_libs/crosstalk-1.2.1/css/crosstalk.min.css -> rdqa_2026/docs/site_libs/crosstalk-1.2.2/css/crosstalk.min.css
+R  rdqa_2026/docs/site_libs/crosstalk-1.2.1/js/crosstalk.js -> rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.js
+R  rdqa_2026/docs/site_libs/crosstalk-1.2.1/js/crosstalk.js.map -> rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.js.map
+R  rdqa_2026/docs/site_libs/crosstalk-1.2.1/js/crosstalk.min.js -> rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.min.js
+R  rdqa_2026/docs/site_libs/crosstalk-1.2.1/js/crosstalk.min.js.map -> rdqa_2026/docs/site_libs/crosstalk-1.2.2/js/crosstalk.min.js.map
+R  rdqa_2026/docs/site_libs/crosstalk-1.2.1/scss/crosstalk.scss -> rdqa_2026/docs/site_libs/crosstalk-1.2.2/scss/crosstalk.scss
+A  rdqa_2026/docs/site_libs/htmltools-fill-0.5.8.1/fill.css
+R  rdqa_2026/docs/site_libs/htmlwidgets-1.6.3/htmlwidgets.js -> rdqa_2026/docs/site_libs/htmlwidgets-1.6.4/htmlwidgets.js
+M  rdqa_2026/index.Rmd 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git commit -m "atualizacao rdqa_2026 - 2026-03-05"
+[main bea8a47] atualizacao rdqa_2026 - 2026-03-05
+ 31 files changed, 497 insertions(+), 120 deletions(-)
+ create mode 100644 rdqa_2026/docs/push_gitlab_log.txt
+ delete mode 100644 rdqa_2026/docs/rdqa_2026-main.zip
+ rename rdqa_2026/docs/site_libs/{crosstalk-1.2.1 => crosstalk-1.2.2}/css/crosstalk.min.css (100%)
+ rename rdqa_2026/docs/site_libs/{crosstalk-1.2.1 => crosstalk-1.2.2}/js/crosstalk.js (100%)
+ rename rdqa_2026/docs/site_libs/{crosstalk-1.2.1 => crosstalk-1.2.2}/js/crosstalk.js.map (100%)
+ rename rdqa_2026/docs/site_libs/{crosstalk-1.2.1 => crosstalk-1.2.2}/js/crosstalk.min.js (100%)
+ rename rdqa_2026/docs/site_libs/{crosstalk-1.2.1 => crosstalk-1.2.2}/js/crosstalk.min.js.map (100%)
+ rename rdqa_2026/docs/site_libs/{crosstalk-1.2.1 => crosstalk-1.2.2}/scss/crosstalk.scss (100%)
+ create mode 100644 rdqa_2026/docs/site_libs/htmltools-fill-0.5.8.1/fill.css
+ rename rdqa_2026/docs/site_libs/{htmlwidgets-1.6.3 => htmlwidgets-1.6.4}/htmlwidgets.js (100%) 
+[exit_status] 0
+
+[C:/pgquali/qualidade-da-agua] $ git push origin main
+To https://gitlab.ana.gov.br/qualidade-da-agua/qualidade-da-agua.git
+   d442801..bea8a47  main -> main 
+[exit_status] 0
